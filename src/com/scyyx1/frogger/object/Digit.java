@@ -1,4 +1,4 @@
-package p4_group_8_repo;
+package com.scyyx1.frogger.object;
 
 import javafx.scene.image.Image;
 
@@ -12,7 +12,7 @@ public class Digit extends Actor{
 	}
 	
 	public Digit(int n, int dim, int x, int y) {
-		im1 = new Image("file:src/p4_group_8_repo/"+n+".png", dim, dim, true, true);
+		im1 = new Image("file:resource/digit"+n+".png", dim, dim, true, true);
 		setImage(im1);
 		setX(x);
 		setY(y);

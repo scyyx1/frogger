@@ -1,9 +1,13 @@
-package p4_group_8_repo;
+package com.scyyx1.frogger.object;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 
 import java.util.ArrayList;
+
+import com.scyyx1.frogger.world.World;
+
+
 
 
 public abstract class Actor extends ImageView{

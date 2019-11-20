@@ -1,4 +1,4 @@
-package p4_group_8_repo;
+package com.scyyx1.frogger.object;
 
 import javafx.scene.image.Image;
 

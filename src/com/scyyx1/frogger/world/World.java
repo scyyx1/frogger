@@ -1,8 +1,10 @@
-package p4_group_8_repo;
+package com.scyyx1.frogger.world;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.scyyx1.frogger.object.Actor;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ChangeListener;
