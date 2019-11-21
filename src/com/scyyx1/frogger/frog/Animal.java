@@ -1,6 +1,8 @@
-package com.scyyx1.frogger.object;
+package com.scyyx1.frogger.frog;
 
 import java.util.ArrayList;
+
+import com.scyyx1.frogger.obstacle.*;
 
 import javafx.event.EventHandler;
 
@@ -36,14 +38,14 @@ public class Animal extends Actor {
 		setImage(new Image(imageLink, imgSize, imgSize, true, true));
 		setX(300);
 		setY(679.8+movement);
-		imgW1 = new Image("file:resource/frog/froggerUp.png", imgSize, imgSize, true, true);
-		imgA1 = new Image("file:resource/frog/froggerLeft.png", imgSize, imgSize, true, true);
-		imgS1 = new Image("file:resource/frog/froggerDown.png", imgSize, imgSize, true, true);
-		imgD1 = new Image("file:resource/frog/froggerRight.png", imgSize, imgSize, true, true);
-		imgW2 = new Image("file:resource/frog/froggerUpJump.png", imgSize, imgSize, true, true);
-		imgA2 = new Image("file:resource/frog/froggerLeftJump.png", imgSize, imgSize, true, true);
-		imgS2 = new Image("file:resource/frog/froggerDownJump.png", imgSize, imgSize, true, true);
-		imgD2 = new Image("file:resource/frog/froggerRightJump.png", imgSize, imgSize, true, true);
+		imgW1 = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
+		imgA1 = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
+		imgS1 = new Image("file:resource/frogs/froggerDown.png", imgSize, imgSize, true, true);
+		imgD1 = new Image("file:resource/frogs/froggerRight.png", imgSize, imgSize, true, true);
+		imgW2 = new Image("file:resource/frogs/froggerUpJump.png", imgSize, imgSize, true, true);
+		imgA2 = new Image("file:resource/frogs/froggerLeftJump.png", imgSize, imgSize, true, true);
+		imgS2 = new Image("file:resource/frogs/froggerDownJump.png", imgSize, imgSize, true, true);
+		imgD2 = new Image("file:resource/frogs/froggerRightJump.png", imgSize, imgSize, true, true);
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent event){
 				if (noMove) {
@@ -147,20 +149,20 @@ public class Animal extends Actor {
 				carD++;
 			}
 			if (carD==1) {
-				setImage(new Image("file:resource/death/cardeath1.png", imgSize, imgSize, true, true));
+				setImage(new Image("file:resource/deaths/cardeath1.png", imgSize, imgSize, true, true));
 			}
 			if (carD==2) {
-				setImage(new Image("file:resource/death/cardeath2.png", imgSize, imgSize, true, true));
+				setImage(new Image("file:resource/deaths/cardeath2.png", imgSize, imgSize, true, true));
 			}
 			if (carD==3) {
-				setImage(new Image("file:resource/death/cardeath3.png", imgSize, imgSize, true, true));
+				setImage(new Image("file:resource/deaths/cardeath3.png", imgSize, imgSize, true, true));
 			}
 			if (carD == 4) {
 				setX(300);
 				setY(679.8+movement);
 				carDeath = false;
 				carD = 0;
-				setImage(new Image("file:resource/frog/froggerUp.png", imgSize, imgSize, true, true));
+				setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
 					points-=50;
@@ -175,23 +177,23 @@ public class Animal extends Actor {
 				carD++;
 			}
 			if (carD==1) {
-				setImage(new Image("file:resource/death/waterdeath1.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:resource/deaths/waterdeath1.png", imgSize,imgSize , true, true));
 			}
 			if (carD==2) {
-				setImage(new Image("file:resource/death/waterdeath2.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:resource/deaths/waterdeath2.png", imgSize,imgSize , true, true));
 			}
 			if (carD==3) {
-				setImage(new Image("file:resource/death/waterdeath3.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:resource/deaths/waterdeath3.png", imgSize,imgSize , true, true));
 			}
 			if (carD == 4) {
-				setImage(new Image("file:resource/death/waterdeath4.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:resource/deaths/waterdeath4.png", imgSize,imgSize , true, true));
 			}
 			if (carD == 5) {
 				setX(300);
 				setY(679.8+movement);
 				waterDeath = false;
 				carD = 0;
-				setImage(new Image("file:resource/frog/froggerUp.png", imgSize, imgSize, true, true));
+				setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
 					points-=50;

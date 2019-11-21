@@ -1,4 +1,4 @@
-package com.scyyx1.frogger.object;
+package com.scyyx1.frogger.frog;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;

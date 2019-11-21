@@ -1,4 +1,6 @@
-package com.scyyx1.frogger.object;
+package com.scyyx1.frogger.background;
+
+import com.scyyx1.frogger.frog.Actor;
 
 import javafx.scene.image.Image;
 

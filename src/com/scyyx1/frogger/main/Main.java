@@ -1,16 +1,13 @@
 package com.scyyx1.frogger.main;
 
-import java.io.File;
 import java.util.List;
 
-import com.scyyx1.frogger.object.Animal;
-import com.scyyx1.frogger.object.BackgroundImage;
-import com.scyyx1.frogger.object.Digit;
-import com.scyyx1.frogger.object.End;
-import com.scyyx1.frogger.object.Log;
-import com.scyyx1.frogger.object.Obstacle;
-import com.scyyx1.frogger.object.Turtle;
-import com.scyyx1.frogger.object.WetTurtle;
+import com.scyyx1.frogger.background.BackgroundImage;
+import com.scyyx1.frogger.frog.Animal;
+import com.scyyx1.frogger.digit.Digit;
+import com.scyyx1.frogger.frog.End;
+import com.scyyx1.frogger.obstacle.*;
+
 import com.scyyx1.frogger.world.MyStage;
 
 import javafx.animation.AnimationTimer;
@@ -41,20 +38,20 @@ public class Main extends Application {
 		//Obstacle obstacle1 = new Obstacle("file:src/p4_group_8_repo/truck2Right.png", 100, 100,2 );
 		//Obstacle obstacle2 = new Obstacle("file:src/p4_group_8_repo/truck1Right.png",0,  150, 1);
 
-		BackgroundImage froggerback = new BackgroundImage("file:resource/background/iKogsKW.png");
+		BackgroundImage froggerback = new BackgroundImage("file:resource/backgrounds/iKogsKW.png");
 	    
 		background.add(froggerback);
 		
-		background.add(new Log("file:resource/log/log3.png", 150, 0, 166, 0.75));
-		background.add(new Log("file:resource/log/log3.png", 150, 220, 166, 0.75));
-		background.add(new Log("file:resource/log/log3.png", 150, 440, 166, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 0, 166, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 220, 166, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 440, 166, 0.75));
 		//background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 0, 166, 0.75));
-		background.add(new Log("file:resource/log/logs.png", 300, 0, 276, -2));
-		background.add(new Log("file:resource/log/logs.png", 300, 400, 276, -2));
+		background.add(new Log("file:resource/logs/logs.png", 300, 0, 276, -2));
+		background.add(new Log("file:resource/logs/logs.png", 300, 400, 276, -2));
 		//background.add(new Log("file:src/p4_group_8_repo/logs.png", 300, 800, 276, -2));
-		background.add(new Log("file:resource/log/log3.png", 150, 50, 329, 0.75));
-		background.add(new Log("file:resource/log/log3.png", 150, 270, 329, 0.75));
-		background.add(new Log("file:resource/log/log3.png", 150, 490, 329, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 50, 329, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 270, 329, 0.75));
+		background.add(new Log("file:resource/logs/log3.png", 150, 490, 329, 0.75));
 		//background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 570, 329, 0.75));
 		
 		background.add(new Turtle(500, 376, -1, 130, 130));
@@ -87,7 +84,7 @@ public class Main extends Application {
 		background.add(new End(141 + 141-13,96));
 		background.add(new End(141 + 141-13+141-13+1,96));
 		background.add(new End(141 + 141-13+141-13+141-13+3,96));
-		animal = new Animal("file:resource/frog/froggerUp.png");
+		animal = new Animal("file:resource/frogs/froggerUp.png");
 		background.add(animal);
 		background.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 0, 649, 1, 120, 120));
 		background.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 300, 649, 1, 120, 120));
