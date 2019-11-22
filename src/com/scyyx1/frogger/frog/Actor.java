@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import com.scyyx1.frogger.world.World;
 
-
-
-
 public abstract class Actor extends ImageView{
 
     public void move(double dx, double dy) {
