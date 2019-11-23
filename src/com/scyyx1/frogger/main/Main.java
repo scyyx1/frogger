@@ -28,6 +28,7 @@ public class Main extends Application {
 	AnimationTimer timer;
 	MyStage mainstage;
 	MyStage startstage;
+	MyStage scorestage;
 	Animal animal;
 	public static void main(String[] args) {
 		launch(args);
@@ -51,6 +52,7 @@ public class Main extends Application {
 		});
 		startstage.getChildren().add(startImage);
 		startstage.getChildren().add(button);
+
 	    Scene startscene  = new Scene(startstage,width,height);
 	    
 		//Obstacle obstacle = new Obstacle("file:src/p4_group_8_repo/truck1Right.png", 25, 25, 3);
@@ -115,17 +117,17 @@ public class Main extends Application {
 		mainstage.add(new End(141 + 141-13+141-13+141-13+3,96));
 		animal = new Animal("file:resource/frogs/froggerUp.png");
 		mainstage.add(animal);
-		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 0, 649, 1, 120, 120));
-		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 300, 649, 1, 120, 120));
-		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 600, 649, 1, 120, 120));
+//		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 0, 649, 1, 120, 120));
+//		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 300, 649, 1, 120, 120));
+//		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 600, 649, 1, 120, 120));
 		//background.add(new Obstacle("file:src/p4_group_8_repo/truck1"+"Right.png", 720, 649, 1, 120, 120));
-		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 100, 597, -1, 50, 50));
-		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 250, 597, -1, 50, 50));
-		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 400, 597, -1, 50, 50));
-		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 550, 597, -1, 50, 50));
-		mainstage.add(new Obstacle("file:resource/vehicles/truck2Right.png", 0, 540, 1, 200, 200));
-		mainstage.add(new Obstacle("file:resource/vehicles/truck2Right.png", 500, 540, 1, 200, 200));
-		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 500, 490, -5, 50, 50));
+//		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 100, 597, -1, 50, 50));
+//		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 250, 597, -1, 50, 50));
+//		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 400, 597, -1, 50, 50));
+//		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 550, 597, -1, 50, 50));
+//		mainstage.add(new Obstacle("file:resource/vehicles/truck2Right.png", 0, 540, 1, 200, 200));
+//		mainstage.add(new Obstacle("file:resource/vehicles/truck2Right.png", 500, 540, 1, 200, 200));
+//		mainstage.add(new Obstacle("file:resource/vehicles/car1Left.png", 500, 490, -1, 50, 50));
 		mainstage.add(new Digit(0, 30, 360, 25));
 		//background.add(obstacle);
 		//background.add(obstacle1);
