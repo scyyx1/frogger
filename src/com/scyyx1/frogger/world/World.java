@@ -104,6 +104,7 @@ public abstract class World extends Pane {
             if (cls.isInstance(n)) {
                 someArray.add((A)n);
             }
+            
         }
         return someArray;
     }

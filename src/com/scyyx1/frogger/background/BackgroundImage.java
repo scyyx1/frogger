@@ -6,8 +6,7 @@ import javafx.scene.image.Image;
 
 public class BackgroundImage extends Actor{
 
-	private double width;
-	private double height;
+
 	
 	@Override
 	public void act(long now) {
@@ -16,28 +15,8 @@ public class BackgroundImage extends Actor{
 	}
 	
 	public BackgroundImage(String imageLink, double width, double height) {
-		setWidth(width);
-		setHeight(height);
-		setImage(new Image(imageLink, width, height, true, true));
-		
+		setImage(new Image(imageLink, width, height, false, false));
 	}
-	
-	public void setWidth(double width) {
-		this.width = width;
-	}
-	
-	public void setHeight(double height) {
-		this.height = height;
-	}
-	
-	@Override
-	public double getWidth() {
-		return this.width;
-	}
-	
-	@Override
-	public double getHeight() {
-		return this.height;
-	}
+
 
 }
