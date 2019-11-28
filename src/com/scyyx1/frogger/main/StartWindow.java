@@ -6,27 +6,25 @@ import com.scyyx1.frogger.main.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
+
 
 
 
 
 public class StartWindow extends MyStage {
-	private double width;
-	private double height;
+
 	private Button start;
-	private Button score;
-	private Button quit;
+
 	public StartWindow(double width, double height) {
-		Button start = new Button("start");
+		start = new Button("start");
 		start.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
-		    	GameWindow game = new GameWindow(width, height);
-		    	Scene scene  = new Scene(game,width,height);
+		    	GameModel gm = new GameModel();
+		    	GameWindow game = new GameWindow(gm, width, height);
+		    	GameController wc = new GameController(gm, game);
+		    	Scene scene  = new Scene(wc.asView(),width,height);
 		    	Main.getStage().setScene(scene);
 //		    	ScoreWindow score = new ScoreWindow(width, height);
 //		    	Scene scene  = new Scene(score, width,height);

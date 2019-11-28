@@ -9,20 +9,18 @@ import com.scyyx1.frogger.obstacle.Turtle;
 import com.scyyx1.frogger.obstacle.WetTurtle;
 import com.scyyx1.frogger.world.MyStage;
 
-import javafx.animation.AnimationTimer;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 
 public class GameWindow extends MyStage{
-	AnimationTimer timer;
-	Animal animal;
-	private double width;
-	private double height;
-	public GameWindow(double width, double height) {
+	private GameModel model;
+	
+	public GameWindow(GameModel model, double width, double height) {
+		this.model = model;
+		createObject(width, height);
+	}
+	
+	private void createObject(double width, double height) {
 		
-		setWidth(width);
-		setHeight(height);
 		//Obstacle obstacle = new Obstacle("file:src/p4_group_8_repo/truck1Right.png", 25, 25, 3);
 		//Obstacle obstacle1 = new Obstacle("file:src/p4_group_8_repo/truck2Right.png", 100, 100,2 );
 		//Obstacle obstacle2 = new Obstacle("file:src/p4_group_8_repo/truck1Right.png",0,  150, 1);
@@ -72,8 +70,9 @@ public class GameWindow extends MyStage{
 		add(new End(141 + 141-13,96));
 		add(new End(141 + 141-13+141-13+1,96));
 		add(new End(141 + 141-13+141-13+141-13+3,96));
-		animal = new Animal("file:resource/frogs/froggerUp.png");
+		Animal animal = new Animal("file:resource/frogs/froggerUp.png");
 		add(animal);
+		model.setAnimal(animal);
 //		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 0, 649, 1, 120, 120));
 //		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 300, 649, 1, 120, 120));
 //		mainstage.add(new Obstacle("file:resource/vehicles/truck1"+"Right.png", 600, 649, 1, 120, 120));
@@ -89,61 +88,12 @@ public class GameWindow extends MyStage{
 		//background.add(obstacle);
 		//background.add(obstacle1);
 		//background.add(obstacle2);
-		start();
-		start1();
 	}
-	
-	/**
-	 * 
-	 */
-	public void start1() {
-		this.playMusic();
-    	createTimer1();
-        timer.start();
-    }
 
-    public void stop1() {
-        timer.stop();
-    }
-    
-    public void createTimer1() {
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-            	if (animal.changeScore()) {
-            		setNumber(animal.getPoints());
-            	}
-            	if (animal.getStop()) {
-            		System.out.print("STOPP:");
-            		stopMusic();
-            		this.stop();
-            		stop1();
-    		    	ScoreWindow score = new ScoreWindow(animal, width, height);
-    		    	Scene scene  = new Scene(score,width,height);
-    		    	Main.getStage().setScene(scene);
-            	}
-            }
-        };
-    }
+	
     
     
-    public void setWidth(double width) {
-    	this.width = width;
-    }
-    public void setHeight(double height) {
-    	this.height = height;
-    }
-    /**
-     * @param n
-     */
-    public void setNumber(int n) {
-    	int shift = 0;
-    	while (n > 0) {
-    		  int d = n / 10;
-    		  int k = n - d * 10;
-    		  n = d;
-    		  add(new Digit(k, 30, 570 - shift, 30));
-    		  shift+=30;
-    		}
-    }
+    
+   
+    
 }
