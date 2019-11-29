@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
@@ -19,12 +20,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-	    int width = 600;
-	    int height = 800;
-	    StartWindow startwindow = new StartWindow(width, height);
-	    Scene startscene  = new Scene(startwindow,width,height);
+	    StartWindow startwindow = new StartWindow();
+	    Scene startscene  = new Scene(startwindow, 400, 400);
 	    
 		primaryStage.setScene(startscene);
+		primaryStage.setResizable(false);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 
 	}

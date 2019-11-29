@@ -29,6 +29,7 @@ public class Animal extends Actor {
 	int imgSize = 40;
 	boolean carDeath = false;
 	boolean waterDeath = false;
+	boolean dead = false;
 	boolean stop = false;
 	boolean changeScore = false;
 	int carD = 0;
@@ -54,7 +55,7 @@ public class Animal extends Actor {
 				else {
 				if (second) {
 					if (event.getCode() == KeyCode.W) {	  
-		                move(0, -movement);
+		                move(0, -movement*2);
 		                changeScore = false;
 		                setImage(imgW1);
 		                second = false;
@@ -65,7 +66,7 @@ public class Animal extends Actor {
 		            	 second = false;
 		            }
 		            else if (event.getCode() == KeyCode.S) {	            	
-		            	 move(0, movement);
+		            	 move(0, movement*2);
 		            	 setImage(imgS1);
 		            	 second = false;
 		            }
@@ -76,7 +77,7 @@ public class Animal extends Actor {
 		            }
 				}
 				else if (event.getCode() == KeyCode.W) {	            	
-	                move(0, -movement);
+	                move(0, -movement*2);
 	                setImage(imgW2);
 	                second = true;
 	            }
@@ -86,7 +87,7 @@ public class Animal extends Actor {
 	            	 second = true;
 	            }
 	            else if (event.getCode() == KeyCode.S) {	            	
-	            	 move(0, movement);
+	            	 move(0, movement*2);
 	            	 setImage(imgS2);
 	            	 second = true;
 	            }
@@ -108,22 +109,22 @@ public class Animal extends Actor {
 						w = getY();
 						points+=10;
 					}
-	                move(0, -movement);
+	                //move(0, -movement);
 	                setImage(imgW1);
 	                second = false;
 	            }
 	            else if (event.getCode() == KeyCode.A) {	            	
-	            	 move(-movementX, 0);
+	            	 //move(-movementX, 0);
 	            	 setImage(imgA1);
 	            	 second = false;
 	            }
 	            else if (event.getCode() == KeyCode.S) {	            	
-	            	 move(0, movement);
+	            	 //move(0, movement);
 	            	 setImage(imgS1);
 	            	 second = false;
 	            }
 	            else if (event.getCode() == KeyCode.D) {	            	
-	            	 move(movementX, 0);
+	            	 //move(movementX, 0);
 	            	 setImage(imgD1);
 	            	 second = false;
 	            }
@@ -162,6 +163,7 @@ public class Animal extends Actor {
 				setY(679.8+movement);
 				carDeath = false;
 				carD = 0;
+				dead = true;
 				setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
@@ -193,6 +195,7 @@ public class Animal extends Actor {
 				setY(679.8+movement);
 				waterDeath = false;
 				carD = 0;
+				dead = true;
 				setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
@@ -264,6 +267,11 @@ public class Animal extends Actor {
 		return false;
 		
 	}
-	
+	public boolean isDead() {
+		return dead;
+	}
+	public void setDead() {
+		this.dead = false;
+	}
 
 }

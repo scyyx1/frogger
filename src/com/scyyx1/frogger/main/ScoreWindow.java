@@ -21,21 +21,21 @@ import javafx.scene.text.Font;
 public class ScoreWindow extends MyStage{
 
 	
-	public ScoreWindow(Animal animal, double width, double height) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("You Have Won The Game!");
-		alert.setHeaderText("Your High Score: "+animal.getPoints()+"!");
-		alert.setContentText("Highest Possible Score: 800");
-		alert.show();
+	public ScoreWindow() {
+//		Alert alert = new Alert(AlertType.INFORMATION);
+//		alert.setTitle("You Have Won The Game!");
+//		alert.setHeaderText("Your High Score: "+animal.getPoints()+"!");
+//		alert.setContentText("Highest Possible Score: 800");
+//		alert.show();
 		Button again = new Button("again");
 		again.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
 		    	GameModel gm = new GameModel();
-		    	GameWindow game = new GameWindow(gm, width, height);
+		    	GameWindow game = new GameWindow(gm);
 		    	GameController wc = new GameController(gm, game);
-		    	Scene scene  = new Scene(wc.asView(),width,height);
-		    	Main.getStage().setScene(scene);
+		    	Scene scene  = new Scene(wc.asView(), 600, 800);
+		    	StartWindow.getStage().setScene(scene);
 
 		    }
 		});
@@ -52,16 +52,16 @@ public class ScoreWindow extends MyStage{
 		try {
             FileReader fr = new FileReader("resource/scores/scores.txt");
             BufferedReader br = new BufferedReader(fr);
-            FileReader frNames = new FileReader("resource/scores/names.txt");
-            BufferedReader brNames = new BufferedReader(frNames);
             for (int i = 0; i < 5; i++) {
-            	labels.add(new Label(brNames.readLine()));
+            	String line = br.readLine();
+            	if(line == null) {
+            		break;
+            	}
+
+            	labels.add(new Label(line));
+
             }
-            for (int i = 0; i < 5; i++) {
-            	labels.add(new Label(br.readLine()));
-            }
-            frNames.close();
-            brNames.close();
+
             br.close();
             fr.close();
         } catch (IOException e1) {

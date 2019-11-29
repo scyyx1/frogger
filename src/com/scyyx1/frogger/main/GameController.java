@@ -39,15 +39,19 @@ public class GameController {
             public void handle(long now) {
             	if (animal.changeScore()) {
             		setNumber(animal.getPoints());
+            		if(animal.isDead()) {
+            			setNumberPrev(animal.getPoints());
+            			animal.setDead();
+            		}
             	}
             	if (animal.getStop()) {
             		System.out.print("STOPP:");
             		view.stopMusic();
             		view.stop();
             		stop1();
-    		    	ScoreWindow score = new ScoreWindow(animal, 600, 800);
-    		    	Scene scene  = new Scene(score, 600, 800);
-    		    	Main.getStage().setScene(scene);
+            		WinGame winGame = new WinGame(animal);
+    		    	Scene scene  = new Scene(winGame, 600, 800);
+    		    	StartWindow.getStage().setScene(scene);
             	}
             }
         };
@@ -60,7 +64,18 @@ public class GameController {
     		  int d = n / 10;
     		  int k = n - d * 10;
     		  n = d;
-    		  view.add(new Digit(k, 30, 570 - shift, 30));
+    		  view.add(new Digit(k, 30, 450 - shift, 35));
+    		  shift+=30;
+    		}
+    }
+	
+	public void setNumberPrev(int n) {
+    	int shift = 0;
+    	while (n > 0) {
+    		  int d = n / 10;
+    		  int k = n - d * 10;
+    		  n = d;
+    		  view.add(new Digit(k, 30, 170 - shift, 35));
     		  shift+=30;
     		}
     }
