@@ -31,7 +31,9 @@ public class Animal extends Actor {
 	boolean waterDeath = false;
 	boolean dead = false;
 	boolean stop = false;
+	int lives = 3;
 	boolean changeScore = false;
+	private int prev_points = 0;
 	int carD = 0;
 	double w = 800;
 	ArrayList<End> inter = new ArrayList<End>();
@@ -161,6 +163,7 @@ public class Animal extends Actor {
 			if (carD == 4) {
 				setX(300);
 				setY(679.8+movement);
+				lives--;
 				carDeath = false;
 				carD = 0;
 				dead = true;
@@ -168,6 +171,7 @@ public class Animal extends Actor {
 				noMove = false;
 				if (points>50) {
 					points-=50;
+					prev_points = points;
 					changeScore = true;
 				}
 			}
@@ -195,11 +199,13 @@ public class Animal extends Actor {
 				setY(679.8+movement);
 				waterDeath = false;
 				carD = 0;
+				lives--;
 				dead = true;
 				setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
 					points-=50;
+					prev_points = points;
 					changeScore = true;
 				}
 			}
@@ -209,7 +215,7 @@ public class Animal extends Actor {
 		if (getX()>600) {
 			move(-movement*2, 0);
 		}
-		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
+		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
 			carDeath = true;
 		}
 		if (getX() == 240 && getY() == 82) {
@@ -242,6 +248,7 @@ public class Animal extends Actor {
 			w=800;
 			getIntersectingObjects(End.class).get(0).setEnd();
 			end++;
+			prev_points = points;
 			setX(300);
 			setY(679.8+movement);
 		}
@@ -252,13 +259,19 @@ public class Animal extends Actor {
 		}
 	}
 	public boolean getStop() {
-		return end==1;
+		return (lives == 0 || end == 3);
 	}
 	
 	public int getPoints() {
 		return points;
 	}
 	
+	public int getPrevPoints() {
+		return prev_points;
+	}
+	public int getLives() {
+		return lives;
+	}
 	public boolean changeScore() {
 		if (changeScore) {
 			changeScore = false;

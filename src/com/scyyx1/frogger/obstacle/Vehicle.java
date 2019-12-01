@@ -4,7 +4,7 @@ import com.scyyx1.frogger.frog.Actor;
 
 import javafx.scene.image.Image;
 
-public class Obstacle extends Actor {
+public class Vehicle extends Actor {
 	private int speed;
 	@Override
 	public void act(long now) {
@@ -15,7 +15,7 @@ public class Obstacle extends Actor {
 			setX(600);
 	}
 	
-	public Obstacle(String imageLink, int xpos, int ypos, int s, int w, int h) {
+	public Vehicle(String imageLink, int xpos, int ypos, int s, int w, int h) {
 		setImage(new Image(imageLink, w,h, true, true));
 		setX(xpos);
 		setY(ypos);

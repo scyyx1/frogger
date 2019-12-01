@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -29,19 +31,18 @@ public class StartWindow extends MyStage {
 		title.setTextFill(Color.CORAL);
 		
 		getChildren().add(title);
+		Image image = new Image("file:resource/frogs/frog.jpg", 240, 180, false, false);
+		ImageView icon = new ImageView(image);
+		icon.setX(250);
+		icon.setY(120);
+		getChildren().add(icon);
 		start = new Button("start");
 		start.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
-		    	stage = new Stage();
-		    	GameModel gm = new GameModel();
-		    	GameWindow game = new GameWindow(gm);
-		    	GameController wc = new GameController(gm, game);
-		    	Scene scene  = new Scene(wc.asView(), 600, 800);
-		    	Main.getStage().close();
-		    	stage.setScene(scene);
-		    	stage.setResizable(false);
-		    	stage.show();
+		    	DifficultyWindow dw = new DifficultyWindow();
+		    	Scene scene = new Scene(dw, 400, 400);
+		    	Main.getStage().setScene(scene);
 //		    	ScoreWindow score = new ScoreWindow(width, height);
 //		    	Scene scene  = new Scene(score, width,height);
 //		    	Main.getStage().setScene(scene);
@@ -59,6 +60,17 @@ public class StartWindow extends MyStage {
 		Button help = new Button("help");
 		help.setLayoutX(150);
 		help.setLayoutY(200);
+		help.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override 
+		    public void handle(ActionEvent e) {
+		    	Stage helpStage = new Stage();
+		    	HelpWindow hw = new HelpWindow();
+		    	Scene scene = new Scene(hw, 500, 500);
+		    	helpStage.setScene(scene);
+		    	helpStage.show();
+		    	
+		    }
+		});
 		getChildren().add(help);
 		
 		Button exit = new Button("exit");

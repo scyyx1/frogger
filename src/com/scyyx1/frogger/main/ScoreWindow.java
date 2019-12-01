@@ -22,27 +22,22 @@ public class ScoreWindow extends MyStage{
 
 	
 	public ScoreWindow() {
-//		Alert alert = new Alert(AlertType.INFORMATION);
-//		alert.setTitle("You Have Won The Game!");
-//		alert.setHeaderText("Your High Score: "+animal.getPoints()+"!");
-//		alert.setContentText("Highest Possible Score: 800");
-//		alert.show();
-		Button again = new Button("again");
-		again.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	GameModel gm = new GameModel();
-		    	GameWindow game = new GameWindow(gm);
-		    	GameController wc = new GameController(gm, game);
-		    	Scene scene  = new Scene(wc.asView(), 600, 800);
-		    	StartWindow.getStage().setScene(scene);
-
-		    }
-		});
-		again.setLayoutX(200);
-		again.setLayoutY(250);
+//		Button again = new Button("again");
+//		again.setOnAction(new EventHandler<ActionEvent>() {
+//		    @Override 
+//		    public void handle(ActionEvent e) {
+//		    	GameModel gm = new GameModel();
+//		    	GameWindow game = new GameWindow(gm);
+//		    	GameController wc = new GameController(gm, game);
+//		    	Scene scene  = new Scene(wc.asView(), 600, 800);
+//		    	StartWindow.getStage().setScene(scene);
+//
+//		    }
+//		});
+//		again.setLayoutX(200);
+//		again.setLayoutY(250);
 		setStyle("-fx-background-color: black;");
-		getChildren().add(again);
+//		getChildren().add(again);
 
 		Label label = new Label("High Scores");
         label.setFont(new Font("Arial", 20));

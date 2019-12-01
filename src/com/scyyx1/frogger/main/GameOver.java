@@ -5,10 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import com.scyyx1.frogger.frog.Animal;
 import com.scyyx1.frogger.world.MyStage;
@@ -19,22 +17,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class WinGame extends MyStage implements Comparator<Person>{
-
-	
-	public WinGame(Animal animal) {
+public class GameOver extends MyStage{
+	public GameOver(Animal animal) {
+		setStyle("-fx-background-color: rgba(192, 192, 192, 0.3);");
+		Button again = new Button("again");
+		again.setLayoutX(200);
+		again.setLayoutY(250);
+		//setStyle("-fx-background-color: black;");
+		getChildren().add(again);
+		
 		TextField username = new TextField();
 		username.setPromptText("Enter your name");
 		username.setPrefColumnCount(10);
 		getChildren().add(username);
 		
 		Button ok = new Button("OK");
+		ok.getStyleClass().add("ok");
 		ok.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
 		    	String name = username.getText();
 		    	if("".equals(name)) {
-		    		name = "No Name";
+		    		name = "NoName";
 		    	}
 		    	ArrayList<Person> lines = new ArrayList<>();
 		    	try {
@@ -73,9 +77,5 @@ public class WinGame extends MyStage implements Comparator<Person>{
 		ok.setLayoutY(400);
 		getChildren().add(ok);
 	}
-	@Override
-	public int compare(Person p1, Person p2) {
-		return p1.score - p2.score;
-	}
+	
 }
-

@@ -21,7 +21,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
 	    StartWindow startwindow = new StartWindow();
-	    Scene startscene  = new Scene(startwindow, 400, 400);
+	    Scene startscene  = new Scene(startwindow, 500, 400);
 	    
 		primaryStage.setScene(startscene);
 		primaryStage.setResizable(false);
