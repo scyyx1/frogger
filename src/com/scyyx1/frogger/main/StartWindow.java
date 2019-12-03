@@ -2,6 +2,10 @@ package com.scyyx1.frogger.main;
 
 
 import com.scyyx1.frogger.world.MyStage;
+
+import java.io.InputStream;
+
+import com.scyyx1.frogger.background.BackgroundImage;
 import com.scyyx1.frogger.main.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,39 +28,42 @@ public class StartWindow extends MyStage {
 	private Button start;
 	public static Stage stage;
 	public StartWindow() {
+
+		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500);
+	    
+		add(background);
 		Label title = new Label("FROGGER");
 		title.setLayoutX(120);
-		title.setLayoutY(80);
-		title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+		title.setLayoutY(50);
+		title.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
 		title.setId("title_text");
-		title.setTextFill(Color.CORNSILK);
+		title.setTextFill(Color.CADETBLUE);
 		
 		getChildren().add(title);
-		Image image = new Image("file:resource/frogs/frog.jpg", 240, 180, false, false);
+		Image image = new Image("file:resource/frogs/frog.png", 200, 200, false, false);
 		ImageView icon = new ImageView(image);
-		icon.setX(250);
-		icon.setY(120);
+		icon.setX(150);
+		icon.setY(300);
 		getChildren().add(icon);
 		start = new Button("START");
 		start.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
 		    	DifficultyWindow dw = new DifficultyWindow();
-		    	Scene scene = new Scene(dw, 500, 400);
+		    	Scene scene = new Scene(dw, 500, 500);
 		    	scene.getStylesheets().add("file:resource/application.css");
 		    	Main.getStage().setScene(scene);
 //		    	ScoreWindow score = new ScoreWindow(width, height);
 //		    	Scene scene  = new Scene(score, width,height);
 //		    	Main.getStage().setScene(scene);
 //		    	WinGame wg = new WinGame();
-//		    	Scene scene  = new Scene(wg,width,height);
+//		    	Scene scene  = new Scene(wg,6);
 //		    	Main.getStage().setScene(scene);
 		    	
 		    }
 		});
 		start.setLayoutX(150);
 		start.setLayoutY(150);
-		setStyle("-fx-background-color: black;");
 		getChildren().add(start);
 		
 		Button help = new Button("HELP");

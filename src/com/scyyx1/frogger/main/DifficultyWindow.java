@@ -1,5 +1,6 @@
 package com.scyyx1.frogger.main;
 
+import com.scyyx1.frogger.background.BackgroundImage;
 import com.scyyx1.frogger.world.MyStage;
 
 import javafx.event.ActionEvent;
@@ -17,14 +18,16 @@ public class DifficultyWindow extends MyStage{
 	public static Stage stage;
 	public DifficultyWindow() {
 		
+		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500);
+
+		add(background);
 		Label title = new Label("SELECT DIFFICULTIES");
-		title.setLayoutX(130);
+		title.setLayoutX(70);
 		title.setLayoutY(50);
-		title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-		title.setTextFill(Color.CORNSILK);
+		title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+		title.setTextFill(Color.CADETBLUE);
 		
 		getChildren().add(title);
-		setStyle("-fx-background-color: black;");
 		Button easy = new Button("EASY");
 		easy.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
@@ -73,11 +76,11 @@ public class DifficultyWindow extends MyStage{
 		    }
 		});
 		easy.setLayoutX(150);
-		easy.setLayoutY(100);
+		easy.setLayoutY(150);
 		medium.setLayoutX(150);
-		medium.setLayoutY(200);
+		medium.setLayoutY(250);
 		difficult.setLayoutX(150);
-		difficult.setLayoutY(300);
+		difficult.setLayoutY(350);
 		getChildren().add(easy);
 		getChildren().add(medium);
 		getChildren().add(difficult);

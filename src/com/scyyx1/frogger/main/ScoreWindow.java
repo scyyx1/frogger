@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.scyyx1.frogger.background.BackgroundImage;
 import com.scyyx1.frogger.frog.Animal;
 import com.scyyx1.frogger.world.MyStage;
 
@@ -17,33 +18,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ScoreWindow extends MyStage{
 
 	
 	public ScoreWindow() {
-//		Button again = new Button("again");
-//		again.setOnAction(new EventHandler<ActionEvent>() {
-//		    @Override 
-//		    public void handle(ActionEvent e) {
-//		    	GameModel gm = new GameModel();
-//		    	GameWindow game = new GameWindow(gm);
-//		    	GameController wc = new GameController(gm, game);
-//		    	Scene scene  = new Scene(wc.asView(), 600, 800);
-//		    	StartWindow.getStage().setScene(scene);
-//
-//		    }
-//		});
-//		again.setLayoutX(200);
-//		again.setLayoutY(250);
-		setStyle("-fx-background-color: black;");
-//		getChildren().add(again);
-
-		Label label = new Label("High Scores");
-        label.setFont(new Font("Arial", 20));
-        label.setTextFill(Color.web("#FFFFFF"));
+		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
+	    
+		add(background);
+		Label label = new Label("HIGH SCORE");
+		label.setLayoutX(130);
+		label.setLayoutY(180);
+		label.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+		label.setTextFill(Color.CORNSILK);
         getChildren().add(label);
 		ArrayList<Label> labels = new ArrayList<>();
+		ArrayList<String>names = new ArrayList<>();
+		ArrayList<String>scores = new ArrayList<>();
 		try {
             FileReader fr = new FileReader("resource/scores/scores.txt");
             BufferedReader br = new BufferedReader(fr);
@@ -52,8 +46,9 @@ public class ScoreWindow extends MyStage{
             	if(line == null) {
             		break;
             	}
-
-            	labels.add(new Label(line));
+            	String[] personDetail = line.split(" ");
+            	names.add(personDetail[0]);
+            	scores.add(personDetail[1]);
 
             }
 
@@ -62,18 +57,30 @@ public class ScoreWindow extends MyStage{
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+		
+		labels.add(new Label(names.get(0)));
+		labels.add(new Label(names.get(1)));
+		labels.add(new Label(names.get(2)));
+		labels.add(new Label(names.get(3)));
+		labels.add(new Label(names.get(4)));
+		labels.add(new Label(scores.get(0)));
+		labels.add(new Label(scores.get(1)));
+		labels.add(new Label(scores.get(2)));
+		labels.add(new Label(scores.get(3)));
+		labels.add(new Label(scores.get(4)));
+
 
 		for (int i = 0; i < labels.size(); i++) {
             Label l = labels.get(i);
             int X = 140;
-            int Y = (198 + i * 70);
+            int Y = (250 + i * 70);
             l.setFont(new Font("Snap ITC", 25));
-            l.setTextFill(Color.web("#0076a3"));
+            l.setTextFill(Color.CORNSILK);
             if (i > 4) {
                 X = 400;
-                Y = (198 + (i - 5) * 70);
+                Y = (250 + (i - 5) * 70);
                 l.setFont(new Font("Snap ITC", 25));
-                l.setTextFill(Color.web("#0076a3"));
+                l.setTextFill(Color.CORNSILK);
             }
 
             l.setTranslateX(X);
@@ -81,6 +88,24 @@ public class ScoreWindow extends MyStage{
 
             getChildren().add(l);
         }
+		
+		Button restart = new Button("TRY AGAIN");
+		restart.setId("restart");
+		restart.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override 
+		    public void handle(ActionEvent e) {
+		    	DifficultyWindow dw = new DifficultyWindow();
+		    	Scene scene = new Scene(dw, 500, 500);
+		    	scene.getStylesheets().add("file:resource/application.css");
+		    	Main.getStage().setScene(scene);
+		    	Main.getStage().show();
+				DifficultyWindow.getStage().close();
+
+		    }
+		});
+		restart.setLayoutX(150);
+		restart.setLayoutY(600);
+		getChildren().add(restart);
         
  
 

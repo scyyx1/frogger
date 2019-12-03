@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.scyyx1.frogger.background.BackgroundImage;
 import com.scyyx1.frogger.frog.Animal;
 import com.scyyx1.frogger.world.MyStage;
 
@@ -15,23 +16,33 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class GameOver extends MyStage{
 	public GameOver(Animal animal) {
-		setStyle("-fx-background-color: rgba(192, 192, 192, 0.3);");
-		Button again = new Button("again");
-		again.setLayoutX(200);
-		again.setLayoutY(250);
-		//setStyle("-fx-background-color: black;");
-		getChildren().add(again);
+		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
+	    
+		add(background);
+		Label title = new Label("GAME OVER");
+		title.setLayoutX(140);
+		title.setLayoutY(180);
+		title.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+		title.setTextFill(Color.CORNSILK);
+		getChildren().add(title);
+
 		
 		TextField username = new TextField();
 		username.setPromptText("Enter your name");
 		username.setPrefColumnCount(10);
+		username.setLayoutX(200);
+		username.setLayoutY(300);
 		getChildren().add(username);
 		
-		Button ok = new Button("OK");
+		Button ok = new Button("ENTER");
 		ok.getStyleClass().add("ok");
 		ok.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
@@ -70,6 +81,7 @@ public class GameOver extends MyStage{
 		    	
 		    	ScoreWindow score = new ScoreWindow();
 		    	Scene scene  = new Scene(score, 600, 800);
+		    	scene.getStylesheets().add("file:resource/application.css");
 		    	DifficultyWindow.getStage().setScene(scene);
 		    }
 		});

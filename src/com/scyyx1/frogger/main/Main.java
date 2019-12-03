@@ -1,8 +1,10 @@
 package com.scyyx1.frogger.main;
 
+import java.io.InputStream;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,7 +23,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
 	    StartWindow startwindow = new StartWindow();
-	    Scene startscene  = new Scene(startwindow, 500, 400);
+	    Scene startscene  = new Scene(startwindow, 500, 500);
 	    startscene.getStylesheets().add("file:resource/application.css");
 	    
 		primaryStage.setScene(startscene);

@@ -70,6 +70,7 @@ public class GameController {
             		}else {
             			WinGame winGame = new WinGame(animal);
 	    		    	Scene scene  = new Scene(winGame, 600, 800);
+	    		    	scene.getStylesheets().add("file:resource/application.css");
 	    		    	DifficultyWindow.getStage().setScene(scene);
             		}
             	}
