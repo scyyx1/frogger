@@ -65,18 +65,11 @@ public class GameController {
             		if(animal.getLives() == 0) {
             			GameOver gameover = new GameOver(animal);
             			Scene scene  = new Scene(gameover, 600, 800);
-            			scene.setFill(Color.TRANSPARENT);
             			scene.getStylesheets().add("file:resource/application.css");
-//            			Stage overStage = new Stage();
-//            			overStage.initOwner(DifficultyWindow.getStage());
-//            			overStage.initStyle(StageStyle.TRANSPARENT);
-//            			overStage.setScene(scene);
-//            			overStage.show();
         		    	DifficultyWindow.getStage().setScene(scene);
             		}else {
             			WinGame winGame = new WinGame(animal);
 	    		    	Scene scene  = new Scene(winGame, 600, 800);
-	    		    	DifficultyWindow.getStage().setOpacity(0.3);
 	    		    	DifficultyWindow.getStage().setScene(scene);
             		}
             	}

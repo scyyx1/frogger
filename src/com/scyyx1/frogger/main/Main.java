@@ -22,6 +22,7 @@ public class Main extends Application {
 		stage = primaryStage;
 	    StartWindow startwindow = new StartWindow();
 	    Scene startscene  = new Scene(startwindow, 500, 400);
+	    startscene.getStylesheets().add("file:resource/application.css");
 	    
 		primaryStage.setScene(startscene);
 		primaryStage.setResizable(false);

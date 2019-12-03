@@ -39,8 +39,8 @@ public class GameWindow extends MyStage{
 		createScore();
 		createLog(level);
 		createTurtle(level);
-		createVehicle(level);
-
+		//createVehicle(level);
+		createFrog();
 		//background.add(obstacle);
 		//background.add(obstacle1);
 		//background.add(obstacle2);
@@ -128,6 +128,10 @@ public class GameWindow extends MyStage{
 		add(new End(141 + 141-13,96));
 		add(new End(141 + 141-13+141-13+1,96));
 		add(new End(141 + 141-13+141-13+141-13+3,96));
+		
+	}
+	
+	public void createFrog() {
 		Animal animal = new Animal("file:resource/frogs/froggerUp.png");
 		add(animal);
 		model.setAnimal(animal);

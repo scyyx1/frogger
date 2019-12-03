@@ -28,7 +28,8 @@ public class StartWindow extends MyStage {
 		title.setLayoutX(120);
 		title.setLayoutY(80);
 		title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-		title.setTextFill(Color.CORAL);
+		title.setId("title_text");
+		title.setTextFill(Color.CORNSILK);
 		
 		getChildren().add(title);
 		Image image = new Image("file:resource/frogs/frog.jpg", 240, 180, false, false);
@@ -36,12 +37,13 @@ public class StartWindow extends MyStage {
 		icon.setX(250);
 		icon.setY(120);
 		getChildren().add(icon);
-		start = new Button("start");
+		start = new Button("START");
 		start.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
 		    	DifficultyWindow dw = new DifficultyWindow();
-		    	Scene scene = new Scene(dw, 400, 400);
+		    	Scene scene = new Scene(dw, 500, 400);
+		    	scene.getStylesheets().add("file:resource/application.css");
 		    	Main.getStage().setScene(scene);
 //		    	ScoreWindow score = new ScoreWindow(width, height);
 //		    	Scene scene  = new Scene(score, width,height);
@@ -57,7 +59,7 @@ public class StartWindow extends MyStage {
 		setStyle("-fx-background-color: black;");
 		getChildren().add(start);
 		
-		Button help = new Button("help");
+		Button help = new Button("HELP");
 		help.setLayoutX(150);
 		help.setLayoutY(200);
 		help.setOnAction(new EventHandler<ActionEvent>() {
@@ -73,7 +75,7 @@ public class StartWindow extends MyStage {
 		});
 		getChildren().add(help);
 		
-		Button exit = new Button("exit");
+		Button exit = new Button("EXIT");
 		exit.setLayoutX(150);
 		exit.setLayoutY(250);
 		exit.setOnAction(new EventHandler<ActionEvent>() {

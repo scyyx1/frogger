@@ -35,6 +35,7 @@ public class Animal extends Actor {
 	boolean changeScore = false;
 	private int prev_points = 0;
 	int carD = 0;
+	int count = 0;
 	double w = 800;
 	ArrayList<End> inter = new ArrayList<End>();
 	public Animal(String imageLink) {
@@ -55,9 +56,13 @@ public class Animal extends Actor {
 					
 				}
 				else {
+				// long press 
 				if (second) {
 					if (event.getCode() == KeyCode.W) {	  
 		                move(0, -movement*2);
+		                if(w > getY()) {
+		                	count++;
+		                }
 		                changeScore = false;
 		                setImage(imgW1);
 		                second = false;
@@ -78,13 +83,17 @@ public class Animal extends Actor {
 		            	 second = false;
 		            }
 				}
+				// single press
 				else if (event.getCode() == KeyCode.W) {	            	
 	                move(0, -movement*2);
 	                setImage(imgW2);
+	                if(w > getY()) {
+	                	count++;
+	                }
 	                second = true;
 	            }
 	            else if (event.getCode() == KeyCode.A) {	            	
-	            	 move(-movementX, 0);
+	            	 move(-movementX*2, 0);
 	            	 setImage(imgA2);
 	            	 second = true;
 	            }
@@ -94,7 +103,7 @@ public class Animal extends Actor {
 	            	 second = true;
 	            }
 	            else if (event.getCode() == KeyCode.D) {	            	
-	            	 move(movementX, 0);
+	            	 move(movementX*2, 0);
 	            	 setImage(imgD2);
 	            	 second = true;
 	            }
@@ -106,10 +115,12 @@ public class Animal extends Actor {
 				if (noMove) {}
 				else {
 				if (event.getCode() == KeyCode.W) {	  
+					System.out.println(w + ", " + getY());
 					if (getY() < w) {
 						changeScore = true;
+						points+=10 * count;
 						w = getY();
-						points+=10;
+						count = 0;
 					}
 	                //move(0, -movement);
 	                setImage(imgW1);
@@ -139,13 +150,16 @@ public class Animal extends Actor {
 	@Override
 	public void act(long now) {
 		int bounds = 0;
+		// check whether the frog head the boundary
 		if (getY()<0 || getY()>734) {
-			setX(300);
+			//setX(300);
 			setY(679.8+movement);
 		}
+		// when frog head to left wall bounce back
 		if (getX()<0) {
 			move(movement*2, 0);
 		}
+		// hit by car
 		if (carDeath) {
 			noMove = true;
 			if ((now)% 11 ==0) {
@@ -177,6 +191,7 @@ public class Animal extends Actor {
 			}
 			
 		}
+		// drown in water
 		if (waterDeath) {
 			noMove = true;
 			if ((now)% 11 ==0) {
@@ -212,6 +227,7 @@ public class Animal extends Actor {
 			
 		}
 		
+		// when frog head to right wall
 		if (getX()>600) {
 			move(-movement*2, 0);
 		}
@@ -237,17 +253,20 @@ public class Animal extends Actor {
 				move(-1,0);
 			}
 		}
+		
 		else if (getIntersectingObjects(End.class).size() >= 1) {
 			inter = (ArrayList<End>) getIntersectingObjects(End.class);
+			// frog get into same end 
 			if (getIntersectingObjects(End.class).get(0).isActivated()) {
-				end--;
-				points-=50;
+				w = getY();
+				System.out.println(points + " "+ end);
+			}else {
+				points+=50;
+				changeScore = true;
+				w=800;
+				getIntersectingObjects(End.class).get(0).setEnd();
+				end++;
 			}
-			points+=50;
-			changeScore = true;
-			w=800;
-			getIntersectingObjects(End.class).get(0).setEnd();
-			end++;
 			prev_points = points;
 			setX(300);
 			setY(679.8+movement);

@@ -6,12 +6,25 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class DifficultyWindow extends MyStage{
 	public static Stage stage;
 	public DifficultyWindow() {
+		
+		Label title = new Label("SELECT DIFFICULTIES");
+		title.setLayoutX(130);
+		title.setLayoutY(50);
+		title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+		title.setTextFill(Color.CORNSILK);
+		
+		getChildren().add(title);
+		setStyle("-fx-background-color: black;");
 		Button easy = new Button("EASY");
 		easy.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
@@ -59,11 +72,11 @@ public class DifficultyWindow extends MyStage{
 		    	stage.show();
 		    }
 		});
-		easy.setLayoutX(170);
+		easy.setLayoutX(150);
 		easy.setLayoutY(100);
-		medium.setLayoutX(170);
+		medium.setLayoutX(150);
 		medium.setLayoutY(200);
-		difficult.setLayoutX(170);
+		difficult.setLayoutX(150);
 		difficult.setLayoutY(300);
 		getChildren().add(easy);
 		getChildren().add(medium);
