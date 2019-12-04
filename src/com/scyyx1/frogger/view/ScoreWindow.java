@@ -1,13 +1,13 @@
-package com.scyyx1.frogger.main;
+package com.scyyx1.frogger.view;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.scyyx1.frogger.background.BackgroundImage;
-import com.scyyx1.frogger.frog.Animal;
-import com.scyyx1.frogger.world.MyStage;
+import com.scyyx1.frogger.main.Main;
+import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.obstacle_view.BackgroundImage;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -74,12 +74,12 @@ public class ScoreWindow extends MyStage{
             Label l = labels.get(i);
             int X = 140;
             int Y = (250 + i * 70);
-            l.setFont(new Font("Snap ITC", 25));
+            l.setFont(new Font("Verdana", 25));
             l.setTextFill(Color.CORNSILK);
             if (i > 4) {
                 X = 400;
                 Y = (250 + (i - 5) * 70);
-                l.setFont(new Font("Snap ITC", 25));
+                l.setFont(new Font("Verdana", 25));
                 l.setTextFill(Color.CORNSILK);
             }
 
@@ -107,6 +107,16 @@ public class ScoreWindow extends MyStage{
 		restart.setLayoutY(600);
 		getChildren().add(restart);
         
+		Button exit = new Button("EXIT");
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override 
+		    public void handle(ActionEvent e) {
+		    	System.exit(0);
+		    }
+		});
+		exit.setLayoutX(200);
+		exit.setLayoutY(650);
+		getChildren().add(exit);
  
 
 		

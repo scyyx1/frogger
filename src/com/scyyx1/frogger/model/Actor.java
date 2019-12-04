@@ -1,11 +1,9 @@
-package com.scyyx1.frogger.frog;
+package com.scyyx1.frogger.model;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 
 import java.util.ArrayList;
-
-import com.scyyx1.frogger.world.World;
 
 public abstract class Actor extends ImageView{
 

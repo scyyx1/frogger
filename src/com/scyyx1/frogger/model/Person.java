@@ -1,4 +1,4 @@
-package com.scyyx1.frogger.main;
+package com.scyyx1.frogger.model;
 
 public class Person {
 	public String name;

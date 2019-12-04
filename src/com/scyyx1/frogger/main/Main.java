@@ -2,6 +2,9 @@ package com.scyyx1.frogger.main;
 
 import java.io.InputStream;
 
+import com.scyyx1.frogger.control.WindowController;
+import com.scyyx1.frogger.view.StartWindow;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
@@ -12,6 +15,7 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 	
 	public static Stage stage;
+	private Scene startScene;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -22,15 +26,19 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-	    StartWindow startwindow = new StartWindow();
-	    Scene startscene  = new Scene(startwindow, 500, 500);
-	    startscene.getStylesheets().add("file:resource/application.css");
-	    
-		primaryStage.setScene(startscene);
-		primaryStage.setResizable(false);
-		primaryStage.initStyle(StageStyle.UNDECORATED);
-		primaryStage.show();
+		createStartWindow(primaryStage);
 
+	}
+	
+	public void createStartWindow(Stage stage) {
+		StartWindow startWindow = new StartWindow();
+	    Scene startScene  = new Scene(startWindow, 500, 500);
+	    startScene.getStylesheets().add("file:resource/application.css");
+	    
+	    stage.setScene(startScene);
+	    stage.setResizable(false);
+	    stage.initStyle(StageStyle.UNDECORATED);
+	    stage.show();
 	}
 	
 

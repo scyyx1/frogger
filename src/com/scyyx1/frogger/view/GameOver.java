@@ -1,4 +1,4 @@
-package com.scyyx1.frogger.main;
+package com.scyyx1.frogger.view;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.scyyx1.frogger.background.BackgroundImage;
-import com.scyyx1.frogger.frog.Animal;
-import com.scyyx1.frogger.world.MyStage;
+import com.scyyx1.frogger.model.Frog;
+import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.model.Person;
+import com.scyyx1.frogger.model.ScoreCompare;
+import com.scyyx1.frogger.obstacle_view.BackgroundImage;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class GameOver extends MyStage{
-	public GameOver(Animal animal) {
+	public GameOver(Frog frog) {
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
 	    
 		add(background);
@@ -65,7 +67,7 @@ public class GameOver extends MyStage{
 		    			currentLine = reader.readLine();
 		    		}
 		    		reader.close();
-		    		lines.add(new Person(name, animal.getPoints()));
+		    		lines.add(new Person(name, frog.getPoints()));
 		    		Collections.sort(lines, new ScoreCompare());
 		    		BufferedWriter writer = new BufferedWriter(new FileWriter("resource/scores/scores.txt"));
 		    		for (Person line : lines)

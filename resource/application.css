@@ -1,11 +1,25 @@
+@font-face{
+	src:url("text.otf");
+}
+
 .button {
 	-fx-pref-width: 200px;
     -fx-text-fill: rgb(255, 248, 220);
     -fx-font-size: 22px;
-    -fx-padding: 10 20 10 20;
     -fx-cursor: hand; 
     -fx-background-color: transparent;
+    -fx-font-family: "Mouse";
 
+}
+
+#title{
+	-fx-font-family: "Mouse";
+	-fx-font-size: 65px;
+}
+
+#Difficulty{
+	-fx-font-family: "Mouse";
+	-fx-font-size: 35px;
 }
 #restart {
 	-fx-pref-width: 300px;
@@ -21,3 +35,6 @@
 	-fx-pref-height: 50;
 }
 
+#back{
+	-fx-pref-width: 100px;
+}

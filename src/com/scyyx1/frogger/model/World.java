@@ -1,10 +1,8 @@
-package com.scyyx1.frogger.world;
+package com.scyyx1.frogger.model;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.scyyx1.frogger.frog.Actor;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ChangeListener;

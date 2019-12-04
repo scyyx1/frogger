@@ -1,4 +1,4 @@
-package com.scyyx1.frogger.world;
+package com.scyyx1.frogger.model;
 
 import java.io.File;
 

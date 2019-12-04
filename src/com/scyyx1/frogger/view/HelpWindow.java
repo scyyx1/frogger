@@ -1,6 +1,6 @@
-package com.scyyx1.frogger.main;
+package com.scyyx1.frogger.view;
 
-import com.scyyx1.frogger.world.MyStage;
+import com.scyyx1.frogger.model.MyStage;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

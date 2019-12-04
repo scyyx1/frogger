@@ -1,6 +1,6 @@
-package com.scyyx1.frogger.digit;
+package com.scyyx1.frogger.obstacle_view;
 
-import com.scyyx1.frogger.frog.Actor;
+import com.scyyx1.frogger.model.Actor;
 
 import javafx.scene.image.Image;
 
