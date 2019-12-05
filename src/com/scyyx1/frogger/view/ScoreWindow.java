@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.scyyx1.frogger.control.WindowController;
 import com.scyyx1.frogger.main.Main;
 import com.scyyx1.frogger.model.MyStage;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
@@ -24,20 +25,22 @@ import javafx.stage.StageStyle;
 
 public class ScoreWindow extends MyStage{
 
-	
+	private ArrayList<Label> labels = new ArrayList<>();
 	public ScoreWindow() {
+		
+		WindowController controller = new WindowController();
+		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-	    
 		add(background);
+		
 		Label label = new Label("HIGH SCORE");
 		label.setLayoutX(130);
 		label.setLayoutY(180);
-		label.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+		label.setFont(Font.font("Mouse", FontWeight.BOLD, 65));
 		label.setTextFill(Color.CORNSILK);
         getChildren().add(label);
-		ArrayList<Label> labels = new ArrayList<>();
-		ArrayList<String>names = new ArrayList<>();
-		ArrayList<String>scores = new ArrayList<>();
+
+        
 		try {
             FileReader fr = new FileReader("resource/scores/scores.txt");
             BufferedReader br = new BufferedReader(fr);
@@ -47,8 +50,8 @@ public class ScoreWindow extends MyStage{
             		break;
             	}
             	String[] personDetail = line.split(" ");
-            	names.add(personDetail[0]);
-            	scores.add(personDetail[1]);
+            	labels.add(new Label(i+1 + ":  " + personDetail[0]));
+    			labels.add(new Label(personDetail[1]));
 
             }
 
@@ -58,61 +61,39 @@ public class ScoreWindow extends MyStage{
             e1.printStackTrace();
         }
 		
-		labels.add(new Label(names.get(0)));
-		labels.add(new Label(names.get(1)));
-		labels.add(new Label(names.get(2)));
-		labels.add(new Label(names.get(3)));
-		labels.add(new Label(names.get(4)));
-		labels.add(new Label(scores.get(0)));
-		labels.add(new Label(scores.get(1)));
-		labels.add(new Label(scores.get(2)));
-		labels.add(new Label(scores.get(3)));
-		labels.add(new Label(scores.get(4)));
 
 
 		for (int i = 0; i < labels.size(); i++) {
             Label l = labels.get(i);
             int X = 140;
-            int Y = (250 + i * 70);
-            l.setFont(new Font("Verdana", 25));
+            int Y = (250 + i * 30);
+            l.setFont(new Font("Mouse", 25));
             l.setTextFill(Color.CORNSILK);
-            if (i > 4) {
+            if (i % 2 != 0) {
                 X = 400;
-                Y = (250 + (i - 5) * 70);
-                l.setFont(new Font("Verdana", 25));
+                Y = (250 + (i - 1) * 30);
+                l.setFont(new Font("Mouse", 25));
                 l.setTextFill(Color.CORNSILK);
             }
 
             l.setTranslateX(X);
             l.setTranslateY(Y);
-
             getChildren().add(l);
         }
 		
+		
 		Button restart = new Button("TRY AGAIN");
 		restart.setId("restart");
-		restart.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	DifficultyWindow dw = new DifficultyWindow();
-		    	Scene scene = new Scene(dw, 500, 500);
-		    	scene.getStylesheets().add("file:resource/application.css");
-		    	Main.getStage().setScene(scene);
-		    	Main.getStage().show();
-				DifficultyWindow.getStage().close();
-
-		    }
+		restart.setOnAction(e->{
+			controller.restartButtonAction();
 		});
 		restart.setLayoutX(150);
 		restart.setLayoutY(600);
 		getChildren().add(restart);
         
 		Button exit = new Button("EXIT");
-		exit.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	System.exit(0);
-		    }
+		exit.setOnAction(e->{
+			controller.exitButtonAction();
 		});
 		exit.setLayoutX(200);
 		exit.setLayoutY(650);

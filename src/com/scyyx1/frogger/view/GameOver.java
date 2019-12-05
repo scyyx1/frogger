@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.scyyx1.frogger.control.WindowController;
 import com.scyyx1.frogger.model.Frog;
 import com.scyyx1.frogger.model.MyStage;
 import com.scyyx1.frogger.model.Person;
@@ -26,13 +27,16 @@ import javafx.scene.text.FontWeight;
 
 public class GameOver extends MyStage{
 	public GameOver(Frog frog) {
+		
+		WindowController controller = new WindowController(frog);
+		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-	    
 		add(background);
+		
 		Label title = new Label("GAME OVER");
 		title.setLayoutX(140);
 		title.setLayoutY(180);
-		title.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+		title.setFont(Font.font("Mouse", FontWeight.BOLD, 65));
 		title.setTextFill(Color.CORNSILK);
 		getChildren().add(title);
 
@@ -44,52 +48,14 @@ public class GameOver extends MyStage{
 		username.setLayoutY(300);
 		getChildren().add(username);
 		
-		Button ok = new Button("ENTER");
-		ok.getStyleClass().add("ok");
-		ok.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	String name = username.getText();
-		    	if("".equals(name)) {
-		    		name = "NoName";
-		    	}
-		    	ArrayList<Person> lines = new ArrayList<>();
-		    	try {
-		    		BufferedReader reader = new BufferedReader(new FileReader("resource/scores/scores.txt"));
-		    		String currentLine = reader.readLine();
-		    		while(currentLine != null) {
-		    			
-		    			String[] personDetail = currentLine.split(" ");
-		           
-		                String uname = personDetail[0];
-		                int scores = Integer.valueOf(personDetail[1]);
-		                lines.add(new Person(uname, scores));
-		    			currentLine = reader.readLine();
-		    		}
-		    		reader.close();
-		    		lines.add(new Person(name, frog.getPoints()));
-		    		Collections.sort(lines, new ScoreCompare());
-		    		BufferedWriter writer = new BufferedWriter(new FileWriter("resource/scores/scores.txt"));
-		    		for (Person line : lines)
-		            {
-		                writer.write(line.name);
-		                writer.write(" " + line.score);
-		                writer.newLine();
-		            }
-		    		writer.close();
-		    	}catch (IOException e1){
-		    		e1.printStackTrace();
-		    	}
-		    	
-		    	ScoreWindow score = new ScoreWindow();
-		    	Scene scene  = new Scene(score, 600, 800);
-		    	scene.getStylesheets().add("file:resource/application.css");
-		    	DifficultyWindow.getStage().setScene(scene);
-		    }
+		Button enter = new Button("ENTER");
+		enter.getStyleClass().add("ok");
+		enter.setOnAction(e->{
+			controller.enterButtonAction(username);
 		});
-		ok.setLayoutX(200);
-		ok.setLayoutY(400);
-		getChildren().add(ok);
+		enter.setLayoutX(200);
+		enter.setLayoutY(400);
+		getChildren().add(enter);
 	}
 	
 }

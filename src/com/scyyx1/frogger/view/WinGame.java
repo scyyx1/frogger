@@ -32,7 +32,6 @@ public class WinGame extends MyStage implements Comparator<Person>{
 	public WinGame(Frog frog) {
 		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-	    
 		add(background);
 		Label title = new Label("YOU WIN");
 		title.setLayoutX(160);

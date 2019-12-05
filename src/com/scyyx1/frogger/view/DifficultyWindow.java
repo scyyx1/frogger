@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class DifficultyWindow extends MyStage{
-	public static Stage stage;
+	public static Stage stage = new Stage();
 	public DifficultyWindow() {
 		
 		WindowController controller = new WindowController();
@@ -25,7 +25,7 @@ public class DifficultyWindow extends MyStage{
 		add(background);
 		
 		Label title = new Label("SELECT DIFFICULTIES");
-		title.setLayoutX(70);
+		title.setLayoutX(60);
 		title.setLayoutY(50);
 		title.setId("Difficulty");
 		title.setTextFill(Color.CADETBLUE);
@@ -36,30 +36,33 @@ public class DifficultyWindow extends MyStage{
 		easy.setOnAction(e->{
 			controller.easyButtonAction(stage);
 		});
+		easy.setLayoutX(150);
+		easy.setLayoutY(150);
+		getChildren().add(easy);
+		
 		Button medium = new Button("MEDIUM");
 		medium.setOnAction(e->{
 			controller.mediumButtonAction(stage);
 		});
+		medium.setLayoutX(150);
+		medium.setLayoutY(250);
+		getChildren().add(medium);
+		
 		Button difficult = new Button("DIFFICULT");
 		difficult.setOnAction(e->{
 			controller.difficultButtonAction(stage);
 		});
+		difficult.setLayoutX(150);
+		difficult.setLayoutY(350);
+		getChildren().add(difficult);
+		
 		Button back = new Button("BACK");
 		back.setOnAction(e ->{
 			controller.backButtonAction();
 		});
 		back.setId("back");
-		easy.setLayoutX(150);
-		easy.setLayoutY(150);
-		medium.setLayoutX(150);
-		medium.setLayoutY(250);
-		difficult.setLayoutX(150);
-		difficult.setLayoutY(350);
 		back.setLayoutX(0);
 		back.setLayoutY(450);
-		getChildren().add(easy);
-		getChildren().add(medium);
-		getChildren().add(difficult);
 		getChildren().add(back);
 		
 	}

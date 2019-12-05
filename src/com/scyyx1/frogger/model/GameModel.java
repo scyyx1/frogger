@@ -14,7 +14,7 @@ public class GameModel {
 	private AnimationTimer timer;
 	private Frog frog;
 	private FrogView frogView;
-	
+	private int level;
 	
 	public GameModel() {
 		
@@ -64,5 +64,13 @@ public class GameModel {
 	}
 	public Frog getFrog() {
 		return frog;
+	}
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return level;
+	}
+	public void setLevel(int level) {
+		// TODO Auto-generated method stub
+		 this.level = level;
 	}
 }

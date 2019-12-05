@@ -32,4 +32,5 @@ public class FrogView extends Actor{
 	public Frog getFrog() {
 		return frog;
 	}
+
 }

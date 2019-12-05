@@ -8,9 +8,9 @@ public class GameEngine {
 	private GameModel gameModel;
 	private GameWindow gameWindow;
 	private GameController gameController;
-	public GameEngine(int difficultLevel) {
+	public GameEngine(int difficultyLevel) {
 		gameModel = new GameModel();
-		gameWindow = new GameWindow(gameModel, difficultLevel);
+		gameWindow = new GameWindow(gameModel, difficultyLevel);
     	gameController = new GameController(gameModel, gameWindow);
 	}
 	

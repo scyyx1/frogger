@@ -25,8 +25,29 @@ public class Frog extends Actor{
 	private int count = 0;
 	private double w = 800;
 	private int imageSize = 40;
+	private boolean eatFly = false;
+	private boolean crocodileDeath = true;
 
 
+
+	public boolean isCrocodileDeath() {
+		return crocodileDeath;
+	}
+
+
+	public void setCrocodileDeath(boolean crocodileDeath) {
+		this.crocodileDeath = crocodileDeath;
+	}
+
+
+	public boolean isEatFly() {
+		return eatFly;
+	}
+
+
+	public void setEatFly(boolean eatFly) {
+		this.eatFly = eatFly;
+	}
 
 	ArrayList<End> inter = new ArrayList<End>();
 	
@@ -173,7 +194,7 @@ public class Frog extends Actor{
 	}
 
 	public boolean getStop() {
-		return (lives == 0 || end == 2);
+		return (lives == 0 || end == 1);
 	}
 	
 	public int getPoints() {

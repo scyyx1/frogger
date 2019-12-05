@@ -1,10 +1,13 @@
 package com.scyyx1.frogger.view;
 
 import java.io.FileInputStream;
+import java.util.Random;
 
 import com.scyyx1.frogger.model.GameModel;
 import com.scyyx1.frogger.model.MyStage;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
+import com.scyyx1.frogger.obstacle_view.Crocodile;
+import com.scyyx1.frogger.obstacle_view.CrocodileHead;
 import com.scyyx1.frogger.obstacle_view.Digit;
 import com.scyyx1.frogger.obstacle_view.End;
 import com.scyyx1.frogger.obstacle_view.FrogView;
@@ -13,8 +16,13 @@ import com.scyyx1.frogger.obstacle_view.Turtle;
 import com.scyyx1.frogger.obstacle_view.Vehicle;
 import com.scyyx1.frogger.obstacle_view.WetTurtle;
 
+import javafx.animation.Animation;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -33,6 +41,7 @@ public class GameWindow extends MyStage{
 	
 	public GameWindow(GameModel model, int level) {
 		this.model = model;
+		model.setLevel(level);
 		createObject(level);
 	}
 	
@@ -44,6 +53,7 @@ public class GameWindow extends MyStage{
 		createBackground();
 		createScore();
 		createLog(level);
+		createCrocodile();
 		createTurtle(level);
 		//createVehicle(level);
 		createFrog();
@@ -79,32 +89,40 @@ public class GameWindow extends MyStage{
 	// add the vehicle
 	public void createVehicle(int level) {
 	
+		int speed = 1;
+		if (level > 3) {
+			speed = 2;
+		}
 		for(int i = 0; i < 5; i++) {
 			if (i == 4) {
-				add(new Vehicle("file:resource/vehicles/car1Left.png", 500, 490, -1, 50, 50));
+				add(new Vehicle("file:resource/vehicles/car1Left.png", 500, 490, -speed, 50, 50));
 			}else {
-				add(new Vehicle("file:resource/vehicles/car1Left.png", 100+150 * i, 597, -1, 50, 50));
+				add(new Vehicle("file:resource/vehicles/car1Left.png", 100+150 * i, 597, -speed, 50, 50));
 			}
 		}
 		for(int i = 0; i < 3; i++) {
-			 add(new Vehicle("file:resource/vehicles/truck1Right.png", 0 + 300 * i, 649, 1, 120, 120));
+			 add(new Vehicle("file:resource/vehicles/truck1Right.png", 0 + 300 * i, 649, speed, 120, 120));
 		}
 		for(int i = 0; i < 2; i++) {
-			 add(new Vehicle("file:resource/vehicles/truck2Right.png", 0 + 500 * i, 540, 1, 200, 200));
+			 add(new Vehicle("file:resource/vehicles/truck2Right.png", 0 + 500 * i, 540, speed, 200, 200));
 		}
 	}
 	
 	// add the turtle
 	public void createTurtle(int level) {
 		
+		int speed = 1;
+		if(level > 3) {
+			speed = 2;
+		}
 		for(int i = 0; i < 2; i++) {
-			add(new Turtle(300 + 200 * i, 376, -1, 130, 130));
+			add(new Turtle(300 + 200 * i, 376, -speed, 130, 130));
 		}
 		for(int i = 0; i < 4; i++) {
 			if (i == 3) {
-				add(new WetTurtle(700, 376, -1, 130, 130));
+				add(new WetTurtle(700, 376, -speed, 130, 130));
 			}else {
-				add(new WetTurtle(200 + 200 * i, 217, -1, 130, 130));
+				//add(new WetTurtle(200 + 200 * i, 217, -speed, 130, 130));
 			}
 		}
 	}
@@ -123,20 +141,20 @@ public class GameWindow extends MyStage{
 		add(new Log("file:resource/logs/log3.png", 150, 270, 329, level *0.75));
 		add(new Log("file:resource/logs/log3.png", 150, 490, 329, level *0.75));
 		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 100, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 0, 100, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 120, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 120, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 140, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 140, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 160, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 300, 160, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 180, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 180, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 200, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 200, -1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 220, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 220, 1));
-				//background.add(new Log("file:src/p4_group_8_repo/log2.png", 400, 220, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 0, 100, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 120, -1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 120, -1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 140, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 140, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 160, -1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 300, 160, -1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 180, 1));				
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 180, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 200,-1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 200 -1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 100, 220, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 200, 220, 1));
+		//background.add(new Log("file:src/p4_group_8_repo/log2.png", 400, 220, 1));
 	}
 	
 	// add the background
@@ -167,6 +185,7 @@ public class GameWindow extends MyStage{
 		getChildren().add(labelGroup);
 	}
 	
+	
 	public Group getScoreGroup() {
 		return scoreGroup;
 	}
@@ -184,6 +203,11 @@ public class GameWindow extends MyStage{
 
 	public Group getLabelGroup() {
 		return labelGroup;
+	}
+	
+	public void createCrocodile() {
+		add(new Crocodile(200, 217, 1, 130, 130));
+		add(new CrocodileHead(320, 217, 1, 130, 130));
 	}
 
     

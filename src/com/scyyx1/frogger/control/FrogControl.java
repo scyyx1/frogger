@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import com.scyyx1.frogger.model.Actor;
 import com.scyyx1.frogger.model.Frog;
+import com.scyyx1.frogger.obstacle_view.Crocodile;
+import com.scyyx1.frogger.obstacle_view.CrocodileHead;
 import com.scyyx1.frogger.obstacle_view.End;
+import com.scyyx1.frogger.obstacle_view.Fly;
 import com.scyyx1.frogger.obstacle_view.FrogView;
 import com.scyyx1.frogger.obstacle_view.Log;
 import com.scyyx1.frogger.obstacle_view.Turtle;
@@ -229,11 +232,21 @@ public class FrogControl extends Actor{
 		else if (frogView.getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (frogView.getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
 				frog.setWaterDeath(true);
+				System.out.println("1");
 			} else {
 				frogView.move(-1,0);
 			}
 		}
-		
+		else if(frogView.getIntersectingObjects(Crocodile.class).size() >=  1) {
+			frogView.move(1, 0);
+		}
+		else if(frogView.getIntersectingObjects(CrocodileHead.class).size() >= 1) {
+			if (frogView.getIntersectingObjects(CrocodileHead.class).get(0).isEaten()) {
+				frog.setWaterDeath(true);
+			}else {
+				frogView.move(-1, 0);
+			}
+		}
 		else if (frogView.getIntersectingObjects(End.class).size() >= 1) {
 			frog.setInter((ArrayList<End>) frogView.getIntersectingObjects(End.class));
 			// frog get into same end 
@@ -244,7 +257,10 @@ public class FrogControl extends Actor{
         		alert.setContentText("This End is already been taken");
         		alert.show();
 			}else {
-
+				if(frogView.getIntersectingObjects(Fly.class).size() >= 1) {
+					frog.setPoints(frog.getPoints() + 200);
+					frog.setEatFly(true);
+				}
 				frog.setPoints(frog.getPoints() + 50);
 				frog.setChangeScore(true);
 				frog.setW(800);

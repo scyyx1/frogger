@@ -15,7 +15,6 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 	
 	public static Stage stage;
-	private Scene startScene;
 	public static void main(String[] args) {
 		launch(args);
 	}
