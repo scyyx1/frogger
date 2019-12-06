@@ -44,9 +44,7 @@ public class GameController{
 	private GameWindow view;
 	private GameController controller;
 	int count = 0;
-	private double counter = 1;
 	ProgressBar progress;
-	private double currentTime;
 	private Rectangle time;
 	DoubleProperty tp = new SimpleDoubleProperty(1.0);
 	private long startTime;
@@ -54,9 +52,6 @@ public class GameController{
 	public GameController(GameModel model, GameWindow view) {
 		this.model = model;
 		this.view = view;
-		
-		FrogControl frogControl = new FrogControl(model.getFrog(), model.getFrogView());
-		view.add(frogControl);
 		Label label = new Label("TIME");
 		label.setLayoutX(320);
 		label.setLayoutY(755);

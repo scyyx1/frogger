@@ -28,6 +28,7 @@ public class StartWindow extends MyStage {
 	public StartWindow() {
 
 		WindowController controller = new WindowController();
+		
 		add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
 		
 		Label title = new Label("FROGGER");

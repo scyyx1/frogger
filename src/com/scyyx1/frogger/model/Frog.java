@@ -29,7 +29,6 @@ public class Frog extends Actor{
 	private boolean crocodileDeath = true;
 
 
-
 	public boolean isCrocodileDeath() {
 		return crocodileDeath;
 	}
@@ -194,7 +193,7 @@ public class Frog extends Actor{
 	}
 
 	public boolean getStop() {
-		return (lives == 0 || end == 1);
+		return (lives == 0 || end == 2);
 	}
 	
 	public int getPoints() {
