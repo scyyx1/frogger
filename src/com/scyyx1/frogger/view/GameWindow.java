@@ -207,7 +207,7 @@ public class GameWindow extends MyStage{
 	
 	public void createCrocodile() {
 		add(new Crocodile(200, 217, 1, 130, 130));
-		add(new CrocodileHead(320, 217, 1, 130, 130));
+		add(new CrocodileHead(200, 217, 1, 130, 130));
 	}
 
     

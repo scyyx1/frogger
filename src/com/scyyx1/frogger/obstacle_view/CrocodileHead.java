@@ -6,8 +6,8 @@ import javafx.scene.image.Image;
 
 public class CrocodileHead extends Actor {
 
-	private Image crocodileHead1;
-	private Image crocodileHead2;
+	private Image crocodileOpen;
+	private Image crocodileClose;
 	private int speed;
 	private boolean eaten;
 	public boolean isEaten() {
@@ -17,10 +17,10 @@ public class CrocodileHead extends Actor {
 	public void act(long now) {
 		// TODO Auto-generated method stub
 		if (now/900000000 % 2 == 1) {
-			setImage(crocodileHead1);
+			setImage(crocodileOpen);
 			eaten = true;
 		}else if (now/900000000 % 2 == 0){
-			setImage(crocodileHead2);
+			setImage(crocodileClose);
 			eaten = false;
 		}
 	
@@ -33,12 +33,12 @@ public class CrocodileHead extends Actor {
 	}
 	
 	public CrocodileHead(int xpos, int ypos, int speed, int width, int height) {
-		crocodileHead1 = new Image("file:resource/turtleAnimations/TurtleAnimation4Wet.png", width, height, true, true);
-		crocodileHead2 = new Image("file:resource/turtleAnimations/TurtleAnimation2.png", width, height, true, true);
+		crocodileOpen = new Image("file:resource/crocodiles/MouthOpen.png", width, height, true, true);
+		crocodileClose = new Image("file:resource/crocodiles/MouthShut.png", width, height, true, true);
 		setX(xpos);
 		setY(ypos);
 		this.speed = speed;
-		setImage(crocodileHead2);
+		setImage(crocodileClose);
 	}
 
 }
