@@ -46,7 +46,6 @@ public class StartWindow extends MyStage {
 		
 		
 		Button start = new Button("START");
-
 		start.setOnAction(e->{
 			controller.startButtonAction();
 		});
