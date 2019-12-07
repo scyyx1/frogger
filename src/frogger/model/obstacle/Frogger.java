@@ -265,6 +265,9 @@ public class Frogger extends Actor {
 				move(-1, 0);
 			}
 		}
+		else if(getIntersectingObjects(Snack.class).size() >= 1) {
+			carDeath = true;
+		}
 		else if (getIntersectingObjects(End.class).size() >= 1) {
 			inter = ((ArrayList<End>) getIntersectingObjects(End.class));
 			// frog get into same end 

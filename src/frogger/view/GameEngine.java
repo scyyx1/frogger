@@ -10,11 +10,13 @@ public class GameEngine {
 	private GameController gameController;
 	public GameEngine(int difficultyLevel) {
 		gameModel = new GameModel();
+		gameModel.setLevel(difficultyLevel);
 		gameWorld = new GameWorld(gameModel, difficultyLevel);
 	}
 	
 	public GameEngine(int difficultyLevel, int points) {
 		gameModel = new GameModel(points);
+		gameModel.setLevel(difficultyLevel);
 		gameWorld = new GameWorld(gameModel, difficultyLevel);
 	}
 	public GameWorld asView() {

@@ -14,6 +14,7 @@ import frogger.model.factory.LogFactory;
 import frogger.model.factory.TurtleFactory;
 import frogger.model.factory.VehicleFactory;
 import frogger.model.obstacle.Fly;
+import frogger.model.obstacle.Snack;
 import frogger.obstacle_view.BackgroundImage;
 import frogger.obstacle_view.Digit;
 import javafx.scene.Group;
@@ -40,10 +41,10 @@ public class GameWorld extends World{
 		this.model = model;
 		this.controller = new GameController(model);
 		
-		model.setLevel(level);
 		
 		createGameWorld(level);
-		checkKeyBoardCondition();
+		
+		bindKeyBoardEvent();
 
 		start();
 
@@ -71,6 +72,7 @@ public class GameWorld extends World{
 	public void createObstacle(int level) {
 		createLog(level);
 		createCrocodile(level);
+		createSnack(level);
 		createTurtle(level);
 		createVehicle(level);
 		createFrog();
@@ -105,6 +107,15 @@ public class GameWorld extends World{
 		currentScore.setFont(Font.font("Mouse", FontWeight.BOLD, 30));
 		currentScore.setTextFill(Color.CORNSILK);
 		getChildren().add(currentScore);
+		
+		Label level = new Label("LEVEL: " + model.getLevel());
+		level.setLayoutX(160);
+		level.setLayoutY(755);
+		level.setFont(Font.font("Mouse", FontWeight.BOLD, 30));
+		level.setTextFill(Color.CORNSILK);
+		getChildren().add(level);
+		
+		
 	}
 	
 	public void createCountDown(){
@@ -151,6 +162,10 @@ public class GameWorld extends World{
 		for(Actor log : logs) {
 			add(log);
 		}
+	}
+	
+	public void createSnack(int level) {
+		add(new Snack(600, 430, -1, 100, 100));
 	}
 	
 	public void createBackground(int level) {
@@ -268,6 +283,7 @@ public class GameWorld extends World{
 		model.getScoreList().add(Integer.toString(score));
 		for(int i = 0; i < list.size(); i++) {
 			 Label scoreLabel = new Label(i+1 + ": " + list.get(i));
+			 scoreLabel.setFont(Font.font("Mouse"));
 			 scoreLabel.setTextFill(Color.CORNSILK);
 			 int X = 0;
 			 int Y = (20 + i * 20);
@@ -277,7 +293,7 @@ public class GameWorld extends World{
 		}
 	}
 
-	public void checkKeyBoardCondition() {
+	public void bindKeyBoardEvent() {
 
 		setOnKeyPressed(e->{
 			controller.checkKeyBoardPress(e);
