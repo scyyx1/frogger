@@ -30,6 +30,13 @@ public class Frogger extends Actor {
 	private int imageSize = 40;
 	private boolean eatFly = false;
 	private boolean crocodileDeath = true;
+	private int level;
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	int imgSize = 40;
 	private Image imgW1;
 	private Image imgA1;
@@ -241,28 +248,38 @@ public class Frogger extends Actor {
 		}
 		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
 			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-2,0);
+				move(-0.5*level,0);
 			else
-				move (.75,0);
+				move (.35*level,0);
 		}
 		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
-			move(-1,0);
+			if(level >3 ) {
+				move(-2, 0);
+			}else {
+				move(-1,0);
+			}
+			
 		}
 		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
 				setWaterDeath(true);
 			} else {
-				move(-1,0);
+				if(level > 3) {
+					move(-2,0);
+				}else {
+					move(-1,0);
+				}
+				
 			}
 		}
 		else if(getIntersectingObjects(Crocodile.class).size() >=  1) {
-			move(1, 0);
+			move(level * 0.35, 0);
 		}
 		else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {
 			if (getIntersectingObjects(CrocodileHead.class).get(0).isEaten()) {
 				waterDeath = true;
 			}else {
-				move(-1, 0);
+				move(level*0.35, 0);
 			}
 		}
 		else if(getIntersectingObjects(Snack.class).size() >= 1) {

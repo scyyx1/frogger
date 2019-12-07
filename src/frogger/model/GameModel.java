@@ -78,12 +78,12 @@ public class GameModel {
 		switchToGameOver = false;
 		stop = false;
 		double elapsedTime =  (now - startTime) / 1000000000.0;
-		if(elapsedTime < 30) {
+		if(elapsedTime < 180) {
 			if(elapsedTime > 5 && fly > 0) {
 				generateFly = true;
 				fly = 0;
 			}
-			changeRec = elapsedTime / 30;
+			changeRec = elapsedTime / 180;
 		}
 		else {
 			frog.setLives(0);
@@ -142,6 +142,7 @@ public class GameModel {
 	}
 	public void setLevel(int level) {
 
+		frog.setLevel(level);
 		 this.level = level;
 	}
 	public void setFly(int fly) {

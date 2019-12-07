@@ -7,7 +7,7 @@ public class CrocodileHead extends Actor {
 
 	private Image crocodileOpen;
 	private Image crocodileClose;
-	private int speed;
+	private double speed;
 	private boolean eaten;
 	public boolean isEaten() {
 		return eaten;
@@ -25,18 +25,18 @@ public class CrocodileHead extends Actor {
 	
 		move(speed , 0);
 		if (getX() > 600 && speed>0)
-			setX(-200);
+			setX(-180);
 		if (getX() < -75 && speed<0)
-			setX(600);
+			setX(700);
 
 	}
 	
-	public CrocodileHead(int xpos, int ypos, int speed, int width, int height) {
+	public CrocodileHead(int xpos, int ypos, double d, int width, int height) {
 		crocodileOpen = new Image("file:resource/crocodiles/MouthOpen.png", width, height, true, true);
 		crocodileClose = new Image("file:resource/crocodiles/MouthShut.png", width, height, true, true);
 		setX(xpos);
 		setY(ypos);
-		this.speed = speed;
+		this.speed = d;
 		setImage(crocodileClose);
 	}
 

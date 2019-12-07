@@ -13,9 +13,13 @@ public class CrocodileFactory extends ActorFactory {
 		// TODO Auto-generated method stub
 		
 		ArrayList<Actor> crocodiles = new ArrayList<>();
-		crocodiles.add(new Crocodile(200, 217, 1, 100, 100));
-		crocodiles.add(new CrocodileHead(290, 210, 1, 70, 70));
-		return crocodiles;
+		if(level <= 3) {
+			return null;
+		}else {
+			crocodiles.add(new Crocodile(0, 150, level * 0.35, 100, 100));
+			crocodiles.add(new CrocodileHead(90, 150, level * 0.35, 70, 70));
+			return crocodiles;
+		}
 	}
 
 }

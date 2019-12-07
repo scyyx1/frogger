@@ -151,9 +151,12 @@ public class GameWorld extends World{
 	public void createCrocodile(int level) {
 		
 		ArrayList<Actor> crocodiles = new CrocodileFactory().createActors(level);
-		for (Actor crocodile : crocodiles) {
-			add(crocodile);
+		if(crocodiles != null) {
+			for (Actor crocodile : crocodiles) {
+				add(crocodile);
+			}
 		}
+		
 	}
 	
 	public void createLog(int level) {
@@ -165,7 +168,9 @@ public class GameWorld extends World{
 	}
 	
 	public void createSnack(int level) {
-		add(new Snack(600, 430, -1, 100, 100));
+		if(level > 2) {
+			add(new Snack(600, 430, -1, 100, 100));
+		}
 	}
 	
 	public void createBackground(int level) {
@@ -241,7 +246,7 @@ public class GameWorld extends World{
 				scene.getStylesheets().add("file:resource/application.css");
 		    	DifficultyWindow.getStage().setScene(scene);
 			}else {
-				GameEngine gameEngine = new GameEngine(model.getLevel() + 1, model.getFrog().getPoints());
+				GameEngine gameEngine = new GameEngine(model.getLevel() + 1,model.getFrog().getPoints());
 				Scene scene = new Scene(gameEngine.asView(), 600, 800);
 				DifficultyWindow.getStage().setScene(scene);
 			}

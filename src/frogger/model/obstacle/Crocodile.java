@@ -7,7 +7,7 @@ public class Crocodile extends Actor {
 
 	private Image crocodile;
 
-	private int speed;
+	private double speed;
 	@Override
 	public void act(long now) {
 		// TODO Auto-generated method stub
@@ -15,18 +15,18 @@ public class Crocodile extends Actor {
 	
 		move(speed , 0);
 		if (getX() > 600 && speed>0)
-			setX(-200);
+			setX(-180);
 		if (getX() < -75 && speed<0)
-			setX(600);
+			setX(700);
 
 	}
 
-	public Crocodile(int xpos, int ypos, int speed, int width, int height) {
+	public Crocodile(int xpos, int ypos, double d, int width, int height) {
 		crocodile = new Image("file:resource/crocodiles/Crocodile.png", width, height, true, true);
 		
 		setX(xpos);
 		setY(ypos);
-		this.speed = speed;
+		this.speed = d;
 		setImage(crocodile);
 	}
 }
