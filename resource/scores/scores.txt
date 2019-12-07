@@ -3,6 +3,7 @@ ooo 430
 NoName 310
 ll 250
 NoName 80
+waaa 50
 NoName 40
 NoName 40
 111 20
