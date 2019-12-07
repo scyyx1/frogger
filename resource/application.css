@@ -38,3 +38,8 @@
 #back{
 	-fx-pref-width: 100px;
 }
+
+#infomation{
+	-fx-font-family:"Mouse";
+	-fx-font-size:45px;
+}

@@ -51,7 +51,7 @@ public class GameWorld extends World{
 		createBackground();
 		createLabels();
 		createLog(level);
-		//createCrocodile();
+		createCrocodile();
 		createTurtle(level);
 		//createVehicle(level);
 		createFrog();
@@ -141,15 +141,15 @@ public class GameWorld extends World{
 			if (i == 3) {
 				add(new WetTurtle(700, 376, -speed, 130, 130));
 			}else {
-				add(new WetTurtle(200 + 200 * i, 217, -speed, 130, 130));
+				//add(new WetTurtle(200 + 200 * i, 217, -speed, 130, 130));
 			}
 		}
 	}
 
 	public void createCrocodile() {
 		
-		add(new Crocodile(200, 217, 1, 130, 130));
-		add(new CrocodileHead(200, 217, 1, 130, 130));
+		add(new Crocodile(200, 217, 1, 100, 100));
+		add(new CrocodileHead(290, 210, 1, 70, 70));
 	}
 	
 	public void createLog(int level) {

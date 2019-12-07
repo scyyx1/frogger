@@ -39,11 +39,10 @@ public class WindowController {
 	}
 	
 	public void helpButtonAction() {
-		Stage helpStage = new Stage();
     	HelpWindow hw = new HelpWindow();
     	Scene scene = new Scene(hw, 500, 500);
-    	helpStage.setScene(scene);
-    	helpStage.show();
+    	scene.getStylesheets().add("file:resource/application.css");
+    	Main.getStage().setScene(scene);
 	}
 	
 	public void exitButtonAction() {
