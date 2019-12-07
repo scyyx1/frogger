@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.scyyx1.frogger.main.Main;
-import com.scyyx1.frogger.model.Frog;
+import com.scyyx1.frogger.model.Frogger;
 import com.scyyx1.frogger.model.Person;
 import com.scyyx1.frogger.model.ScoreCompare;
 import com.scyyx1.frogger.view.DifficultyWindow;
@@ -24,10 +24,10 @@ import javafx.stage.Stage;
 
 public class WindowController {
 
-	private Frog frog;
+	private Frogger frog;
 	public WindowController() {
 	}
-	public WindowController(Frog frog) {
+	public WindowController(Frogger frog) {
 		this.frog = frog;
 	};
 	

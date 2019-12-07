@@ -4,7 +4,7 @@ package com.scyyx1.frogger.view;
 
 import com.scyyx1.frogger.control.WindowController;
 import com.scyyx1.frogger.main.Main;
-import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.model.GameWorld;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
 
 import javafx.event.ActionEvent;
@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 
 
 
-public class StartWindow extends MyStage {
+public class StartWindow extends Pane {
 
 
 	public static Stage stage;
@@ -29,7 +30,7 @@ public class StartWindow extends MyStage {
 
 		WindowController controller = new WindowController();
 		
-		add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
+		getChildren().add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
 		
 		Label title = new Label("FROGGER");
 		title.setLayoutX(120);

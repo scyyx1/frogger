@@ -1,8 +1,8 @@
 package com.scyyx1.frogger.model;
 
 public class DeathChecking {
-	private Frog frog;
-	public DeathChecking(Frog frog) {
+	private Frogger frog;
+	public DeathChecking(Frogger frog) {
 		this.frog = frog;
 	}
 	

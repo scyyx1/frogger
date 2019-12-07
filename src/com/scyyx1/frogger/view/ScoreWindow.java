@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.scyyx1.frogger.control.WindowController;
 import com.scyyx1.frogger.main.Main;
-import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.model.GameWorld;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
 
 import javafx.event.ActionEvent;
@@ -15,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -23,7 +24,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ScoreWindow extends MyStage{
+public class ScoreWindow extends Pane{
 
 	private ArrayList<Label> labels = new ArrayList<>();
 	public ScoreWindow() {
@@ -31,7 +32,7 @@ public class ScoreWindow extends MyStage{
 		WindowController controller = new WindowController();
 		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-		add(background);
+		getChildren().add(background);
 		
 		Label label = new Label("HIGH SCORE");
 		label.setLayoutX(130);

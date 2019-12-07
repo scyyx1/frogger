@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.scyyx1.frogger.control.WindowController;
-import com.scyyx1.frogger.model.Frog;
-import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.model.Frogger;
+import com.scyyx1.frogger.model.GameWorld;
 import com.scyyx1.frogger.model.Person;
 import com.scyyx1.frogger.model.ScoreCompare;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
@@ -21,17 +21,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class GameOver extends MyStage{
-	public GameOver(Frog frog) {
+public class GameOver extends Pane{
+	public GameOver(Frogger frog) {
 		
 		WindowController controller = new WindowController(frog);
 		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-		add(background);
+		getChildren().add(background);
 		
 		Label title = new Label("GAME OVER");
 		title.setLayoutX(140);

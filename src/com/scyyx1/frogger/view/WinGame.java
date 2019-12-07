@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.scyyx1.frogger.model.Frog;
-import com.scyyx1.frogger.model.MyStage;
+import com.scyyx1.frogger.model.Frogger;
+import com.scyyx1.frogger.model.GameWorld;
 import com.scyyx1.frogger.model.Person;
 import com.scyyx1.frogger.model.ScoreCompare;
 import com.scyyx1.frogger.obstacle_view.BackgroundImage;
@@ -22,17 +22,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class WinGame extends MyStage implements Comparator<Person>{
+public class WinGame extends Pane implements Comparator<Person>{
 
 	
-	public WinGame(Frog frog) {
+	public WinGame(Frogger frog) {
 		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-		add(background);
+		getChildren().add(background);
 		Label title = new Label("YOU WIN");
 		title.setLayoutX(160);
 		title.setLayoutY(180);
