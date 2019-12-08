@@ -3,7 +3,6 @@ package frogger.view;
 
 
 import frogger.control.StartWindowController;
-import frogger.control.WindowController;
 import frogger.main.Main;
 import frogger.model.actors.BackgroundImage;
 import javafx.event.ActionEvent;
@@ -21,7 +20,7 @@ import javafx.stage.Stage;
 
 
 
-public class StartWindow extends Pane implements GUIFactory{
+public class StartWindow extends Pane implements BasicGUI{
 
 
 	public static Stage stage;

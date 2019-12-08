@@ -13,7 +13,7 @@ public class Frogger extends Actor {
 	private int points;
 	private int end = 0;
 	private boolean jump = false;
-	private boolean noMove = false;
+	private boolean stopMoving = false;
 	private double movement = 13.3333333*2;
 	private double movementX = 10.666666*2;
 	private boolean carDeath = false;
@@ -37,38 +37,23 @@ public class Frogger extends Actor {
 		this.level = level;
 	}
 	int imgSize = 40;
-	private Image imgW1;
-	private Image imgA1;
-	private Image imgS1;
-	private Image imgD1;
-	private Image imgW2;
-	private Image imgA2;
-	private Image imgS2;
-	private Image imgD2;
+	private Image imgWInit = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
+	private Image imgAInit = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
+	private Image imgSInit = new Image("file:resource/frogs/froggerDown.png", imgSize, imgSize, true, true);
+	private Image imgDInit = new Image("file:resource/frogs/froggerRight.png", imgSize, imgSize, true, true);
+	private Image imgWJump = new Image("file:resource/frogs/froggerUpJump.png", imgSize, imgSize, true, true);
+	private Image imgAJump = new Image("file:resource/frogs/froggerLeftJump.png", imgSize, imgSize, true, true);
+	private Image imgSJump = new Image("file:resource/frogs/froggerDownJump.png", imgSize, imgSize, true, true);
+	private Image imgDJump = new Image("file:resource/frogs/froggerRightJump.png", imgSize, imgSize, true, true);
 	private ArrayList<End> inter = new ArrayList<End>();
 	
 	public Frogger(int points) {
-		imgW1 = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
-		imgA1 = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
-		imgS1 = new Image("file:resource/frogs/froggerDown.png", imgSize, imgSize, true, true);
-		imgD1 = new Image("file:resource/frogs/froggerRight.png", imgSize, imgSize, true, true);
-		imgW2 = new Image("file:resource/frogs/froggerUpJump.png", imgSize, imgSize, true, true);
-		imgA2 = new Image("file:resource/frogs/froggerLeftJump.png", imgSize, imgSize, true, true);
-		imgS2 = new Image("file:resource/frogs/froggerDownJump.png", imgSize, imgSize, true, true);
-		imgD2 = new Image("file:resource/frogs/froggerRightJump.png", imgSize, imgSize, true, true);
 		
 		this.points = points;
 		init();
 	}
 	public Frogger() {
-		imgW1 = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
-		imgA1 = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
-		imgS1 = new Image("file:resource/frogs/froggerDown.png", imgSize, imgSize, true, true);
-		imgD1 = new Image("file:resource/frogs/froggerRight.png", imgSize, imgSize, true, true);
-		imgW2 = new Image("file:resource/frogs/froggerUpJump.png", imgSize, imgSize, true, true);
-		imgA2 = new Image("file:resource/frogs/froggerLeftJump.png", imgSize, imgSize, true, true);
-		imgS2 = new Image("file:resource/frogs/froggerDownJump.png", imgSize, imgSize, true, true);
-		imgD2 = new Image("file:resource/frogs/froggerRightJump.png", imgSize, imgSize, true, true);
+
 		points = 0;
 		init();
 	}
@@ -120,7 +105,7 @@ public class Frogger extends Actor {
 	}
 	
 	public void setNoMove(boolean noMove) {
-		this.noMove = noMove;
+		this.stopMoving = noMove;
 	}
 	public boolean getStop() {
 		return (lives == 0 || end == 1);
@@ -170,9 +155,9 @@ public class Frogger extends Actor {
 	public void update(Image image) {
 		setImage(image);
 	}
-	public boolean isNoMove() {
+	public boolean isStopMoving() {
 		// TODO Auto-generated method stub
-		return noMove;
+		return stopMoving;
 	}
 	public boolean isJump() {
 		// TODO Auto-generated method stub
@@ -184,29 +169,29 @@ public class Frogger extends Actor {
 		
 	}
 	
-	public Image getImgW1() {
-		return imgW1;
+	public Image getImgWInit() {
+		return imgWInit;
 	}
-	public Image getImgA1() {
-		return imgA1;
+	public Image getImgAInit() {
+		return imgAInit;
 	}
-	public Image getImgS1() {
-		return imgS1;
+	public Image getImgSInit() {
+		return imgSInit;
 	}
-	public Image getImgD1() {
-		return imgD1;
+	public Image getImgDInit() {
+		return imgDInit;
 	}
-	public Image getImgW2() {
-		return imgW2;
+	public Image getImgWJump() {
+		return imgWJump;
 	}
-	public Image getImgA2() {
-		return imgA2;
+	public Image getImgAJump() {
+		return imgAJump;
 	}
-	public Image getImgS2() {
-		return imgS2;
+	public Image getImgSJump() {
+		return imgSJump;
 	}
-	public Image getImgD2() {
-		return imgD2;
+	public Image getImgDJump() {
+		return imgDJump;
 	}
 	public double getMovement() {
 		// TODO Auto-generated method stub
@@ -245,13 +230,13 @@ public class Frogger extends Actor {
 		if (getX() == 240 && getY() == 82) {
 			stop = true;
 		}
-		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
+		if (getIntersectingObjects(Log.class).size() >= 1 && !stopMoving) {
 			if(getIntersectingObjects(Log.class).get(0).getLeft())
 				move(-0.5*level,0);
 			else
 				move (.35*level,0);
 		}
-		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
+		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !stopMoving) {
 			if(level >3 ) {
 				move(-2, 0);
 			}else {

@@ -1,10 +1,10 @@
 package frogger.model;
 
-public class Person {
+public class Player {
 	public String name;
 	public int score;
 	
-	public Person(String name, int score) 
+	public Player(String name, int score) 
     {
         this.name = name;
          

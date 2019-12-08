@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import frogger.control.GameOverController;
-import frogger.control.WindowController;
-import frogger.model.Person;
+import frogger.model.Player;
 import frogger.model.ScoreCompare;
 import frogger.model.actors.BackgroundImage;
 import frogger.model.actors.Frogger;
@@ -25,7 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class GameOverWindow extends Pane implements GUIFactory{
+public class GameOverWindow extends Pane implements BasicGUI{
 	
 	private Frogger frogger;
 	private TextField username;

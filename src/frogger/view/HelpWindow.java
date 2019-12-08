@@ -1,7 +1,6 @@
 package frogger.view;
 
 import frogger.control.HelpWindowController;
-import frogger.control.WindowController;
 import frogger.model.actors.BackgroundImage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class HelpWindow extends Pane implements GUIFactory{
+public class HelpWindow extends Pane implements BasicGUI{
 
 	
 	public HelpWindow() {

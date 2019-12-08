@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import frogger.control.ScoreWindowController;
-import frogger.control.WindowController;
 import frogger.main.Main;
 import frogger.model.actors.BackgroundImage;
 import javafx.event.ActionEvent;
@@ -23,7 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ScoreWindow extends Pane implements GUIFactory{
+public class ScoreWindow extends Pane implements BasicGUI{
 
 	private ArrayList<Label> labels = new ArrayList<>();
 	public ScoreWindow() {

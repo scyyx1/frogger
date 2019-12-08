@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import frogger.model.Person;
+import frogger.model.Player;
 import frogger.model.ScoreCompare;
 import frogger.model.actors.BackgroundImage;
 import frogger.model.actors.Frogger;
@@ -25,7 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class WinGame extends Pane implements Comparator<Person>{
+public class WinGame extends Pane implements Comparator<Player>{
 
 	
 	public WinGame(Frogger frog) {
@@ -53,7 +53,7 @@ public class WinGame extends Pane implements Comparator<Person>{
 		    	if("".equals(name)) {
 		    		name = "NoName";
 		    	}
-		    	ArrayList<Person> lines = new ArrayList<>();
+		    	ArrayList<Player> lines = new ArrayList<>();
 		    	try {
 		    		BufferedReader reader = new BufferedReader(new FileReader("resource/scores/scores.txt"));
 		    		String currentLine = reader.readLine();
@@ -63,14 +63,14 @@ public class WinGame extends Pane implements Comparator<Person>{
 		           
 		                String uname = personDetail[0];
 		                int scores = Integer.valueOf(personDetail[1]);
-		                lines.add(new Person(uname, scores));
+		                lines.add(new Player(uname, scores));
 		    			currentLine = reader.readLine();
 		    		}
 		    		reader.close();
-		    		lines.add(new Person(name, frog.getPoints()));
+		    		lines.add(new Player(name, frog.getPoints()));
 		    		Collections.sort(lines, new ScoreCompare());
 		    		BufferedWriter writer = new BufferedWriter(new FileWriter("resource/scores/scores.txt"));
-		    		for (Person line : lines)
+		    		for (Player line : lines)
 		            {
 		                writer.write(line.name);
 		                writer.write(" " + line.score);
@@ -92,7 +92,7 @@ public class WinGame extends Pane implements Comparator<Person>{
 		getChildren().add(ok);
 	}
 	@Override
-	public int compare(Person p1, Person p2) {
+	public int compare(Player p1, Player p2) {
 		return p1.score - p2.score;
 	}
 }
