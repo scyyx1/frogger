@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import frogger.control.WindowController;
 import frogger.view.StartWindow;
+import frogger.view.WindowFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
@@ -29,7 +30,7 @@ public class Main extends Application {
 	}
 	
 	public void createStartWindow(Stage stage) {
-		StartWindow startWindow = new StartWindow();
+		StartWindow startWindow = new WindowFactory().createStartWindow();
 	    Scene startScene  = new Scene(startWindow, 500, 500);
 	    startScene.getStylesheets().add("file:resource/application.css");
 	    

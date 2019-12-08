@@ -2,6 +2,7 @@ package frogger.view;
 
 
 
+import frogger.control.StartWindowController;
 import frogger.control.WindowController;
 import frogger.main.Main;
 import frogger.model.actors.BackgroundImage;
@@ -20,31 +21,36 @@ import javafx.stage.Stage;
 
 
 
-public class StartWindow extends Pane {
+public class StartWindow extends Pane implements GUIFactory{
 
 
 	public static Stage stage;
 	public StartWindow() {
 
-		WindowController controller = new WindowController();
 		
+		createBackground();
+		
+		createLabel();
+		
+		createIcon();
+		
+		createButton();
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
+
+	@Override
+	public void createBackground() {
+		// TODO Auto-generated method stub
 		getChildren().add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
-		
-		Label title = new Label("FROGGER");
-		title.setLayoutX(120);
-		title.setLayoutY(50);
-		title.setId("title");
-		title.setTextFill(Color.CADETBLUE);
-		getChildren().add(title);
-		
-		
-		Image image = new Image("file:resource/frogs/frog.png", 200, 200, false, false);
-		ImageView icon = new ImageView(image);
-		icon.setX(150);
-		icon.setY(300);
-		getChildren().add(icon);
-		
-		
+	}
+
+	@Override
+	public void createButton() {
+		StartWindowController controller = new StartWindowController();
+		// TODO Auto-generated method stub
 		Button start = new Button("START");
 		start.setOnAction(e->{
 			controller.startButtonAction();
@@ -69,9 +75,24 @@ public class StartWindow extends Pane {
 		});
 		getChildren().add(exit);
 	}
+
+	@Override
+	public void createLabel() {
+		// TODO Auto-generated method stub
+		Label title = new Label("FROGGER");
+		title.setLayoutX(120);
+		title.setLayoutY(50);
+		title.setId("title");
+		title.setTextFill(Color.CADETBLUE);
+		getChildren().add(title);
+	}
 	
-	public static Stage getStage() {
-		return stage;
+	public void createIcon() {
+		Image image = new Image("file:resource/frogs/frog.png", 200, 200, false, false);
+		ImageView icon = new ImageView(image);
+		icon.setX(150);
+		icon.setY(300);
+		getChildren().add(icon);
 	}
 
 }

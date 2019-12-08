@@ -11,7 +11,7 @@ import frogger.model.actors.Actor;
 import frogger.model.actors.Fly;
 import frogger.model.actors.Frogger;
 import frogger.view.DifficultyWindow;
-import frogger.view.GameOver;
+import frogger.view.GameOverWindow;
 import frogger.view.GameWorld;
 import frogger.view.WinGame;
 import javafx.animation.AnimationTimer;
