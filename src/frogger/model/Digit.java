@@ -1,4 +1,4 @@
-package frogger.obstacle_view;
+package frogger.model;
 
 
 

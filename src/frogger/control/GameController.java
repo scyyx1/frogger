@@ -5,11 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import frogger.model.Actor;
+import frogger.model.Digit;
 import frogger.model.GameModel;
-import frogger.model.obstacle.Fly;
-import frogger.model.obstacle.Frogger;
-import frogger.obstacle_view.Digit;
+import frogger.model.actors.Actor;
+import frogger.model.actors.Fly;
+import frogger.model.actors.Frogger;
 import frogger.view.DifficultyWindow;
 import frogger.view.GameOver;
 import frogger.view.GameWorld;

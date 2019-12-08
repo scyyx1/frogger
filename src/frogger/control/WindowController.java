@@ -11,7 +11,7 @@ import java.util.Collections;
 import frogger.main.Main;
 import frogger.model.Person;
 import frogger.model.ScoreCompare;
-import frogger.model.obstacle.Frogger;
+import frogger.model.actors.Frogger;
 import frogger.view.DifficultyWindow;
 import frogger.view.GameEngine;
 import frogger.view.HelpWindow;

@@ -2,8 +2,10 @@ package frogger.model;
 
 import java.util.ArrayList;
 
-import frogger.model.obstacle.Frogger;
+import frogger.model.actors.ActorFactory;
+import frogger.model.actors.Frogger;
 import frogger.view.GameWorld;
+import frogger.view.GroupsCollection;
 
 
 public class GameModel {
@@ -23,7 +25,7 @@ public class GameModel {
 	private ArrayList<String> scoreList = new ArrayList<>(); 
 	
 	public GameModel() {
-		frog = new Frogger();
+		frog = new ActorFactory().createFrogger();
 		groups = new GroupsCollection();
 		startTime = System.nanoTime();
 

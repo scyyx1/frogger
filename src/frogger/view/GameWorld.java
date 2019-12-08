@@ -4,19 +4,18 @@ import java.io.File;
 import java.util.ArrayList;
 
 import frogger.control.GameController;
-import frogger.model.Actor;
+import frogger.model.Digit;
 import frogger.model.GameModel;
-import frogger.model.GroupsCollection;
+import frogger.model.GenerateCrocodiles;
+import frogger.model.GenerateEnds;
+import frogger.model.GenerateLogs;
+import frogger.model.GenerateTurtles;
+import frogger.model.GenerateVehicles;
+
 import frogger.model.World;
-import frogger.model.factory.CrocodileFactory;
-import frogger.model.factory.EndFactory;
-import frogger.model.factory.LogFactory;
-import frogger.model.factory.TurtleFactory;
-import frogger.model.factory.VehicleFactory;
-import frogger.model.obstacle.Fly;
-import frogger.model.obstacle.Snack;
-import frogger.obstacle_view.BackgroundImage;
-import frogger.obstacle_view.Digit;
+import frogger.model.actors.Actor;
+import frogger.model.actors.ActorFactory;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -62,7 +61,7 @@ public class GameWorld extends World{
 
 	public void createLayout(int level){
 		
-		createBackground(level);
+		createBackground();
 		createLabels();
 		createGroups();
 		createCountDown();
@@ -134,7 +133,7 @@ public class GameWorld extends World{
 	
 	public void createVehicle(int level) {
 	
-		ArrayList<Actor> vehicles = new VehicleFactory().createActors(level);
+		ArrayList<Actor> vehicles = new GenerateVehicles().createActors(level);
 		for(Actor vehicle: vehicles) {
 			add(vehicle);
 		}
@@ -142,7 +141,7 @@ public class GameWorld extends World{
 	
 	public void createTurtle(int level) {
 		
-		ArrayList<Actor> turtles = new TurtleFactory().createActors(level);
+		ArrayList<Actor> turtles = new GenerateTurtles().createActors(level);
 		for (Actor turtle : turtles) {
 			add(turtle);
 		}
@@ -150,7 +149,7 @@ public class GameWorld extends World{
 
 	public void createCrocodile(int level) {
 		
-		ArrayList<Actor> crocodiles = new CrocodileFactory().createActors(level);
+		ArrayList<Actor> crocodiles = new GenerateCrocodiles().createActors(level);
 		if(crocodiles != null) {
 			for (Actor crocodile : crocodiles) {
 				add(crocodile);
@@ -161,7 +160,7 @@ public class GameWorld extends World{
 	
 	public void createLog(int level) {
 
-		ArrayList<Actor> logs = new LogFactory().createActors(level);
+		ArrayList<Actor> logs = new GenerateLogs().createActors(level);
 		for(Actor log : logs) {
 			add(log);
 		}
@@ -169,14 +168,14 @@ public class GameWorld extends World{
 	
 	public void createSnack(int level) {
 		if(level > 2) {
-			add(new Snack(600, 430, -1, 100, 100));
+			add(new ActorFactory().createSnack(600, 430, -1, 100, 100));
 		}
 	}
 	
-	public void createBackground(int level) {
+	public void createBackground() {
 
-		add(new BackgroundImage("file:resource/backgrounds/background.png", 600, 800));
-		ArrayList<Actor> ends = new EndFactory().createActors(level);
+		add(new ActorFactory().createBackgroundImage("file:resource/backgrounds/background.png", 600, 800));
+		ArrayList<Actor> ends = new GenerateEnds().createActors();
 		for(Actor end : ends) {
 			add(end);
 		}
@@ -212,7 +211,7 @@ public class GameWorld extends World{
 	public void createFlys() {
 		int[] endArray = {13, 141, 269, 398, 528};
 		int index = (int) (Math.random() * endArray.length);
-		add(new Fly(60, endArray[index], 96));
+		add(new ActorFactory().createFly(60, endArray[index], 96));
 	}
 	
 	public Rectangle getRemainTime() {

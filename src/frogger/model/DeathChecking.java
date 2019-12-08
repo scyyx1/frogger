@@ -1,6 +1,6 @@
 package frogger.model;
 
-import frogger.model.obstacle.Frogger;
+import frogger.model.actors.Frogger;
 
 public class DeathChecking {
 	private Frogger frog;

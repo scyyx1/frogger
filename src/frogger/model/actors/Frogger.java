@@ -1,8 +1,7 @@
-package frogger.model.obstacle;
+package frogger.model.actors;
 
 import java.util.ArrayList;
 
-import frogger.model.Actor;
 import frogger.model.DeathChecking;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

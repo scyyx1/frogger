@@ -1,9 +1,11 @@
-package frogger.model;
+package frogger.model.actors;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 
 import java.util.ArrayList;
+
+import frogger.model.World;
 
 public abstract class Actor extends ImageView{
 

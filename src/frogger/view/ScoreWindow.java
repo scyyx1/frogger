@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import frogger.control.WindowController;
 import frogger.main.Main;
-import frogger.obstacle_view.BackgroundImage;
+import frogger.model.actors.BackgroundImage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

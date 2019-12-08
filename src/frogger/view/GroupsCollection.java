@@ -1,6 +1,5 @@
-package frogger.model;
+package frogger.view;
 
-import frogger.obstacle_view.Digit;
 import javafx.scene.Group;
 
 public class GroupsCollection {

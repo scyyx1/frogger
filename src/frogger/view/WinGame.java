@@ -12,8 +12,8 @@ import java.util.Comparator;
 
 import frogger.model.Person;
 import frogger.model.ScoreCompare;
-import frogger.model.obstacle.Frogger;
-import frogger.obstacle_view.BackgroundImage;
+import frogger.model.actors.BackgroundImage;
+import frogger.model.actors.Frogger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
