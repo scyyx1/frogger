@@ -7,5 +7,5 @@ import frogger.model.actors.ActorFactory;
 
 public abstract class GenerateActors {
 
-	public abstract ArrayList<Actor> createActors(int level);
+	public abstract ArrayList<Actor> createActors(int level, int difficultyLevel);
 }

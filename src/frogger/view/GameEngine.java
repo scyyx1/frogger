@@ -9,14 +9,14 @@ public class GameEngine {
 
 	public GameEngine(int difficultyLevel) {
 		gameModel = new GameModel();
-		gameModel.setLevel(difficultyLevel);
-		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel);
+		gameModel.setLevel(1);
+		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel, 1);
 	}
 	
-	public GameEngine(int level, int points) {
+	public GameEngine(int level, int points, int difficultyLevel) {
 		gameModel = new GameModel(points);
 		gameModel.setLevel(level);
-		gameWorld = new WindowFactory().createGameWorld(gameModel, level);
+		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel, level);
 	}
 	public GameWorld asView() {
 		return gameWorld;

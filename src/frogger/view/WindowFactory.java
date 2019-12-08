@@ -17,8 +17,8 @@ public class WindowFactory {
 		return new DifficultyWindow();
 	}
 	
-	public GameWorld createGameWorld (GameModel gameModel, int level) {
-		return new GameWorld(gameModel, level);
+	public GameWorld createGameWorld (GameModel gameModel, int level, int difficultyLevel) {
+		return new GameWorld(gameModel, level, difficultyLevel);
 	}
 	public GameOverWindow createGameOverWindow(Frogger frogger) {
 		return new GameOverWindow(frogger);

@@ -35,11 +35,11 @@ public class GameWorld extends World{
 	private GameController controller;
 	private Rectangle remainTime;
 	private GroupsCollection groups;
-	
-	public GameWorld(GameModel model, int level) {
+	private int difficultyLevel;
+	public GameWorld(GameModel model, int difficultyLevel, int level) {
 		this.model = model;
 		this.controller = new GameController(model);
-		
+		this.difficultyLevel = difficultyLevel;
 		
 		createGameWorld(level);
 		
@@ -69,11 +69,11 @@ public class GameWorld extends World{
 	}
 
 	public void createObstacle(int level) {
-		createLog(level);
-		createCrocodile(level);
-		createSnack(level);
-		createTurtle(level);
-		createVehicle(level);
+		createLog(level, difficultyLevel);
+		createCrocodile(level, difficultyLevel);
+		createSnack(level, difficultyLevel);
+		createTurtle(level, difficultyLevel);
+		createVehicle(level, difficultyLevel);
 		createFrog();
 	}
 	
@@ -131,25 +131,25 @@ public class GameWorld extends World{
 		getChildren().add(remainTime);
 	}
 	
-	public void createVehicle(int level) {
+	public void createVehicle(int level, int difficultyLevel) {
 	
-		ArrayList<Actor> vehicles = new GenerateVehicles().createActors(level);
+		ArrayList<Actor> vehicles = new GenerateVehicles().createActors(level, difficultyLevel);
 		for(Actor vehicle: vehicles) {
 			add(vehicle);
 		}
 	}
 	
-	public void createTurtle(int level) {
+	public void createTurtle(int level, int difficultyLevel) {
 		
-		ArrayList<Actor> turtles = new GenerateTurtles().createActors(level);
+		ArrayList<Actor> turtles = new GenerateTurtles().createActors(level, difficultyLevel);
 		for (Actor turtle : turtles) {
 			add(turtle);
 		}
 	}
 
-	public void createCrocodile(int level) {
+	public void createCrocodile(int level, int difficultyLevel) {
 		
-		ArrayList<Actor> crocodiles = new GenerateCrocodiles().createActors(level);
+		ArrayList<Actor> crocodiles = new GenerateCrocodiles().createActors(level, difficultyLevel);
 		if(crocodiles != null) {
 			for (Actor crocodile : crocodiles) {
 				add(crocodile);
@@ -158,18 +158,23 @@ public class GameWorld extends World{
 		
 	}
 	
-	public void createLog(int level) {
+	public void createLog(int level, int difficultyLevel) {
 
-		ArrayList<Actor> logs = new GenerateLogs().createActors(level);
+		ArrayList<Actor> logs = new GenerateLogs().createActors(level, difficultyLevel);
 		for(Actor log : logs) {
 			add(log);
 		}
 	}
 	
-	public void createSnack(int level) {
+	public void createSnack(int level, int difficultyLevel) {
+		int speed = 1;
 		if(level > 2) {
-			add(new ActorFactory().createSnack(600, 430, -1, 100, 100));
+			speed = 2;
 		}
+		if(difficultyLevel != 1) {
+			add(new ActorFactory().createSnack(600, 430, -speed, 100, 100));
+		}
+		
 	}
 	
 	public void createBackground() {
@@ -245,7 +250,7 @@ public class GameWorld extends World{
 				scene.getStylesheets().add("file:resource/application.css");
 		    	DifficultyWindow.getStage().setScene(scene);
 			}else {
-				GameEngine gameEngine = new GameEngine(model.getLevel() + 1,model.getFrog().getPoints());
+				GameEngine gameEngine = new GameEngine(model.getLevel() + 1, difficultyLevel, model.getFrog().getPoints());
 				Scene scene = new Scene(gameEngine.asView(), 600, 800);
 				DifficultyWindow.getStage().setScene(scene);
 			}
