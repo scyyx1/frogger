@@ -271,7 +271,7 @@ public class Frogger extends Actor {
 				
 			}
 		}
-		else if(getIntersectingObjects(Crocodile.class).size() >=  1) {
+		else if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
 			move(level * 0.35, 0);
 		}
 		else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {

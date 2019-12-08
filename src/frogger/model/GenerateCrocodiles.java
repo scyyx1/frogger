@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
-import frogger.model.actors.Crocodile;
+import frogger.model.actors.CrocodileBody;
 import frogger.model.actors.CrocodileHead;
 
 public class GenerateCrocodiles extends GenerateActors {

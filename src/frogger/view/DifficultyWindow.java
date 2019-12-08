@@ -1,5 +1,6 @@
 package frogger.view;
 
+import frogger.control.DifficultyWindowController;
 import frogger.control.WindowController;
 import frogger.main.Main;
 import frogger.model.actors.BackgroundImage;
@@ -15,22 +16,34 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DifficultyWindow extends Pane{
+public class DifficultyWindow extends Pane implements GUIFactory{
 	public static Stage stage = new Stage();
 	public DifficultyWindow() {
 		
-		WindowController controller = new WindowController();
+		
+		createBackground();
+		
+		createLabel();
+		
+		createButton();
+		
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
+
+	@Override
+	public void createBackground() {
+		// TODO Auto-generated method stub
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500);
 		getChildren().add(background);
-		
-		Label title = new Label("SELECT DIFFICULTIES");
-		title.setLayoutX(60);
-		title.setLayoutY(50);
-		title.setId("Difficulty");
-		title.setTextFill(Color.CADETBLUE);
-		getChildren().add(title);
-		
-		
+	}
+
+	@Override
+	public void createButton() {
+		DifficultyWindowController controller = new DifficultyWindowController();
+		// TODO Auto-generated method stub
 		Button easy = new Button("EASY");
 		easy.setOnAction(e->{
 			controller.easyButtonAction(stage);
@@ -63,10 +76,16 @@ public class DifficultyWindow extends Pane{
 		back.setLayoutX(0);
 		back.setLayoutY(450);
 		getChildren().add(back);
-		
 	}
-	
-	public static Stage getStage() {
-		return stage;
+
+	@Override
+	public void createLabel() {
+		// TODO Auto-generated method stub
+		Label title = new Label("SELECT DIFFICULTIES");
+		title.setLayoutX(60);
+		title.setLayoutY(50);
+		title.setId("Difficulty");
+		title.setTextFill(Color.CADETBLUE);
+		getChildren().add(title);
 	}
 }

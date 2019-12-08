@@ -1,6 +1,5 @@
 package frogger.view;
 
-import frogger.control.GameController;
 import frogger.model.GameModel;
 
 public class GameEngine {
@@ -11,13 +10,13 @@ public class GameEngine {
 	public GameEngine(int difficultyLevel) {
 		gameModel = new GameModel();
 		gameModel.setLevel(difficultyLevel);
-		gameWorld = new GameWorld(gameModel, difficultyLevel);
+		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel);
 	}
 	
 	public GameEngine(int level, int points) {
 		gameModel = new GameModel(points);
 		gameModel.setLevel(level);
-		gameWorld = new GameWorld(gameModel, level);
+		gameWorld = new WindowFactory().createGameWorld(gameModel, level);
 	}
 	public GameWorld asView() {
 		return gameWorld;

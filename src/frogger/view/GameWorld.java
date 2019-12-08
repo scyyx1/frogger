@@ -240,7 +240,7 @@ public class GameWorld extends World{
 			stopMusic();
 			stop();
 			if(model.isSwitchToGameOver()) {
-				GameOver gameover = new GameOver(model.getFrog());
+				GameOverWindow gameover = new GameOverWindow(model.getFrog());
 				Scene scene  = new Scene(gameover, 600, 800);
 				scene.getStylesheets().add("file:resource/application.css");
 		    	DifficultyWindow.getStage().setScene(scene);

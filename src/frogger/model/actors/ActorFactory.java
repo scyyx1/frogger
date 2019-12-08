@@ -20,8 +20,8 @@ public class ActorFactory {
 		return new WetTurtle(xPos, yPos, speed, width, height);
 	}
 	
-	public Crocodile createCrocodile(int xPos, int yPos, double speed, int width, int height) {
-		return new Crocodile(xPos, yPos, speed, width, height);
+	public CrocodileBody createCrocodile(int xPos, int yPos, double speed, int width, int height) {
+		return new CrocodileBody(xPos, yPos, speed, width, height);
 	}
 	
 	public CrocodileHead createCrocodileHead(int xPos, int yPos, double speed, int width, int height) {
