@@ -1,7 +1,6 @@
 package frogger.view;
 
 import frogger.model.GameModel;
-import frogger.model.actors.Frogger;
 import javafx.scene.control.Label;
 
 /**

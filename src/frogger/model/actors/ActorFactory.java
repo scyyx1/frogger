@@ -4,10 +4,18 @@ package frogger.model.actors;
  * @author scyyx1
  * An actor factory to create different kinds of actors.
  */
+
+
 public class ActorFactory {
 
+	private static final ActorFactory actorFactory = new ActorFactory();
+	private ActorFactory() {
+		
+	}
 	
-	
+	public static ActorFactory getInstance() {
+		return actorFactory;
+	}
 	/**
 	 * Gets a background image object.
 	 * @param imageLink The image link of the image.
@@ -132,6 +140,7 @@ public class ActorFactory {
 	public Frogger createFrogger(int points) {
 		return new Frogger(points);
 	}
+	
 	/**
 	 * Gets a snack object.
 	 * @param xPos The x position of the image.

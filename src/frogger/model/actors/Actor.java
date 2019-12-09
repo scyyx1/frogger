@@ -34,8 +34,8 @@ public abstract class Actor extends ImageView{
 
     /**
      * Check whether two objects are intersecting with each other.
-     * @param <A> An A class that extends actor.
-     * @param cls The another class. 
+     * @param <A> A type A which extends the Actor
+     * @param cls The class with certain type. 
      * @return An intersecting list.
      */
     public <A extends Actor> java.util.List<A> getIntersectingObjects(java.lang.Class<A> cls){

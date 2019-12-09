@@ -10,7 +10,6 @@ import java.util.Collections;
 
 import frogger.model.Player;
 import frogger.model.ScoreCompare;
-import frogger.model.actors.Frogger;
 import frogger.view.DifficultyWindow;
 import frogger.view.ScoreWindow;
 import frogger.view.WindowFactory;
