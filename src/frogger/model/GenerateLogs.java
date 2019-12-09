@@ -6,8 +6,19 @@ import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
 import frogger.model.actors.Log;
 
+/**
+ * @author scyyx1
+ * Represents a class to generate the log list in the game.
+ * Contains a function to return a log list.
+ */
 public class GenerateLogs extends GenerateActors {
 
+	/**
+	 * Get an arraylist of the log type.
+	 * @param level The level of current game.
+	 * @param difficultyLevel The difficulty level of current game.
+	 * @return the list of logs.
+	 */
 	@Override
 	public ArrayList<Actor> createActors(int level, int difficultyLevel) {
 		// TODO Auto-generated method stub

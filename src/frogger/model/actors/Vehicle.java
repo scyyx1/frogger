@@ -2,8 +2,22 @@ package frogger.model.actors;
 
 import javafx.scene.image.Image;
 
+/**
+ * @author scyyx1
+ * Represent a vehicle class to generate the image of vehicle.
+ * Contains the speed vehicle moves.
+ */
 public class Vehicle extends Actor {
+	
+	/**
+	 * The move speed of image.
+	 */
 	private int speed;
+	
+	/**
+	 * Change the status of vehicles and move the image.
+	 * @param now The current time.
+	 */
 	@Override
 	public void act(long now) {
 		move(speed , 0);
@@ -13,11 +27,19 @@ public class Vehicle extends Actor {
 			setX(600);
 	}
 	
-	public Vehicle(String imageLink, int xpos, int ypos, int s, int w, int h) {
-		setImage(new Image(imageLink, w,h, true, true));
+	/**
+	 * A constructor to initialize the vehicle image.
+	 * @param xpos The x position of the image.
+	 * @param ypos The y position of the image.
+	 * @param speed The move speed of the image.
+	 * @param width The width of the image. 
+	 * @param height The height of the image.
+	 */
+	public Vehicle(String imageLink, int xpos, int ypos, int speed, int width, int height) {
+		setImage(new Image(imageLink, width,height, true, true));
 		setX(xpos);
 		setY(ypos);
-		speed = s;
+		this.speed = speed;
 	}
 
 }

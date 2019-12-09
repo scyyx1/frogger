@@ -6,8 +6,19 @@ import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
 import frogger.model.actors.Vehicle;
 
+/**
+ * @author scyyx1
+ * Represents a class to generate the vehicles list in the game.
+ * Contains a function to return a vehicle list.
+ */
 public class GenerateVehicles extends GenerateActors {
 
+	/**
+	 * Get an arraylist of the vehicles type.
+	 * @param level The level of current game.
+	 * @param difficultyLevel The difficulty level of current game.
+	 * @return the list of vehicles.
+	 */
 	@Override
 	public ArrayList<Actor> createActors(int level, int difficultyLevel) {
 		// TODO Auto-generated method stub

@@ -1,7 +1,6 @@
 package frogger.view;
 
 import frogger.control.DifficultyWindowController;
-import frogger.control.WindowController;
 import frogger.main.Main;
 import frogger.model.actors.BackgroundImage;
 import javafx.event.ActionEvent;
@@ -16,11 +15,24 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DifficultyWindow extends Pane implements GUIFactory{
-	public static Stage stage = new Stage();
+/**
+ * @author scyyx1
+ * Represents a difficulty window to allow user to select different difficulties.
+ * Contains some labels, buttons, background and a stage to display the content.
+ */
+public class DifficultyWindow extends Pane implements BasicGUI{
+	
+	/**
+	 * A stage to display the difficulty window.
+	 */
+	public static Stage difficultyStage;
+	
+	/**
+	 * A constructor to initialize the difficulty window.
+	 */
 	public DifficultyWindow() {
 		
-		
+		difficultyStage = new Stage();
 		createBackground();
 		
 		createLabel();
@@ -29,24 +41,36 @@ public class DifficultyWindow extends Pane implements GUIFactory{
 		
 	}
 	
+	/**
+	 * Gets the stage of this difficulty class for future display.
+	 * @return current stage
+	 */
 	public static Stage getStage() {
-		return stage;
+		return difficultyStage;
 	}
 
+	/**
+	 * Create the background of the difficulty window.
+	 * Add it into the scene.
+	 */
 	@Override
 	public void createBackground() {
-		// TODO Auto-generated method stub
+		
 		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500);
 		getChildren().add(background);
 	}
 
+	/**
+	 * Create the buttons in the difficulty window.
+	 * Add them into the scene.
+	 */
 	@Override
 	public void createButton() {
 		DifficultyWindowController controller = new DifficultyWindowController();
-		// TODO Auto-generated method stub
+		
 		Button easy = new Button("EASY");
 		easy.setOnAction(e->{
-			controller.easyButtonAction(stage);
+			controller.easyButtonAction(difficultyStage);
 		});
 		easy.setLayoutX(150);
 		easy.setLayoutY(150);
@@ -54,7 +78,7 @@ public class DifficultyWindow extends Pane implements GUIFactory{
 		
 		Button medium = new Button("MEDIUM");
 		medium.setOnAction(e->{
-			controller.mediumButtonAction(stage);
+			controller.mediumButtonAction(difficultyStage);
 		});
 		medium.setLayoutX(150);
 		medium.setLayoutY(250);
@@ -62,7 +86,7 @@ public class DifficultyWindow extends Pane implements GUIFactory{
 		
 		Button difficult = new Button("DIFFICULT");
 		difficult.setOnAction(e->{
-			controller.difficultButtonAction(stage);
+			controller.difficultButtonAction(difficultyStage);
 		});
 		difficult.setLayoutX(150);
 		difficult.setLayoutY(350);
@@ -78,9 +102,13 @@ public class DifficultyWindow extends Pane implements GUIFactory{
 		getChildren().add(back);
 	}
 
+	/**
+	 * Create the labels in the difficulty window.
+	 * Add them into the scene.
+	 */
 	@Override
 	public void createLabel() {
-		// TODO Auto-generated method stub
+		
 		Label title = new Label("SELECT DIFFICULTIES");
 		title.setLayoutX(60);
 		title.setLayoutY(50);

@@ -7,8 +7,19 @@ import frogger.model.actors.ActorFactory;
 import frogger.model.actors.Turtle;
 import frogger.model.actors.WetTurtle;
 
+/**
+ * @author scyyx1
+ * Represents a class to generate the crocodiles list in the game.
+ * Contains a function to return a list.
+ */
 public class GenerateTurtles extends GenerateActors {
 
+	/**
+	 * Get an arraylist of the turtles type.
+	 * @param level The level of current game.
+	 * @param difficultyLevel The difficulty level of current game.
+	 * @return the list of turtles.
+	 */
 	@Override
 	public ArrayList<Actor> createActors(int level, int difficultyLevel) {
 		// TODO Auto-generated method stub

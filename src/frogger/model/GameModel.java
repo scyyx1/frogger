@@ -8,59 +8,157 @@ import frogger.view.GameWorld;
 import frogger.view.GroupsCollection;
 
 
+/**
+ * @author scyyx1
+ * Represent the game model of game world.
+ * Set up the frogger and some game status of the game.
+ */
 public class GameModel {
 
-	private double width;
-	private double height;
-	private Frogger frog;
-	private int fly = 1;
+	/**
+	 * A frogger used in the game.
+	 */
+	private Frogger frogger;
+	
+	/**
+	 * Number of flys generated in the game view.
+	 */
+	private int numberOfFly = 1;
+	
+	/**
+	 * Whether is possible to generate the fly
+	 */
 	private boolean generateFly = false;
+	
+	/**
+	 * The start time of the game.
+	 */
 	private long startTime;
-	private double changeRec = 0;
-	private boolean changePrev = false;
-	private boolean changeScore = false;
-	private boolean stop;
+	
+	/**
+	 * The remaining time divided by the total time of the game to get the percentage.
+	 */
+	private double remainTimePercentage = 0;
+	
+	/**
+	 * Whether it is possible to change previous score in the view.
+	 */
+	private boolean viewChangePrevScore;
+	
+	/**
+	 * Whether it is possible to change the score in the view.
+	 */
+	private boolean viewChangeScore;
+	
+	/**
+	 * Whether the game is win.
+	 */
+	private boolean winStatus;
+	
+	/**
+	 * Whether the view can be stopped.
+	 */
+	private boolean stopView;
+	
+	/**
+	 * The level of the current game.
+	 */
 	private int level;
-	private GroupsCollection groups;
+	
+	/**
+	 * Whether the view can switch to game over.
+	 */
+	private boolean switchToGameOver;
+	
+	/**
+	 * An array list to store the score into a list.
+	 */
 	private ArrayList<String> scoreList = new ArrayList<>(); 
 	
 	public GameModel() {
-		frog = new ActorFactory().createFrogger();
-		groups = new GroupsCollection();
+		frogger = new ActorFactory().createFrogger();
 		startTime = System.nanoTime();
 
 	}
 	
 	public GameModel(int points) {
-		frog = new Frogger(points);
-		groups = new GroupsCollection();
+		frogger = new ActorFactory().createFrogger(points);
 		startTime = System.nanoTime();
 	}
 	
+	/**
+	 * Initialize the status to default value.
+	 */
+	public void initializeStatus() {
+		viewChangePrevScore = false;
+		viewChangeScore = false;
+		generateFly = false;
+		winStatus = false;
+		remainTimePercentage = 0;
+		switchToGameOver = false;
+		stopView = false;
+	}
+	
+	/**
+	 * Update the model in the game.
+	 * @param now The current time.
+	 */
+	public void updateModel(long now) {
+
+		initializeStatus();
+		double elapsedTime =  (now - startTime) / 1000000000.0;
+		if(elapsedTime < 180) {
+			if(elapsedTime > 5 && numberOfFly > 0) {
+				generateFly = true;
+				numberOfFly = 0;
+			}
+			remainTimePercentage = elapsedTime / 180;
+		}
+		else {
+			frogger.setLives(0);
+		}
+		if (frogger.isDead()) {
+			viewChangePrevScore = true;
+			viewChangeScore = true;
+			frogger.setDead(false);
+		}
+		if(frogger.changeScore()) {
+			viewChangeScore = true;
+		}
+		if(frogger.getStop()) {
+			System.out.print("STOPP:");
+			if(frogger.getLives() == 0 || level == 5) {
+				if(level == 5) {
+					winStatus = true;
+				}
+				switchToGameOver = true;
+			}
+			stopView = true;
+		}
+	}
 	
 	public boolean isGenerateFly() {
 		return generateFly;
 	}
 
-	public double getChangeRec() {
-		return changeRec;
+	public double getRemainTimePercentage() {
+		return remainTimePercentage;
 	}
 
 	public boolean isSwitchToGameOver() {
 		return switchToGameOver;
 	}
 
-	public boolean isStop() {
-		return stop;
+	public boolean canStopView() {
+		return stopView;
 	}
 
-	private boolean switchToGameOver;
-	public boolean isChangePrev() {
-		return changePrev;
+	public boolean canChangePrevScore() {
+		return viewChangePrevScore;
 	}
 
-	public boolean isChangeScore() {
-		return changeScore;
+	public boolean canViewChangeScore() {
+		return viewChangeScore;
 	}
 
 	
@@ -68,75 +166,19 @@ public class GameModel {
 		return startTime;
 	}
 
-	public void setStartTime(long startTime) {
-		this.startTime = startTime;
+	public boolean getWinStatus() {
+		return winStatus;
 	}
 
-	public void updateModel(long now) {
-		changePrev = false;
-		changeScore = false;
-		generateFly = false;
-		changeRec = 0;
-		switchToGameOver = false;
-		stop = false;
-		double elapsedTime =  (now - startTime) / 1000000000.0;
-		if(elapsedTime < 180) {
-			if(elapsedTime > 5 && fly > 0) {
-				generateFly = true;
-				fly = 0;
-			}
-			changeRec = elapsedTime / 180;
-		}
-		else {
-			frog.setLives(0);
-		}
-		if (frog.isDead()) {
-			changePrev = true;
-			changeScore = true;
-			frog.setDead();
-		}
-		if(frog.changeScore()) {
-			changeScore = true;
-		}
-		if(frog.getStop()) {
-			System.out.print("STOPP:");
-			if(frog.getLives() == 0) {
-				switchToGameOver = true;
-			}
-			stop = true;
-		}
-	}
-	public void addGroupsCollection(GameWorld view) {
-		view.getChildren().add(groups.getCurrentScore());
-		view.getChildren().add(groups.getPreviousScore());
-		view.getChildren().add(groups.getFrogLivesGroup());
-		view.getChildren().add(groups.getScoreListGroup());
-	}
 	public ArrayList<String> getScoreList() {
 		return scoreList;
 	}
 
-
-	public double getHeight() {
-		return height;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-	public double getWidth() {
-		return width;
-	}
-	
-	public void setWidth(double width) {
-		this.width = width;
-	}
 	public void setFrog(Frogger frog) {
-		this.frog = frog;
+		this.frogger = frog;
 	}
 	public Frogger getFrog() {
-		return frog;
+		return frogger;
 	}
 	public int getLevel() {
 
@@ -144,14 +186,14 @@ public class GameModel {
 	}
 	public void setLevel(int level) {
 
-		frog.setLevel(level);
-		 this.level = level;
+		frogger.setLevel(level);
+		this.level = level;
 	}
 	public void setFly(int fly) {
-		this.fly = fly;
+		this.numberOfFly = fly;
 	}
 
 	public int getFly() {
-		return fly;
+		return numberOfFly;
 	}
 }
