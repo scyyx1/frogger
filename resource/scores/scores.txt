@@ -1,0 +1,11 @@
+lll 900
+CHrispherer 131
+666 40
+lll 40
+aaa 30
+aaa 30
+p 30
+ppp 30
+111 20
+Christopher 20
+a 0
