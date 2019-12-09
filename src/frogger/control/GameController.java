@@ -18,7 +18,7 @@ public class GameController{
 	/**
 	 * Gets the object named frogger.
 	 */
-	private Frogger frog;
+	private Frogger frogger;
 	
 	
 	/**
@@ -33,7 +33,7 @@ public class GameController{
 	 * @param model The model should remains the key data of the game.
 	 */
 	public GameController(GameModel model) {
-		this.frog = model.getFrog();
+		this.frogger = model.getFrog();
 	}
 	
 	/**
@@ -45,49 +45,49 @@ public class GameController{
 	 * 				to make sure frogger can update its move and status.
 	 */
 	public void checkKeyBoardPress(KeyEvent event) {
-		if (!frog.isStopMoving()) {
+		if (!frogger.isStopMoving()) {
 			if(event.getCode() == KeyCode.W) {
-				if(frog.isJump()) {
-					frog.setChangeScore(false);
-					frog.updateStatus(frog.getImgWInit(), 0, -frog.getMovement()*2);
+				if(frogger.isJump()) {
+					frogger.setChangeScore(false);
+					frogger.updateStatus(frogger.getImgWInit(), 0, -frogger.getMovement()*2);
 					
 				}else {
-					frog.updateStatus(frog.getImgWJump(), 0, -frog.getMovement()*2);
+					frogger.updateStatus(frogger.getImgWJump(), 0, -frogger.getMovement()*2);
 				}
 				
-				if(frog.getW() > frog.getY()) {
+				if(frogger.getW() > frogger.getY()) {
                 	keyBoardPress++;
                 }
 
 			}
 			else if (event.getCode() == KeyCode.S) {
-				if(frog.isJump()) {
+				if(frogger.isJump()) {
 
-					frog.updateStatus(frog.getImgSInit(), 0, frog.getMovement()*2);
+					frogger.updateStatus(frogger.getImgSInit(), 0, frogger.getMovement()*2);
 				}else {
 
-					frog.updateStatus(frog.getImgSJump(), 0, frog.getMovement()*2);
+					frogger.updateStatus(frogger.getImgSJump(), 0, frogger.getMovement()*2);
 				}
 			}
 			else if (event.getCode() == KeyCode.D) {
-				if(frog.isJump()) {
+				if(frogger.isJump()) {
 
-					frog.updateStatus(frog.getImgDInit(), frog.getMovementX()*2, 0);
+					frogger.updateStatus(frogger.getImgDInit(), frogger.getMovementX()*2, 0);
 				}else {
 
-					frog.updateStatus(frog.getImgDJump(), frog.getMovementX()*2, 0);
+					frogger.updateStatus(frogger.getImgDJump(), frogger.getMovementX()*2, 0);
 				}
 			}
 			else if (event.getCode() == KeyCode.A) {
-				if(frog.isJump()) {
+				if(frogger.isJump()) {
 
-					frog.updateStatus(frog.getImgAInit(), -frog.getMovementX()*2, 0);
+					frogger.updateStatus(frogger.getImgAInit(), -frogger.getMovementX()*2, 0);
 				}else {
 
-					frog.updateStatus(frog.getImgAJump(), -frog.getMovementX()*2, 0);
+					frogger.updateStatus(frogger.getImgAJump(), -frogger.getMovementX()*2, 0);
 				}
 			}
-			frog.setJump(!frog.isJump());
+			frogger.setJump(!frogger.isJump());
 		}
 	}
 	
@@ -101,30 +101,30 @@ public class GameController{
 	 */
 	public void checkKeyBoardRelease(KeyEvent event) {
 		
-		if (!frog.isStopMoving()) {
+		if (!frogger.isStopMoving()) {
 			if(event.getCode() == KeyCode.W) {
-				if(frog.getY() < frog.getW()) {
-					frog.setPoints(frog.getPoints() + 10 * keyBoardPress);
-					frog.setW(frog.getY());
-					frog.setChangeScore(true);
+				if(frogger.getY() < frogger.getW()) {
+					frogger.setPoints(frogger.getPoints() + 10 * keyBoardPress);
+					frogger.setW(frogger.getY());
+					frogger.setChangeScore(true);
 				}
 				keyBoardPress = 0;
-				frog.setImage(frog.getImgWInit());
+				frogger.setImage(frogger.getImgWInit());
 
 			}
 			else if (event.getCode() == KeyCode.A) {
-				frog.setImage(frog.getImgAInit());
+				frogger.setImage(frogger.getImgAInit());
 
 			}
 			else if (event.getCode() == KeyCode.S) {
-				frog.setImage(frog.getImgSInit());
+				frogger.setImage(frogger.getImgSInit());
 
 			}
 			else if (event.getCode() == KeyCode.D) {
-				frog.setImage(frog.getImgDInit());
+				frogger.setImage(frogger.getImgDInit());
 
 			}
-			frog.setJump(false);
+			frogger.setJump(false);
 		}
 	}
 	

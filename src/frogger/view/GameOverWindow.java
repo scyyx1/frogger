@@ -1,21 +1,7 @@
 package frogger.view;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import frogger.control.GameOverController;
-import frogger.model.Player;
-import frogger.model.ScoreCompare;
 import frogger.model.actors.BackgroundImage;
-import frogger.model.actors.Frogger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,13 +10,39 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * @author scyyx1
+ * Represent a game over window to allow user to enter their name
+ * Contains some labels, buttons, background and a final score that a player got.
+ */
 public class GameOverWindow extends Pane implements BasicGUI{
 	
-	private Frogger frogger;
+	/**
+	 * A final score that a player got.
+	 */
+	private int finalScore;
+	
+	/**
+	 * The username that player entered.
+	 */
 	private TextField username;
-	public GameOverWindow(Frogger frogger) {
-		this.frogger = frogger;
-		
+	
+	/**
+	 * The status of whether the game is win
+	 */
+	private boolean winStatus;
+	
+	/**
+	 * A constructor to initialize the game over window
+	 * Pass the final score that a player got to the controller and save it into file
+	 * @param finalScore The final score that a player got.
+	 * @param winStatus The status of whether the game is win
+	 */
+
+	public GameOverWindow(int finalScore, boolean winStatus) {
+		this.finalScore = finalScore;
+		this.winStatus = winStatus;
+
 		createBackground();
 		
 		createLabel();
@@ -41,6 +53,10 @@ public class GameOverWindow extends Pane implements BasicGUI{
 
 	}
 
+	/**
+	 * Create the background of the game over window.
+	 * Add it into the scene.
+	 */
 	@Override
 	public void createBackground() {
 		// TODO Auto-generated method stub
@@ -48,10 +64,15 @@ public class GameOverWindow extends Pane implements BasicGUI{
 		getChildren().add(background);
 	}
 
+	
+	/**
+	 * Create the buttons in the game over window.
+	 * Add them into the scene.
+	 */
 	@Override
 	public void createButton() {
 		// TODO Auto-generated method stub
-		GameOverController controller = new GameOverController(frogger);
+		GameOverController controller = new GameOverController(finalScore);
 		
 		Button enter = new Button("ENTER");
 		enter.getStyleClass().add("ok");
@@ -66,10 +87,19 @@ public class GameOverWindow extends Pane implements BasicGUI{
 		
 	}
 
+	/**
+	 * Create the labels in the game over window.
+	 * Add them into the scene.
+	 */
 	@Override
 	public void createLabel() {
 		// TODO Auto-generated method stub
-		Label title = new Label("GAME OVER");
+		Label title;
+		if(winStatus) {
+			 title = new Label("YOU   WIN");
+		}else {
+			 title = new Label("GAME OVER");
+		}
 		title.setLayoutX(140);
 		title.setLayoutY(180);
 		title.setFont(Font.font("Mouse", FontWeight.BOLD, 65));
@@ -77,6 +107,10 @@ public class GameOverWindow extends Pane implements BasicGUI{
 		getChildren().add(title);
 	}
 	
+	/**
+	 * Create a text field in the game over window.
+	 * Add it into the scene.
+	 */
 	public void createTextField() {
 		
 		username = new TextField();

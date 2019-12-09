@@ -15,6 +15,7 @@ import frogger.view.DifficultyWindow;
 import frogger.view.ScoreWindow;
 import frogger.view.WindowFactory;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,9 +26,9 @@ import javafx.scene.control.TextField;
 public class GameOverController {
 	
 	/**
-	 * The frogger object in the main game.
+	 * The final score that a player got.
 	 */
-	private Frogger frogger;
+	private int finalScore;
 	
 	/**
 	 * The name of the player.
@@ -39,13 +40,13 @@ public class GameOverController {
 	 */
 	private ArrayList<Player> players;
 	
-	
+	private Label currentPlayerScore;
 	/** 
-	 * A constructor to initialize the frogger
+	 * A constructor to initialize the final score that user have
 	 * @param frogger The frogger should be the one used in the game
 	 */
-	public GameOverController(Frogger frogger) {
-		this.frogger = frogger;
+	public GameOverController(int finalScore) {
+		this.finalScore = finalScore;
 	}
 	
 	/**
@@ -64,8 +65,7 @@ public class GameOverController {
     	players = new ArrayList<>();
 		try {
 	    	readFileAndUpdate();
-	    	players.add(new Player(name, frogger.getPoints()));
-	    
+
 	    	
 	    	sortAndWriteFile();
 	    
@@ -73,7 +73,7 @@ public class GameOverController {
 			e1.printStackTrace();
 		}
 		
-		ScoreWindow scoreWindow = new WindowFactory().createScoreWindow();
+		ScoreWindow scoreWindow = new WindowFactory().createScoreWindow(currentPlayerScore);
     	Scene scene  = new Scene(scoreWindow, 600, 800);
     	scene.getStylesheets().add("file:resource/application.css");
     	DifficultyWindow.getStage().setScene(scene);
@@ -96,8 +96,9 @@ public class GameOverController {
             int scores = Integer.valueOf(personDetail[1]);
             players.add(new Player(uname, scores));
 			currentLine = reader.readLine();
-			players.add(new Player(name, frogger.getPoints()));
 		}
+		players.add(new Player(name, finalScore));
+		currentPlayerScore = new Label("YOU: Name: " + name + " Score: " + finalScore);
 		reader.close();
 	}
 	

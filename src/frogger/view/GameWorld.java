@@ -28,14 +28,51 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class GameWorld extends World{
+/**
+ * @author scyyx1
+ * Represent the game world, generate the game element used in the world.
+ * Contains different types of actors, model, controller etc.
+ */
+public class GameWorld extends World implements BasicGUI{
 	
-	MediaPlayer mediaPlayer;
+	/**
+	 * A media player to play music
+	 */
+	private MediaPlayer mediaPlayer;
+	
+	/**
+	 * A game model used in the game world.
+	 */
 	private GameModel model;
+	
+	/**
+	 * A game controller to control the movement of internal model.
+	 */
 	private GameController controller;
+	
+	/**
+	 * A rectangle to present the remain time of the game.
+	 */
 	private Rectangle remainTime;
+	
+	/**
+	 * A group collection that preserve the groups needed to be used in the game world.
+	 */
 	private GroupsCollection groups;
+	
+	/**
+	 * The difficulty level of current game world.
+	 */
 	private int difficultyLevel;
+	
+	/**
+	 * A constructor to initialize the game world.
+	 * Set up the game model, the difficulty level and the current game level.
+	 * Bind the keyboard event and start the game.
+	 * @param model The model used in the game world.
+	 * @param difficultyLevel The difficulty in current game
+	 * @param level The level in current game.
+	 */
 	public GameWorld(GameModel model, int difficultyLevel, int level) {
 		this.model = model;
 		this.controller = new GameController(model);
@@ -49,6 +86,10 @@ public class GameWorld extends World{
 
 	}
 	
+	/**
+	 * Create the game world.
+	 * @param level The level in current game
+	 */
 	public void createGameWorld(int level) {
 
 		createLayout(level);
@@ -59,15 +100,23 @@ public class GameWorld extends World{
 		
 	}
 
+	/**
+	 * Create the layout of the game.
+	 * @param level The level in current game.
+	 */
 	public void createLayout(int level){
 		
 		createBackground();
-		createLabels();
+		createLabel();
 		createGroups();
 		createCountDown();
 		
 	}
 
+	/**
+	 * Create the obstacles needed in the game world.
+	 * @param level The level in current game.
+	 */
 	public void createObstacle(int level) {
 		createLog(level, difficultyLevel);
 		createCrocodile(level, difficultyLevel);
@@ -77,6 +126,10 @@ public class GameWorld extends World{
 		createFrog();
 	}
 	
+	
+	/**
+	 * Initialize the game and set up the data needed in the scene.
+	 */
 	public void initilizeTheGame() {
 		
 		setNumber(0, groups.getCurrentScore(), 450);
@@ -85,7 +138,13 @@ public class GameWorld extends World{
 		playMusic();
 	}
 	
-	public void createLabels() {
+	
+	/**
+	 * Create labels in game world view.
+	 * Add them into the view.
+	 */
+	@Override
+	public void createLabel() {
 		Label scoreList = new Label("Score Each Round");
 		scoreList.setLayoutX(0);
 		scoreList.setLayoutY(0);
@@ -117,6 +176,10 @@ public class GameWorld extends World{
 		
 	}
 	
+	/**
+	 * Create a count down in the game world.
+	 * Add it into the view.
+	 */
 	public void createCountDown(){
 		Label time = new Label("TIME");
 		time.setLayoutX(320);
@@ -131,6 +194,11 @@ public class GameWorld extends World{
 		getChildren().add(remainTime);
 	}
 	
+	/**
+	 * Create and add the vehicles needed into the scene.
+	 * @param level The level in current game.
+	 * @param difficultyLevel The difficulty in current game.
+	 */
 	public void createVehicle(int level, int difficultyLevel) {
 	
 		ArrayList<Actor> vehicles = new GenerateVehicles().createActors(level, difficultyLevel);
@@ -139,6 +207,11 @@ public class GameWorld extends World{
 		}
 	}
 	
+	/**
+	 * Create and add the turtles needed into the scene.
+	 * @param level The level in current game.
+	 * @param difficultyLevel The difficulty in current game.
+	 */
 	public void createTurtle(int level, int difficultyLevel) {
 		
 		ArrayList<Actor> turtles = new GenerateTurtles().createActors(level, difficultyLevel);
@@ -146,7 +219,12 @@ public class GameWorld extends World{
 			add(turtle);
 		}
 	}
-
+	
+	/**
+	 * Create and add the crocodile needed into the scene.
+	 * @param level The level in current game.
+	 * @param difficultyLevel The difficulty in current game.
+	 */
 	public void createCrocodile(int level, int difficultyLevel) {
 		
 		ArrayList<Actor> crocodiles = new GenerateCrocodiles().createActors(level, difficultyLevel);
@@ -158,6 +236,11 @@ public class GameWorld extends World{
 		
 	}
 	
+	/**
+	 * Create and add the logs needed into the scene.
+	 * @param level The level in current game.
+	 * @param difficultyLevel The difficulty in current game.
+	 */
 	public void createLog(int level, int difficultyLevel) {
 
 		ArrayList<Actor> logs = new GenerateLogs().createActors(level, difficultyLevel);
@@ -166,6 +249,11 @@ public class GameWorld extends World{
 		}
 	}
 	
+	/**
+	 * Create and add the snacks needed into the scene.
+	 * @param level The level in current game.
+	 * @param difficultyLevel The difficulty in current game.
+	 */
 	public void createSnack(int level, int difficultyLevel) {
 		int speed = 1;
 		if(level > 2) {
@@ -177,6 +265,10 @@ public class GameWorld extends World{
 		
 	}
 	
+	/**
+	 * Create background image of the game world.
+	 * Add it into the scene.
+	 */
 	public void createBackground() {
 
 		add(new ActorFactory().createBackgroundImage("file:resource/backgrounds/background.png", 600, 800));
@@ -187,10 +279,16 @@ public class GameWorld extends World{
 		
 	}
 	
+	/**
+	 * Add the frog initialized in the model into the scene.
+	 */
 	public void createFrog() {
 		add(model.getFrog());
 	}
 	
+	/**
+	 * Create and add the groups needed into the system.
+	 */
 	public void createGroups() {
 		
 		groups = new GroupsCollection();
@@ -201,6 +299,9 @@ public class GameWorld extends World{
 		
 	}
 
+	/**
+	 * Create the current lives and add it into the scene.
+	 */
 	public void createFrogLives() {
 		groups.getFrogLivesGroup().getChildren().clear();
 		int lives = model.getFrog().getLives();
@@ -212,7 +313,10 @@ public class GameWorld extends World{
 			groups.getFrogLivesGroup().getChildren().add(frogLive);
 		}
 	}
-		
+	
+	/**
+	 * Create and add the fly needed into the scene.
+	 */
 	public void createFlys() {
 		int[] endArray = {13, 141, 269, 398, 528};
 		int index = (int) (Math.random() * endArray.length);
@@ -223,29 +327,39 @@ public class GameWorld extends World{
 		return remainTime;
 	}
 	
+	/**
+	 * Update the model and the view each circulation.
+	 * @param now The current time.
+	 */
 	@Override
 	public void act(long now) {
 		model.updateModel(now);
+		updateView();
+    }
+	
+	/**
+	 * Update current view based on the data in game model.
+	 */
+	public void updateView() {
 		if(model.isGenerateFly()) {
 			createFlys();
 		}
-		if(model.getChangeRec() > 0) {
-			getRemainTime().setWidth(200 * (1 - model.getChangeRec()));
+		if(model.getRemainTimePercentage() > 0) {
+			getRemainTime().setWidth(200 * (1 - model.getRemainTimePercentage()));
 		}
-		if(model.isChangeScore()) {
-
+		if(model.canViewChangeScore()) {
 			setNumber(model.getFrog().getPoints(), groups.getCurrentScore(), 450);
 		}
-		if(model.isChangePrev()) {
+		if(model.canChangePrevScore()) {
 			setNumber(model.getFrog().getPrev_points(), groups.getPreviousScore(), 170);
     		setScoreList(model.getFrog().getPoints());
     		createFrogLives();
 		}
-		if(model.isStop()) {
+		if(model.canStopView()) {
 			stopMusic();
 			stop();
 			if(model.isSwitchToGameOver()) {
-				GameOverWindow gameover = new GameOverWindow(model.getFrog());
+				GameOverWindow gameover = new WindowFactory().createGameOverWindow(model.getFrog().getPoints(), model.getWinStatus());
 				Scene scene  = new Scene(gameover, 600, 800);
 				scene.getStylesheets().add("file:resource/application.css");
 		    	DifficultyWindow.getStage().setScene(scene);
@@ -255,8 +369,10 @@ public class GameWorld extends World{
 				DifficultyWindow.getStage().setScene(scene);
 			}
 		}
-    }
-	
+	}
+	/**
+	 * Start playing the music in the game world.
+	 */
 	public void playMusic() {
 		String musicFile = "resource/song/Frogger Main Song Theme (loop).mp3";   
 		Media sound = new Media(new File(musicFile).toURI().toString());
@@ -265,27 +381,40 @@ public class GameWorld extends World{
 	    mediaPlayer.play();
 	}
 	
+	/**
+	 * Stop the music in the game world.
+	 */
 	public void stopMusic() {
 		mediaPlayer.stop();
 	}
 
-	public void setNumber(int n, Group g, int xPos) {
-		g.getChildren().clear();
+	/**
+	 * Set the number displayed on the scene.
+	 * @param number The number that you want to display
+	 * @param group The group that want to display the number
+	 * @param xPos The x position of the number
+	 */
+	public void setNumber(int number, Group group, int xPos) {
+		group.getChildren().clear();
     	int shift = 0;
-    	if(n == 0) {
-    		g.getChildren().add(new Digit(0, 30, xPos, 35));
+    	if(number == 0) {
+    		group.getChildren().add(new Digit(0, 30, xPos, 35));
     	}
-    	while (n > 0) {
-    		  int d = n / 10;
-    		  int k = n - d * 10;
-    		  n = d;
-    		  g.getChildren().add(new Digit(k, 30, xPos - shift, 35));
+    	while (number > 0) {
+    		  int d = number / 10;
+    		  int k = number - d * 10;
+    		  number = d;
+    		  group.getChildren().add(new Digit(k, 30, xPos - shift, 35));
     		  shift+=30;
     	}
     	
     	
     }
 	
+	/**
+	 * Set the score list displayed on the scene
+	 * @param score The score that want to be added into the scene.
+	 */
 	public void setScoreList(int score) {
 		groups.getScoreListGroup().getChildren().clear();
 		ArrayList<String> list = model.getScoreList();
@@ -302,6 +431,9 @@ public class GameWorld extends World{
 		}
 	}
 
+	/**
+	 * Bind the key board event.
+	 */
 	public void bindKeyBoardEvent() {
 
 		setOnKeyPressed(e->{
@@ -311,6 +443,12 @@ public class GameWorld extends World{
 		setOnKeyReleased(e->{
 			controller.checkKeyBoardRelease(e);
 		});
+	}
+
+	@Override
+	public void createButton() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

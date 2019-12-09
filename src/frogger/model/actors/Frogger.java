@@ -26,16 +26,9 @@ public class Frogger extends Actor {
 	private int prev_points = 0;
 	private int carD = 0;
 	private double w = 800;
-	private int imageSize = 40;
 	private boolean eatFly = false;
 	private boolean crocodileDeath = true;
 	private int level;
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
 	int imgSize = 40;
 	private Image imgWInit = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
 	private Image imgAInit = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
@@ -67,6 +60,89 @@ public class Frogger extends Actor {
 		collisionCheck();
 		checkDeath(now);
 
+	}
+	public void collisionCheck() {
+		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
+			carDeath = true;
+		}
+		if (getX() == 240 && getY() == 82) {
+			stop = true;
+		}
+		if (getIntersectingObjects(Log.class).size() >= 1 && !stopMoving) {
+			if(getIntersectingObjects(Log.class).get(0).getLeft())
+				move(-0.5*level,0);
+			else
+				move (.35*level,0);
+		}
+		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !stopMoving) {
+			if(level >3 ) {
+				move(-2, 0);
+			}else {
+				move(-1,0);
+			}
+			
+		}
+		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
+			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
+				setWaterDeath(true);
+			} else {
+				if(level > 3) {
+					move(-2,0);
+				}else {
+					move(-1,0);
+				}
+				
+			}
+		}
+		else if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
+			move(level * 0.35, 0);
+		}
+		else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {
+			if (getIntersectingObjects(CrocodileHead.class).get(0).isEaten()) {
+				waterDeath = true;
+			}else {
+				move(level*0.35, 0);
+			}
+		}
+		else if(getIntersectingObjects(Snack.class).size() >= 1) {
+			carDeath = true;
+		}
+		else if (getIntersectingObjects(End.class).size() >= 1) {
+			inter = ((ArrayList<End>) getIntersectingObjects(End.class));
+			// frog get into same end 
+			if (getIntersectingObjects(End.class).get(0).isActivated()) {
+				w = getY();
+				Alert alert = new Alert(AlertType.ERROR);
+        		alert.setTitle("HIT WRONG END");
+        		alert.setContentText("This End is already been taken");
+        		alert.show();
+			}else {
+				if(getIntersectingObjects(Fly.class).size() >= 1) {
+					setPoints(points + 200);
+					eatFly = true;
+				}
+				setPoints(getPoints() + 50);
+				setChangeScore(true);
+				setW(800);
+				getIntersectingObjects(End.class).get(0).setEnd();
+				end++;
+			}
+			setPrev_points(getPoints());
+			init();
+		}
+		else if (getY()<413){
+			setWaterDeath(true);
+		}
+	}
+	
+	
+	public void updateStatus(Image image, double x, double y) {
+		move(x, y);
+		setImage(image);
+	}
+	
+	public void update(Image image) {
+		setImage(image);
 	}
 	
 	public void checkDeath(long now) {
@@ -147,14 +223,7 @@ public class Frogger extends Actor {
 		this.waterDeath = waterDeath;
 	}
 	
-	public void updateStatus(Image image, double x, double y) {
-		move(x, y);
-		setImage(image);
-	}
 	
-	public void update(Image image) {
-		setImage(image);
-	}
 	public boolean isStopMoving() {
 		// TODO Auto-generated method stub
 		return stopMoving;
@@ -223,84 +292,17 @@ public class Frogger extends Actor {
 	public boolean isCarDeath() {
 		return carDeath;
 	}
-	public void collisionCheck() {
-		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
-			carDeath = true;
-		}
-		if (getX() == 240 && getY() == 82) {
-			stop = true;
-		}
-		if (getIntersectingObjects(Log.class).size() >= 1 && !stopMoving) {
-			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-0.5*level,0);
-			else
-				move (.35*level,0);
-		}
-		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !stopMoving) {
-			if(level >3 ) {
-				move(-2, 0);
-			}else {
-				move(-1,0);
-			}
-			
-		}
-		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
-			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
-				setWaterDeath(true);
-			} else {
-				if(level > 3) {
-					move(-2,0);
-				}else {
-					move(-1,0);
-				}
-				
-			}
-		}
-		else if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
-			move(level * 0.35, 0);
-		}
-		else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {
-			if (getIntersectingObjects(CrocodileHead.class).get(0).isEaten()) {
-				waterDeath = true;
-			}else {
-				move(level*0.35, 0);
-			}
-		}
-		else if(getIntersectingObjects(Snack.class).size() >= 1) {
-			carDeath = true;
-		}
-		else if (getIntersectingObjects(End.class).size() >= 1) {
-			inter = ((ArrayList<End>) getIntersectingObjects(End.class));
-			// frog get into same end 
-			if (getIntersectingObjects(End.class).get(0).isActivated()) {
-				w = getY();
-				Alert alert = new Alert(AlertType.ERROR);
-        		alert.setTitle("HIT WRONG END");
-        		alert.setContentText("This End is already been taken");
-        		alert.show();
-			}else {
-				if(getIntersectingObjects(Fly.class).size() >= 1) {
-					setPoints(points + 200);
-					eatFly = true;
-				}
-				setPoints(getPoints() + 50);
-				setChangeScore(true);
-				setW(800);
-				getIntersectingObjects(End.class).get(0).setEnd();
-				end++;
-			}
-			setPrev_points(getPoints());
-			init();
-		}
-		else if (getY()<413){
-			setWaterDeath(true);
-		}
-	}
+	
 	public boolean isDead() {
 		return dead;
 	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public boolean changeScore() {
-		// TODO Auto-generated method stub
 		return changeScore;
 	}
 

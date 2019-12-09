@@ -10,8 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+/**
+ * @author scyyx1
+ * Represent a help window to allow user to know the basic operation and rules of the game.
+ * Contains a label, a button and a background image to display the rule.
+ */
 public class HelpWindow extends Pane implements BasicGUI{
 
+	
+	/**
+	 * A constructor to initialize the help window
+	 */
 	
 	public HelpWindow() {
 		
@@ -24,12 +33,20 @@ public class HelpWindow extends Pane implements BasicGUI{
 
 	}
 
+	/**
+	 * Create the background of the help window.
+	 * Add it into the scene.
+	 */
 	@Override
 	public void createBackground() {
 		// TODO Auto-generated method stub
-		getChildren().add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
+		getChildren().add(new BackgroundImage("file:resource/backgrounds/helpWindow.png", 500, 500));
 	}
 
+	/**
+	 * Create the buttons in the help window.
+	 * Add them into the scene.
+	 */
 	@Override
 	public void createButton() {
 		HelpWindowController controller = new HelpWindowController();
@@ -50,7 +67,12 @@ public class HelpWindow extends Pane implements BasicGUI{
 		back.setLayoutY(450);
 		getChildren().add(back);
 	}
-
+	
+	/**
+	 * Create the labels in the help window.
+	 * Add them into the scene.
+	 */
+	
 	@Override
 	public void createLabel() {
 		// TODO Auto-generated method stub

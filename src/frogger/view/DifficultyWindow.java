@@ -28,7 +28,7 @@ public class DifficultyWindow extends Pane implements BasicGUI{
 	public static Stage difficultyStage;
 	
 	/**
-	 * A constructor to initiliaze the difficulty window.
+	 * A constructor to initialize the difficulty window.
 	 */
 	public DifficultyWindow() {
 		
