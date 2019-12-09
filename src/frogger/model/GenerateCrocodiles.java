@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
-import frogger.model.actors.CrocodileBody;
-import frogger.model.actors.CrocodileHead;
 
 /**
  * @author scyyx1
@@ -29,11 +27,11 @@ public class GenerateCrocodiles extends GenerateActors {
 		}
 		else{
 			if(difficultyLevel == 3) {
-				crocodiles.add(new ActorFactory().createCrocodileBody(400,  150,  level*0.35, 100,  100));
-				crocodiles.add(new ActorFactory().createCrocodileHead(490,  150,  level*0.35, 70,  70));
+				crocodiles.add(ActorFactory.getInstance().createCrocodileBody(400,  150,  level*0.35, 100,  100));
+				crocodiles.add(ActorFactory.getInstance().createCrocodileHead(490,  150,  level*0.35, 70,  70));
 			}
-			crocodiles.add(new ActorFactory().createCrocodileBody(0,  150,  level*0.35, 100,  100));
-			crocodiles.add(new ActorFactory().createCrocodileHead(90,  150,  level*0.35, 70,  70));
+			crocodiles.add(ActorFactory.getInstance().createCrocodileBody(0,  150,  level*0.35, 100,  100));
+			crocodiles.add(ActorFactory.getInstance().createCrocodileHead(90,  150,  level*0.35, 70,  70));
 		}	
 		return crocodiles;
 

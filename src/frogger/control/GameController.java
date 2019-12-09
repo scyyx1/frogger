@@ -1,6 +1,7 @@
 package frogger.control;
 
 import frogger.model.GameModel;
+import frogger.model.actors.FroggerImg;
 import frogger.model.actors.Frogger;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -49,42 +50,34 @@ public class GameController{
 			if(event.getCode() == KeyCode.W) {
 				if(frogger.isJump()) {
 					frogger.setChangeScore(false);
-					frogger.updateStatus(frogger.getImgWInit(), 0, -frogger.getMovement()*2);
+					frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -frogger.getMovementVertical()*2);
 					
 				}else {
-					frogger.updateStatus(frogger.getImgWJump(), 0, -frogger.getMovement()*2);
+					frogger.updateStatus(new FroggerImg().getImgWJump(), 0, -frogger.getMovementVertical()*2);
 				}
-				
-				if(frogger.getW() > frogger.getY()) {
+				if(frogger.getLastScoreLineRecord() > frogger.getY()) {
                 	keyBoardPress++;
                 }
-
 			}
 			else if (event.getCode() == KeyCode.S) {
 				if(frogger.isJump()) {
-
-					frogger.updateStatus(frogger.getImgSInit(), 0, frogger.getMovement()*2);
+					frogger.updateStatus(new FroggerImg().getImgSInit(), 0, frogger.getMovementVertical()*2);
 				}else {
-
-					frogger.updateStatus(frogger.getImgSJump(), 0, frogger.getMovement()*2);
+					frogger.updateStatus(new FroggerImg().getImgSJump(), 0, frogger.getMovementVertical()*2);
 				}
 			}
 			else if (event.getCode() == KeyCode.D) {
 				if(frogger.isJump()) {
-
-					frogger.updateStatus(frogger.getImgDInit(), frogger.getMovementX()*2, 0);
+					frogger.updateStatus(new FroggerImg().getImgDInit(), frogger.getMovementHorizon()*2, 0);
 				}else {
-
-					frogger.updateStatus(frogger.getImgDJump(), frogger.getMovementX()*2, 0);
+					frogger.updateStatus(new FroggerImg().getImgDJump(), frogger.getMovementHorizon()*2, 0);
 				}
 			}
 			else if (event.getCode() == KeyCode.A) {
 				if(frogger.isJump()) {
-
-					frogger.updateStatus(frogger.getImgAInit(), -frogger.getMovementX()*2, 0);
+					frogger.updateStatus(new FroggerImg().getImgAInit(), -frogger.getMovementHorizon()*2, 0);
 				}else {
-
-					frogger.updateStatus(frogger.getImgAJump(), -frogger.getMovementX()*2, 0);
+					frogger.updateStatus(new FroggerImg().getImgAJump(), -frogger.getMovementHorizon()*2, 0);
 				}
 			}
 			frogger.setJump(!frogger.isJump());
@@ -103,25 +96,25 @@ public class GameController{
 		
 		if (!frogger.isStopMoving()) {
 			if(event.getCode() == KeyCode.W) {
-				if(frogger.getY() < frogger.getW()) {
+				if(frogger.getY() < frogger.getLastScoreLineRecord()) {
 					frogger.setPoints(frogger.getPoints() + 10 * keyBoardPress);
-					frogger.setW(frogger.getY());
+					frogger.setLastScoreLineRecord(frogger.getY());
 					frogger.setChangeScore(true);
 				}
 				keyBoardPress = 0;
-				frogger.setImage(frogger.getImgWInit());
+				frogger.setImage(new FroggerImg().getImgWInit());
 
 			}
 			else if (event.getCode() == KeyCode.A) {
-				frogger.setImage(frogger.getImgAInit());
+				frogger.setImage(new FroggerImg().getImgAInit());
 
 			}
 			else if (event.getCode() == KeyCode.S) {
-				frogger.setImage(frogger.getImgSInit());
+				frogger.setImage(new FroggerImg().getImgSInit());
 
 			}
 			else if (event.getCode() == KeyCode.D) {
-				frogger.setImage(frogger.getImgDInit());
+				frogger.setImage(new FroggerImg().getImgDInit());
 
 			}
 			frogger.setJump(false);

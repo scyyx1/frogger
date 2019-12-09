@@ -1,196 +1,317 @@
 package frogger.model.actors;
 
-import java.util.ArrayList;
 
 import frogger.model.DeathChecking;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 
+/**
+ * @author scyyx1
+ * Represents a frogger in the game and generate the data needed in the frogger
+ */
 public class Frogger extends Actor {
 
 	
-	private int points;
-	private int end = 0;
-	private boolean jump = false;
-	private boolean stopMoving = false;
-	private double movement = 13.3333333*2;
-	private double movementX = 10.666666*2;
-	private boolean carDeath = false;
-
-	private boolean waterDeath = false;
-	private boolean dead = false;
-	private boolean stop = false;
-	private int lives = 3;
-	private boolean changeScore = false;
-	private int prev_points = 0;
-	private int carD = 0;
-	private double w = 800;
-	private boolean eatFly = false;
-	private boolean crocodileDeath = true;
-	private int level;
-	int imgSize = 40;
-	private Image imgWInit = new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true);
-	private Image imgAInit = new Image("file:resource/frogs/froggerLeft.png", imgSize, imgSize, true, true);
-	private Image imgSInit = new Image("file:resource/frogs/froggerDown.png", imgSize, imgSize, true, true);
-	private Image imgDInit = new Image("file:resource/frogs/froggerRight.png", imgSize, imgSize, true, true);
-	private Image imgWJump = new Image("file:resource/frogs/froggerUpJump.png", imgSize, imgSize, true, true);
-	private Image imgAJump = new Image("file:resource/frogs/froggerLeftJump.png", imgSize, imgSize, true, true);
-	private Image imgSJump = new Image("file:resource/frogs/froggerDownJump.png", imgSize, imgSize, true, true);
-	private Image imgDJump = new Image("file:resource/frogs/froggerRightJump.png", imgSize, imgSize, true, true);
-	private ArrayList<End> inter = new ArrayList<End>();
+	/**
+	 * The current points that player got.
+	 */
+	private int currentPoints;
 	
+	/**
+	 * The number of ends that player has already reached.
+	 */
+	private int end = 0;
+	
+	/**
+	 * Whether the frogger is in jumping status.
+	 */
+	private boolean jump = false;
+	
+	/**
+	 * Whether the frogger is stop moving.
+	 */
+	private boolean stopMoving = false;
+	
+	/**
+	 * The vertical movement that half step included.
+	 */
+	private double movementVertical = 13.3333333*2;
+	/**
+	 * The horizontal movement that half step included.
+	 */
+	private double movementHorizon = 10.666666*2;
+	
+	/**
+	 * Whether the frogger is hitted by car.
+	 */
+	private boolean carDeath = false;
+	
+	
+	/**
+	 * Whether the frogger is sunk in water.
+	 */
+	private boolean waterDeath = false;
+	
+	/**
+	 * Whether the frogger is dead.
+	 */
+	private boolean dead = false;
+	
+	/**
+	 * The total lives that a frogger has.
+	 */
+	private int lives = 3;
+	
+	/**
+	 * Whether can change the score.
+	 */
+	private boolean changeScore = false;
+	
+	/**
+	 * The previous points that a game has.
+	 */
+	private int previousPoints = 0;
+	
+	/**
+	 * The count of current dead status.
+	 */
+	private int deathStatusCount = 0;
+	
+	/**
+	 * The last score line recorded in the game.
+	 */
+	private double lastScoreLineRecord = 800;
+	
+	/**
+	 * The game level of current game.
+	 */
+	private int level;
+	
+	/**
+	 * The image size.
+	 */
+	private int imgSize = 40;
+	
+	/**
+	 * A constructor to initialize the frogger position and points.
+	 * @param points The points that a frogger has.
+	 */
 	public Frogger(int points) {
 		
-		this.points = points;
-		init();
+		this.currentPoints = points;
+		initializeFrogger();
 	}
+	
+	/**
+	 * A constructor to initialize the frogger position and points
+	 */
 	public Frogger() {
 
-		points = 0;
-		init();
+		currentPoints = 0;
+		initializeFrogger();
 	}
-	public int getPrev_points() {
-		return prev_points;
+	
+	/**
+	 * Initialize the frogger position.
+	 */
+	public void initializeFrogger() {
+		setX(300);
+		setY(679.8+movementVertical);
+		setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
+
 	}
+	
+	/**
+	 * Carry on some boundary checking, collision checking and death checking of the frogger.
+	 */
 	@Override
 	public void act(long now) {
-		// TODO Auto-generated method stub
+
 		boundaryCheck();
-		collisionCheck();
+		updateFroggerMovement();
 		checkDeath(now);
 
 	}
+	
+	
+	/**
+	 * Check whether it exceeds the boundary.
+	 */
+	public void boundaryCheck() {
+		
+		if (getY()<0 || getY()>734) {
+			setY(679.8+movementVertical);
+		}
+		if (getX()<0) {
+			move(movementVertical*2, 0);
+		}
+		if (getX()>600) {
+			move(-movementVertical*2, 0);
+		}
+	}
+	
+	
+	/**
+	 * Update the frogger movement in the game. Calling methods to check for collision, transporting or reaching end.
+	 * And update frogger status when they intersecting with other actors.
+	 */
+	public void updateFroggerMovement() {
+		
+		if (getY()<413){
+			waterDeath = true;
+		}
+		collisionCheck();
+		transportObjectCheck();
+		reachEndCheck();
+	}
+	
+	/**
+	 * Check whether frogger is collided with other objects.
+	 */
 	public void collisionCheck() {
 		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
 			carDeath = true;
 		}
-		if (getX() == 240 && getY() == 82) {
-			stop = true;
+		else if(getIntersectingObjects(Snack.class).size() >= 1) {
+			carDeath = true;
 		}
-		if (getIntersectingObjects(Log.class).size() >= 1 && !stopMoving) {
+	}
+	
+	
+	/**
+	 * Check whether the frogger is on trasporting object.
+	 *  If yes, update the frogger data.
+	 */
+	public void transportObjectCheck() {
+		if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
+			move(level * 0.35, 0);
+		}else if (getIntersectingObjects(Log.class).size() >= 1 && !stopMoving) {
 			if(getIntersectingObjects(Log.class).get(0).getLeft())
 				move(-0.5*level,0);
 			else
 				move (.35*level,0);
 		}
 		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !stopMoving) {
-			if(level >3 ) {
+			if(level > 3 ) {
 				move(-2, 0);
 			}else {
 				move(-1,0);
 			}
-			
-		}
-		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
+		}else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
-				setWaterDeath(true);
+				waterDeath = true;
 			} else {
 				if(level > 3) {
 					move(-2,0);
 				}else {
 					move(-1,0);
 				}
-				
 			}
 		}
 		else if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
 			move(level * 0.35, 0);
-		}
-		else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {
+		}else if(getIntersectingObjects(CrocodileHead.class).size() >= 1) {
 			if (getIntersectingObjects(CrocodileHead.class).get(0).isEaten()) {
 				waterDeath = true;
 			}else {
 				move(level*0.35, 0);
 			}
 		}
-		else if(getIntersectingObjects(Snack.class).size() >= 1) {
-			carDeath = true;
-		}
-		else if (getIntersectingObjects(End.class).size() >= 1) {
-			inter = ((ArrayList<End>) getIntersectingObjects(End.class));
-			// frog get into same end 
+	}
+	
+	/**
+	 * Check whether the frogger reach the end points.
+	 * If yes, update the frogger data.
+	 */
+	public void reachEndCheck() {
+		if (getIntersectingObjects(End.class).size() >= 1) {
 			if (getIntersectingObjects(End.class).get(0).isActivated()) {
-				w = getY();
-				Alert alert = new Alert(AlertType.ERROR);
-        		alert.setTitle("HIT WRONG END");
-        		alert.setContentText("This End is already been taken");
-        		alert.show();
+				lastScoreLineRecord = getY();
+				showAlertEnd();
 			}else {
 				if(getIntersectingObjects(Fly.class).size() >= 1) {
-					setPoints(points + 200);
-					eatFly = true;
+					currentPoints += 200;
 				}
-				setPoints(getPoints() + 50);
+				currentPoints += 50;
 				setChangeScore(true);
-				setW(800);
+				setLastScoreLineRecord(800);
 				getIntersectingObjects(End.class).get(0).setEnd();
 				end++;
 			}
-			setPrev_points(getPoints());
-			init();
-		}
-		else if (getY()<413){
-			setWaterDeath(true);
+			previousPoints = currentPoints;
+			initializeFrogger();
 		}
 	}
 	
+	/**
+	 * Display an alert when the end is hitted twice.
+	 */
+	public void showAlertEnd() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("HIT WRONG END");
+		alert.setContentText("This End is already been taken");
+		alert.show();
+	}
 	
+	/**
+	 * Update the status of frogger, included it's image and it's x position and y position.
+	 * @param image The image of current frogger.
+	 * @param x The x position of current image.
+	 * @param y The y position of current image.
+	 */
 	public void updateStatus(Image image, double x, double y) {
 		move(x, y);
 		setImage(image);
 	}
 	
-	public void update(Image image) {
-		setImage(image);
-	}
 	
+	/**
+	 * Checking whether the frogger is dead or not.
+	 * @param now The current time.
+	 */
 	public void checkDeath(long now) {
-		DeathChecking death = new DeathChecking(this);
-		int carDeath = death.carDeathCheck(now);
+		DeathChecking deathChecking = new DeathChecking(this);
+		int carDeath = deathChecking.carDeathCheck(now);
 		if(carDeath != 0) {
 			if(carDeath == 4) {
-				init();
+				initializeFrogger();
 			}else {
 				setImage(new Image("file:resource/deaths/cardeath" + carDeath + ".png", imgSize, imgSize, true, true));
 			}
 		}
-		int waterDeath = death.waterDeathCheck(now);
+		int waterDeath = deathChecking.waterDeathCheck(now);
 		if(waterDeath != 0) {
 			if(waterDeath == 5) {
-				init();
+				initializeFrogger();
 			}else {
 				setImage(new Image("file:resource/deaths/waterdeath" + waterDeath + ".png", imgSize, imgSize, true, true));
 			}
 		}
 	}
 	
-	public void init() {
-		setX(300);
-		setY(679.8+movement);
-		setImage(new Image("file:resource/frogs/froggerUp.png", imgSize, imgSize, true, true));
-
+	/**
+	 * Check whether the condition of stopping the game is matched.
+	 * @return true if lives equals to zero or end reaches five.
+	 */
+	public boolean getGameStop() {
+		return (lives == 0 || end == 1);
 	}
 	
-	public int getCarD() {
-		return carD;
+	public int getPreviousPoints() {
+		return previousPoints;
 	}
-	
-	public void setCarD(int carD) {
-		this.carD = carD;
+	public int getCarDeathStatusCount() {
+		return deathStatusCount;
 	}
-	
+	public void setDeathStatusCount(int deathStatusCount) {
+		this.deathStatusCount = deathStatusCount;
+	}
 	public void setNoMove(boolean noMove) {
 		this.stopMoving = noMove;
 	}
-	public boolean getStop() {
-		return (lives == 0 || end == 1);
-	}
 	public int getLives() {
 		return lives;
-	}
-	public void setDead() {
-		this.dead = false;
 	}
 	public void setLives(int lives) {
 		this.lives = lives;
@@ -198,23 +319,20 @@ public class Frogger extends Actor {
 	public void setCarDeath(boolean carDeath) {
 		this.carDeath = carDeath;
 	}
-	
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
-	
 	public int getPoints() {
-		return points;
+		return currentPoints;
 	}
 	public void setPoints(int points) {
-		// TODO Auto-generated method stub
-		this.points = points;
+		this.currentPoints = points;
 	}
 	public void setChangeScore(boolean changeScore) {
 		this.changeScore = changeScore;
 	}
 	public void setPrev_points(int prev_points) {
-		this.prev_points = prev_points;
+		this.previousPoints = prev_points;
 	}
 	public boolean isWaterDeath() {
 		return waterDeath;
@@ -222,72 +340,30 @@ public class Frogger extends Actor {
 	public void setWaterDeath(boolean waterDeath) {
 		this.waterDeath = waterDeath;
 	}
-	
-	
 	public boolean isStopMoving() {
-		// TODO Auto-generated method stub
 		return stopMoving;
 	}
 	public boolean isJump() {
-		// TODO Auto-generated method stub
 		return jump;
 	}
 	public void setJump(boolean jump) {
-		// TODO Auto-generated method stub
 		this.jump = jump;
 		
 	}
-	
-	public Image getImgWInit() {
-		return imgWInit;
+	public double getMovementVertical() {
+		return movementVertical;
 	}
-	public Image getImgAInit() {
-		return imgAInit;
+	public double getMovementHorizon() {
+		return movementHorizon;
 	}
-	public Image getImgSInit() {
-		return imgSInit;
+	public void setMovementHorizon(double movementHorizon) {
+		this.movementHorizon = movementHorizon;
 	}
-	public Image getImgDInit() {
-		return imgDInit;
+	public double getLastScoreLineRecord() {
+		return lastScoreLineRecord;
 	}
-	public Image getImgWJump() {
-		return imgWJump;
-	}
-	public Image getImgAJump() {
-		return imgAJump;
-	}
-	public Image getImgSJump() {
-		return imgSJump;
-	}
-	public Image getImgDJump() {
-		return imgDJump;
-	}
-	public double getMovement() {
-		// TODO Auto-generated method stub
-		return movement;
-	}
-	public double getMovementX() {
-		return movementX;
-	}
-	public void setMovementX(double movementX) {
-		this.movementX = movementX;
-	}
-	public double getW() {
-		return w;
-	}
-	public void setW(double w) {
-		this.w = w;
-	}
-	public void boundaryCheck() {
-		if (getY()<0 || getY()>734) {
-			setY(679.8+movement);
-		}
-		if (getX()<0) {
-			move(movement*2, 0);
-		}
-		if (getX()>600) {
-			move(-movement*2, 0);
-		}
+	public void setLastScoreLineRecord(double lastScoreLineRecord) {
+		this.lastScoreLineRecord = lastScoreLineRecord;
 	}
 	public boolean isCarDeath() {
 		return carDeath;

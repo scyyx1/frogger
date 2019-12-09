@@ -260,7 +260,7 @@ public class GameWorld extends World implements BasicGUI{
 			speed = 2;
 		}
 		if(difficultyLevel != 1) {
-			add(new ActorFactory().createSnack(600, 430, -speed, 100, 100));
+			add(ActorFactory.getInstance().createSnack(600, 430, -speed, 100, 100));
 		}
 		
 	}
@@ -271,7 +271,7 @@ public class GameWorld extends World implements BasicGUI{
 	 */
 	public void createBackground() {
 
-		add(new ActorFactory().createBackgroundImage("file:resource/backgrounds/background.png", 600, 800));
+		add(ActorFactory.getInstance().createBackgroundImage("file:resource/backgrounds/background.png", 600, 800));
 		ArrayList<Actor> ends = new GenerateEnds().createActors();
 		for(Actor end : ends) {
 			add(end);
@@ -320,7 +320,7 @@ public class GameWorld extends World implements BasicGUI{
 	public void createFlys() {
 		int[] endArray = {13, 141, 269, 398, 528};
 		int index = (int) (Math.random() * endArray.length);
-		add(new ActorFactory().createFly(60, endArray[index], 96));
+		add(ActorFactory.getInstance().createFly(60, endArray[index], 96));
 	}
 	
 	public Rectangle getRemainTime() {
@@ -338,7 +338,7 @@ public class GameWorld extends World implements BasicGUI{
     }
 	
 	/**
-	 * Update current view based on the data in game model.
+	 * Update current view based on current game model
 	 */
 	public void updateView() {
 		if(model.isGenerateFly()) {
@@ -351,7 +351,7 @@ public class GameWorld extends World implements BasicGUI{
 			setNumber(model.getFrog().getPoints(), groups.getCurrentScore(), 450);
 		}
 		if(model.canChangePrevScore()) {
-			setNumber(model.getFrog().getPrev_points(), groups.getPreviousScore(), 170);
+			setNumber(model.getFrog().getPreviousPoints(), groups.getPreviousScore(), 170);
     		setScoreList(model.getFrog().getPoints());
     		createFrogLives();
 		}

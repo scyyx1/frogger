@@ -12,7 +12,6 @@ class Frogger_test {
 	void test() {
 		fail("Not yet implemented");
 	}
-	Frogger frogger = new Frogger();
 	
 	@Test
 	void testMovement() {

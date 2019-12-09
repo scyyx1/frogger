@@ -31,10 +31,10 @@ public class DeathChecking {
 	 */
 	public int carDeathCheck(long now) {
 		if (frogger.isCarDeath()) {
-			int deathStatusCount = frogger.getCarD();
+			int deathStatusCount = frogger.getCarDeathStatusCount();
 			frogger.setNoMove(true);
 			if ((now)% 11 ==0) {
-				frogger.setCarD(deathStatusCount + 1);
+				frogger.setDeathStatusCount(deathStatusCount + 1);
 			}
 			if (deathStatusCount == 1) {
 				return 1;
@@ -63,10 +63,10 @@ public class DeathChecking {
 	 */
 	public int waterDeathCheck(long now) {
 		if (frogger.isWaterDeath()) {
-			int deathStatusCount = frogger.getCarD();
+			int deathStatusCount = frogger.getCarDeathStatusCount();
 			frogger.setNoMove(true);
 			if ((now)% 11 ==0) {
-				frogger.setCarD(deathStatusCount + 1);
+				frogger.setDeathStatusCount(deathStatusCount + 1);
 			}
 			if (deathStatusCount==1) {
 				return 1;
@@ -95,7 +95,7 @@ public class DeathChecking {
 	 */
 	public void reviveFrogger() {
 		frogger.setLives(frogger.getLives() - 1);
-		frogger.setCarD(0);
+		frogger.setDeathStatusCount(0);
 		frogger.setDead(true);
 		frogger.setNoMove(false);
 		if (frogger.getPoints()>50) {

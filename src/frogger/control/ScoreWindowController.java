@@ -19,12 +19,12 @@ public class ScoreWindowController {
 	 * 
 	 */
 	public void restartButtonAction() {
+		DifficultyWindow.getStage().close();
 		DifficultyWindow dw = new WindowFactory().createDifficultyWindow();
     	Scene scene = new Scene(dw, 500, 500);
     	scene.getStylesheets().add("file:resource/application.css");
     	Main.getStage().setScene(scene);
     	Main.getStage().show();
-		DifficultyWindow.getStage().close();
 	}
 	
 	/**

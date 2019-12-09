@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import frogger.model.actors.ActorFactory;
 import frogger.model.actors.Frogger;
-import frogger.view.GameWorld;
-import frogger.view.GroupsCollection;
-
 
 /**
  * @author scyyx1
@@ -76,13 +73,13 @@ public class GameModel {
 	private ArrayList<String> scoreList = new ArrayList<>(); 
 	
 	public GameModel() {
-		frogger = new ActorFactory().createFrogger();
+		frogger = ActorFactory.getInstance().createFrogger();
 		startTime = System.nanoTime();
 
 	}
 	
 	public GameModel(int points) {
-		frogger = new ActorFactory().createFrogger(points);
+		frogger = ActorFactory.getInstance().createFrogger(points);
 		startTime = System.nanoTime();
 	}
 	
@@ -100,8 +97,8 @@ public class GameModel {
 	}
 	
 	/**
-	 * Update the model in the game.
-	 * @param now The current time.
+	 * Update the model in the main game
+	 * @param now
 	 */
 	public void updateModel(long now) {
 
@@ -125,7 +122,7 @@ public class GameModel {
 		if(frogger.changeScore()) {
 			viewChangeScore = true;
 		}
-		if(frogger.getStop()) {
+		if(frogger.getGameStop()) {
 			System.out.print("STOPP:");
 			if(frogger.getLives() == 0 || level == 5) {
 				if(level == 5) {

@@ -12,14 +12,23 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 
+/**
+ * @author scyyx1
+ * Represent a class that included some methods for world to use.
+ */
 public abstract class World extends Pane {
+	
+    /**
+     * An animation timer for start and stop the world.
+     */
     private AnimationTimer timer;
     
+    /**
+     * A constructor to initialize the world.
+     */
     public World() {
     	
     	sceneProperty().addListener(new ChangeListener<Scene>() {
@@ -65,6 +74,9 @@ public abstract class World extends Pane {
 		});
     }
 
+    /**
+     * Create and initialize timer for the world.
+     */
     public void createTimer() {
         timer = new AnimationTimer() {
             @Override
@@ -80,23 +92,44 @@ public abstract class World extends Pane {
         };
     }
 
+    /**
+     * Call the create timer method, and start the timer.
+     */
     public void start() {
     	createTimer();
         timer.start();
     }
 
+    /**
+     * Stop the timer.
+     */
     public void stop() {
         timer.stop();
     }
     
+    /**
+     * Add the actor type into the view.
+     * @param actor The object that wants to be added.
+     */
     public void add(Actor actor) {
         getChildren().add(actor);
     }
 
+    /**
+     * Remove the actor type in the view.
+     * @param actor The object that wants to be removed.
+     */
     public void remove(Actor actor) {
         getChildren().remove(actor);
     }
 
+    
+    /**
+     * Get the lists of certain object.
+     * @param <A> Type A which extends the Actor type.
+     * @param cls Class name of certain type.
+     * @return The lists of certain object.
+     */
     public <A extends Actor> List<A> getObjects(Class<A> cls) {
         ArrayList<A> someArray = new ArrayList<A>();
         for (Node n: getChildren()) {
@@ -108,5 +141,10 @@ public abstract class World extends Pane {
         return someArray;
     }
 
+    
+    /**
+     * The action of certain objects.
+     * @param now
+     */
     public abstract void act(long now);
 }
