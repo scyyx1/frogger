@@ -2,3 +2,6 @@
 /target/
 /refactor_pic/
 .DS_Store
+.settings/
+.classpath
+.project
