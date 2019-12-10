@@ -1,7 +1,7 @@
 package frogger.model.actors;
 
 
-import frogger.model.DeathChecking;
+import frogger.util.DeathChecking;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -158,9 +158,6 @@ public class Frogger extends Actor {
 	 */
 	public void updateFroggerMovement() {
 		
-		if (getY()<413){
-			waterDeath = true;
-		}
 		collisionCheck();
 		transportObjectCheck();
 		reachEndCheck();
@@ -168,6 +165,7 @@ public class Frogger extends Actor {
 	
 	/**
 	 * Check whether frogger is collided with other objects.
+	 * If yes, update frogger status.
 	 */
 	public void collisionCheck() {
 		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
@@ -181,7 +179,7 @@ public class Frogger extends Actor {
 	
 	/**
 	 * Check whether the frogger is on trasporting object.
-	 *  If yes, update the frogger data.
+	 * If yes, update the frogger data and move with the object.
 	 */
 	public void transportObjectCheck() {
 		if(getIntersectingObjects(CrocodileBody.class).size() >=  1) {
@@ -200,7 +198,6 @@ public class Frogger extends Actor {
 			}
 		}else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
-				waterDeath = true;
 			} else {
 				if(level > 3) {
 					move(-2,0);
@@ -217,18 +214,21 @@ public class Frogger extends Actor {
 			}else {
 				move(level*0.35, 0);
 			}
+		}else if (getY()<413){
+			waterDeath = true;
 		}
 	}
 	
 	/**
-	 * Check whether the frogger reach the end points.
-	 * If yes, update the frogger data.
+	 * Check whether the frogger reach the end points and whether they enter the same end that previously reached.
+	 * If reached the new points, update the frogger data.
+	 * If reached the same points, show alert message.
 	 */
 	public void reachEndCheck() {
 		if (getIntersectingObjects(End.class).size() >= 1) {
 			if (getIntersectingObjects(End.class).get(0).isActivated()) {
 				lastScoreLineRecord = getY();
-				showAlertEnd();
+				showAlertSameEnd();
 			}else {
 				if(getIntersectingObjects(Fly.class).size() >= 1) {
 					currentPoints += 200;
@@ -247,7 +247,7 @@ public class Frogger extends Actor {
 	/**
 	 * Display an alert when the end is hitted twice.
 	 */
-	public void showAlertEnd() {
+	public void showAlertSameEnd() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("HIT WRONG END");
 		alert.setContentText("This End is already been taken");
@@ -267,7 +267,7 @@ public class Frogger extends Actor {
 	
 	
 	/**
-	 * Checking whether the frogger is dead or not.
+	 * Checking whether the frogger is dead or not and set the death image at some specific time.
 	 * @param now The current time.
 	 */
 	public void checkDeath(long now) {
@@ -382,6 +382,9 @@ public class Frogger extends Actor {
 		return changeScore;
 	}
 
+	public int getEndReached() {
+		return end;
+	}
 
 
 }

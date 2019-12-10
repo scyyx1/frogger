@@ -1,4 +1,4 @@
-package frogger.model;
+package frogger.util;
 
 import frogger.model.actors.Frogger;
 
