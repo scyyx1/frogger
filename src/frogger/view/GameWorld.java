@@ -6,16 +6,14 @@ import java.util.ArrayList;
 import frogger.control.GameController;
 import frogger.model.Digit;
 import frogger.model.GameModel;
-import frogger.model.GenerateCrocodiles;
-import frogger.model.GenerateEnds;
-import frogger.model.GenerateLogs;
-import frogger.model.GenerateTurtles;
-import frogger.model.GenerateVehicles;
-
 import frogger.model.World;
 import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
-
+import frogger.util.GenerateCrocodiles;
+import frogger.util.GenerateEnds;
+import frogger.util.GenerateLogs;
+import frogger.util.GenerateTurtles;
+import frogger.util.GenerateVehicles;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -86,6 +84,12 @@ public class GameWorld extends World implements BasicGUI{
 
 	}
 	
+	/**
+	 * This constructor is built for testing.
+	 */
+	public GameWorld() {
+		
+	}
 	/**
 	 * Create the game world.
 	 * @param level The level in current game

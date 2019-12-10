@@ -6,19 +6,20 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import frogger.model.actors.ActorFactory;
+import frogger.model.actors.End;
 import frogger.model.actors.Frogger;
 import frogger.model.actors.FroggerImg;
 import frogger.model.actors.Vehicle;
-import frogger.view.GameEngine;
+import frogger.view.GameWorld;
 import javafx.embed.swing.JFXPanel;
 
 class FroggerTest {
 
 	JFXPanel jfxPanel = new JFXPanel();
 	Frogger frogger = new Frogger();
-	GameEngine gameEngine = new GameEngine(1);
-	Vehicle testCar = ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 300, 597, -1, 50, 50);
-	
+	GameWorld gameWorld = new GameWorld();
+	Vehicle testCar = ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 300,  597,  -1,  50,  50);
+	End testEnd = ActorFactory.getInstance().createEnd(300, 96);
 	@Test
 	void movementTest() {
 		frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -400);
@@ -33,10 +34,43 @@ class FroggerTest {
 	@Test
 	void carDeathTest() {
 		frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -110);
-		gameEngine.asView().add(frogger);
-		gameEngine.asView().add(testCar);
+		gameWorld.add(frogger);
+		gameWorld.add(testCar);
 		frogger.collisionCheck();
 		assertEquals(true, frogger.isCarDeath());
+	}
+	
+	@Test
+	void waterDeathTest() {
+		frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -300);
+		gameWorld.add(frogger);
+		frogger.transportObjectCheck();;
+		assertEquals(true, frogger.isWaterDeath());
+	}
+	
+	@Test
+	void reachEndTest() {
+		frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -600);
+		gameWorld.add(frogger);
+		gameWorld.add(testEnd);
+		frogger.reachEndCheck();
+		assertEquals(1, frogger.getEndReached());
+	}
+	
+	@Test
+	void endFroggerTest() {
+		frogger.setLives(0);
+		assertEquals(true, frogger.getGameStop());
+		frogger.setLives(3);
+		frogger.setLevel(5);
+		assertEquals(5, frogger.getLevel());
+	}
+	
+	@Test
+	void InitializeTest() {
+		frogger.updateStatus(new FroggerImg().getImgWInit(), 0, -600);
+		frogger.initializeFrogger();
+		assertEquals(706.46, frogger.getY(), 0.01d);
 	}
 
 }
