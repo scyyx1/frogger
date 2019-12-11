@@ -25,7 +25,7 @@ public class DeathChecking {
 	}
 	
 	/**
-	 * Check whether car death is true.
+	 * Check whether car death is true..
 	 * If true, set the frogger into certain images or update the status.
 	 * @param now The current time.
 	 */
