@@ -1,4 +1,4 @@
-package frogger.view;
+package frogger.util;
 
 import javafx.scene.Group;
 

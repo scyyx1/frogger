@@ -56,6 +56,7 @@ public class DifficultyWindow extends Pane implements BasicGUI{
 
 	/**
 	 * Create the buttons in the difficulty window.
+	 * Add a difficulty window controller to control the difficulty window.
 	 * Add them into the scene.
 	 */
 	@Override

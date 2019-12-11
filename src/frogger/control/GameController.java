@@ -1,7 +1,7 @@
 package frogger.control;
 
+import frogger.model.FroggerImg;
 import frogger.model.GameModel;
-import frogger.model.actors.FroggerImg;
 import frogger.model.actors.Frogger;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

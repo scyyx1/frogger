@@ -42,6 +42,7 @@ public class HelpWindow extends Pane implements BasicGUI{
 
 	/**
 	 * Create the buttons in the help window.
+	 * Add a help window controller to control the help window.
 	 * Add them into the scene.
 	 */
 	@Override

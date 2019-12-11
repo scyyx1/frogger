@@ -2,7 +2,6 @@ package frogger.main;
 
 
 import frogger.view.StartWindow;
-import frogger.view.WindowFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -55,7 +54,7 @@ public class Main extends Application {
 	 * @param stage This stage should be the stage initialize in the main class.
 	 */
 	public void createStartWindow(Stage stage) {
-		StartWindow startWindow = new WindowFactory().createStartWindow();
+		StartWindow startWindow = new StartWindow();
 	    Scene startScene  = new Scene(startWindow, 500, 500);
 	    startScene.getStylesheets().add("file:resource/application.css");
 	    

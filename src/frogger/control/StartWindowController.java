@@ -3,7 +3,6 @@ package frogger.control;
 import frogger.main.Main;
 import frogger.view.DifficultyWindow;
 import frogger.view.HelpWindow;
-import frogger.view.WindowFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -20,7 +19,7 @@ public class StartWindowController {
 	 * Switch to the difficulty window to allow the user to select the difficulty level. 
 	 */
 	public void startButtonAction() {
-		DifficultyWindow difficultyWindow = new WindowFactory().createDifficultyWindow();
+		DifficultyWindow difficultyWindow = new DifficultyWindow();
     	createWindow(difficultyWindow, 500, 500);
 	}
 	
@@ -29,7 +28,7 @@ public class StartWindowController {
 	 * Switch to help window to allow user to see the instructions of the game.
 	 */
 	public void helpButtonAction() {
-    	HelpWindow helpWindow = new WindowFactory().createHelpWindow();
+    	HelpWindow helpWindow = new HelpWindow();
     	createWindow(helpWindow, 500, 500);
 	}
 	

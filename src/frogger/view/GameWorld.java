@@ -15,6 +15,7 @@ import frogger.util.GenerateEnds;
 import frogger.util.GenerateLogs;
 import frogger.util.GenerateTurtles;
 import frogger.util.GenerateVehicles;
+import frogger.util.GroupsCollection;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -68,6 +69,7 @@ public class GameWorld extends World implements BasicGUI{
 	/**
 	 * A constructor to initialize the game world.
 	 * Set up the game model, the difficulty level and the current game level.
+	 * Add a controller to control the game world.
 	 * Bind the keyboard event and start the game.
 	 * @param model The model used in the game world.
 	 * @param difficultyLevel The difficulty in current game
@@ -365,7 +367,7 @@ public class GameWorld extends World implements BasicGUI{
 			stopMusic();
 			stop();
 			if(model.isSwitchToGameOver()) {
-				GameOverWindow gameover = new WindowFactory().createGameOverWindow(model.getFrog().getPoints(), model.getWinStatus());
+				GameOverWindow gameover = new GameOverWindow(model.getFrog().getPoints(), model.getWinStatus());
 				switchScene(gameover, 600, 800);
 			}else {
 				GameEngine gameEngine = new GameEngine(model.getLevel() + 1, difficultyLevel, model.getFrog().getPoints());

@@ -117,6 +117,7 @@ public class ScoreWindow extends Pane implements BasicGUI{
 	}
 	/**
 	 * Create the buttons in the score window.
+	 * Add a score window controller to control the score window.
 	 * Add them into the scene.
 	 */
 	@Override

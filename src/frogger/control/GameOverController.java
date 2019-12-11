@@ -4,7 +4,6 @@ import java.io.IOException;
 import frogger.util.FileModified;
 import frogger.view.DifficultyWindow;
 import frogger.view.ScoreWindow;
-import frogger.view.WindowFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -64,7 +63,7 @@ public class GameOverController {
 			e1.printStackTrace();
 		}
 		
-		ScoreWindow scoreWindow = new WindowFactory().createScoreWindow(currentPlayerInfo);
+		ScoreWindow scoreWindow = new ScoreWindow(currentPlayerInfo);
     	Scene scene  = new Scene(scoreWindow, 600, 800);
     	scene.getStylesheets().add("file:resource/application.css");
     	DifficultyWindow.getStage().setScene(scene);

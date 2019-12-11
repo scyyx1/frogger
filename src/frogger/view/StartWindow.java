@@ -61,6 +61,7 @@ public class StartWindow extends Pane implements BasicGUI{
 
 	/**
 	 * Create the buttons in the start window.
+	 * Add a start window controller to control the start window.
 	 * Add them into the scene.
 	 */
 	@Override

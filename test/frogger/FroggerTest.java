@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import frogger.model.FroggerImg;
 import frogger.model.actors.ActorFactory;
 import frogger.model.actors.End;
 import frogger.model.actors.Frogger;
-import frogger.model.actors.FroggerImg;
 import frogger.model.actors.Vehicle;
 import frogger.view.GameWorld;
 import javafx.embed.swing.JFXPanel;

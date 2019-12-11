@@ -2,7 +2,6 @@ package frogger.util;
 
 import frogger.model.GameModel;
 import frogger.view.GameWorld;
-import frogger.view.WindowFactory;
 
 /**
  * @author scyyx1
@@ -27,7 +26,7 @@ public class GameEngine {
 	public GameEngine(int difficultyLevel) {
 		gameModel = new GameModel();
 		gameModel.setLevel(1);
-		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel, 1);
+		gameWorld = new GameWorld(gameModel, difficultyLevel, 1);
 	}
 	
 	
@@ -40,7 +39,7 @@ public class GameEngine {
 	public GameEngine(int level, int difficultyLevel, int points) {
 		gameModel = new GameModel(points);
 		gameModel.setLevel(level);
-		gameWorld = new WindowFactory().createGameWorld(gameModel, difficultyLevel, level);
+		gameWorld = new GameWorld(gameModel, difficultyLevel, level);
 	}
 	
 	/**

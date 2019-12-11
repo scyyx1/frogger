@@ -67,6 +67,7 @@ public class GameOverWindow extends Pane implements BasicGUI{
 	
 	/**
 	 * Create the buttons in the game over window.
+	 * Add a game over window controller to control the game over window.
 	 * Add them into the scene.
 	 */
 	@Override

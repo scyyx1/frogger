@@ -2,7 +2,6 @@ package frogger.control;
 
 import frogger.main.Main;
 import frogger.view.DifficultyWindow;
-import frogger.view.WindowFactory;
 import javafx.scene.Scene;
 
 /**
@@ -19,7 +18,7 @@ public class ScoreWindowController {
 	 */
 	public void restartButtonAction() {
 		DifficultyWindow.getStage().close();
-		DifficultyWindow dw = new WindowFactory().createDifficultyWindow();
+		DifficultyWindow dw = new DifficultyWindow();
     	Scene scene = new Scene(dw, 500, 500);
     	scene.getStylesheets().add("file:resource/application.css");
     	Main.getStage().setScene(scene);
