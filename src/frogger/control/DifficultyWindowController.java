@@ -1,7 +1,7 @@
 package frogger.control;
 
 import frogger.main.Main;
-import frogger.view.GameEngine;
+import frogger.util.GameEngine;
 import frogger.view.StartWindow;
 import frogger.view.WindowFactory;
 import javafx.scene.Scene;
@@ -16,8 +16,8 @@ public class DifficultyWindowController {
 	
 	
 	/**
-	 * Handle the events when the button is pressed.
-	 * Switch to the game scene to the easy level.
+	 * Handle the events when the easy button is pressed.
+	 * Switch to the game scene that is in easy level.
 	 * 
 	 * @param stage 
 	 * 		This stage should be the one where the user want to display the scene.
@@ -25,42 +25,41 @@ public class DifficultyWindowController {
 	 */
 	public void easyButtonAction(Stage stage) {
     	GameEngine gameEngine = new GameEngine(1);
-    	updateToGameScene(stage, gameEngine, 600, 800);
+    	updateToGameScene(stage, gameEngine);
 	}
 	
 	
 	/** 
-	 * Handle the events when the button is pressed.
-	 * Switch to the game scene to the medium level.
+	 * Handle the events when the medium button is pressed.
+	 * Switch to the game scene that is in medium level.
 	 * 
 	 * @param stage 
 	 * 		This stage should be the one where the user want to display the scene.
 	 */
 	public void mediumButtonAction(Stage stage) {
 		GameEngine gameEngine = new GameEngine(2);
-		updateToGameScene(stage, gameEngine, 600, 800);
+		updateToGameScene(stage, gameEngine);
 	}
 	
 	/** 
-	 * Handle the events when the button is pressed.
-	 * Switch to the game scene to the difficult level.
+	 * Handle the events when the difficult button is pressed.
+	 * Switch to the game scene that is in difficult level.
 	 * 
 	 * @param stage
 	 * 		This stage should be the one where the user want to display the scene.
 	 */
 	public void difficultButtonAction(Stage stage) {
 		GameEngine gameEngine = new GameEngine(3);
-		updateToGameScene(stage, gameEngine, 600, 800);
+		updateToGameScene(stage, gameEngine);
 	}
 	
 	/** 
-	 * Handle the events when the button is pressed.
+	 * Handle the events when the back button is pressed.
 	 * Switch the scene back to the start window.
-	 * 
 	 */
 	public void backButtonAction() {
-		StartWindow startwindow = new WindowFactory().createStartWindow();
-	    Scene startscene  = new Scene(startwindow, 500, 500);
+		StartWindow startWindow = new WindowFactory().createStartWindow();
+	    Scene startscene  = new Scene(startWindow, 500, 500);
 	    startscene.getStylesheets().add("file:resource/application.css");
 	    Main.getStage().setScene(startscene);
 	}
@@ -72,11 +71,9 @@ public class DifficultyWindowController {
 	 * 
 	 * @param stage This stage should be the one where the user want to display the scene.
 	 * @param gameEngine The game engine set up by specific game level.
-	 * @param width The width of the scene.
-	 * @param height The height of the scene.
 	 */
-	public void updateToGameScene(Stage stage, GameEngine gameEngine, int width, int height) {
-		Scene scene = new Scene(gameEngine.asView(), width, height);
+	public void updateToGameScene(Stage stage, GameEngine gameEngine) {
+		Scene scene = new Scene(gameEngine.asView(), 600, 800);
 		Main.getStage().close();
 		stage.setScene(scene);
 		stage.setResizable(false);

@@ -16,6 +16,7 @@ public class Vehicle extends Actor {
 	
 	/**
 	 * Change the status of vehicles and move the image.
+	 * If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

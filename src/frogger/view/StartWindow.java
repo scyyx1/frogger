@@ -42,7 +42,7 @@ public class StartWindow extends Pane implements BasicGUI{
 	}
 	
 	/**
-	 * Gets the staeg of this start window for future display.
+	 * Gets the stage of this start window for future display.
 	 * @return current stage.
 	 */
 	public static Stage getStage() {

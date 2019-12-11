@@ -51,6 +51,7 @@ public class Snack extends Actor{
 	 * Switch between image snack1 2 and 3 to let it be dynamic.
 	 * Move the snack.
 	 * Change the status of snacks.
+	 * If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

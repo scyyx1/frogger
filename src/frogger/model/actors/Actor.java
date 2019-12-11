@@ -1,7 +1,6 @@
 package frogger.model.actors;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputEvent;
 
 import java.util.ArrayList;
 
@@ -10,12 +9,12 @@ import frogger.model.World;
 /**
  * @author scyyx1
  * Represents an actor class to present some common methods that an actor type may use.
- *
+ * Contains methods like move object, get world, get intersecting object and act.
  */
 public abstract class Actor extends ImageView{
 
     /**
-     * Set the x position and y position of current actor.
+     * Move dx position from current x and move dy position from current y of current actor.
      * @param dx The movement in x cordinate.
      * @param dy The movement in y cordinate.
      */
@@ -25,7 +24,7 @@ public abstract class Actor extends ImageView{
     }
 
     /**
-     * Get the world object
+     * Get the parent object of current actor.
      * @return The current world.
      */
     public World getWorld() {
@@ -35,7 +34,7 @@ public abstract class Actor extends ImageView{
     /**
      * Check whether two objects are intersecting with each other.
      * @param <A> A type A which extends the Actor
-     * @param cls The class with certain type. 
+     * @param cls The class with Actor type. 
      * @return An intersecting list.
      */
     public <A extends Actor> java.util.List<A> getIntersectingObjects(java.lang.Class<A> cls){

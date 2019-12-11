@@ -13,7 +13,7 @@ import frogger.model.actors.ActorFactory;
 public class GenerateVehicles extends GenerateActors {
 
 	/**
-	 * Get an arraylist of the vehicles type.
+	 * Get an arraylist of the vehicles type by the difficulty level and current game level..
 	 * @param level The level of current game.
 	 * @param difficultyLevel The difficulty level of current game.
 	 * @return the list of vehicles.
@@ -21,7 +21,6 @@ public class GenerateVehicles extends GenerateActors {
 	@Override
 	public ArrayList<Actor> createActors(int level, int difficultyLevel) {
 		// TODO Auto-generated method stub
-		System.out.println(level + " " + difficultyLevel);
 		ArrayList<Actor> vehicles = new ArrayList<>();
 		int speed = 1;
 

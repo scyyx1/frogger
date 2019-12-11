@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
  * Contains an image of digit.
  */
 public class Digit extends ImageView{
+	
 	/**
 	 * An image of certain number digit.
 	 */

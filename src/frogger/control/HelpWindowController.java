@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 public class HelpWindowController {
 	
 	/**
-	 * Handle the events when the button is pressed.
+	 * Handle the events when the back button is pressed.
 	 * Switch the scene back to the start window.
 	 */
 	public void backButtonAction() {

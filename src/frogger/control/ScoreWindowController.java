@@ -7,16 +7,15 @@ import javafx.scene.Scene;
 
 /**
  * @author scyyx1
- * Represents the controller for score window.
- * Contains some button action set for score window.
+ * Represents the controller for the score window.
+ * Contains the actions of restarting the game and exit the game.
  */
 public class ScoreWindowController {
 
 	
 	/**
-	 * Handle the events when the button is pressed.
+	 * Handle the events when the restart button is pressed.
 	 * Switch to the difficulty window to allow user re-select the game difficulty.
-	 * 
 	 */
 	public void restartButtonAction() {
 		DifficultyWindow.getStage().close();
@@ -28,7 +27,7 @@ public class ScoreWindowController {
 	}
 	
 	/**
-	 * Handle the events when the button is pressed.
+	 * Handle the events when the exit button is pressed.
 	 * Exit the game.
 	 */
 	public void exitButtonAction() {

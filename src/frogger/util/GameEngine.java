@@ -1,6 +1,8 @@
-package frogger.view;
+package frogger.util;
 
 import frogger.model.GameModel;
+import frogger.view.GameWorld;
+import frogger.view.WindowFactory;
 
 /**
  * @author scyyx1
@@ -30,7 +32,7 @@ public class GameEngine {
 	
 	
 	/**
-	 * A constructor to generate the game system and initialize the game model and game world.
+	 * A constructor to generate the game system and initialize the game model and game world with existing points.
 	 * @param level The current game level.
 	 * @param difficultyLevel The difficuty level of the game.
 	 * @param points The points that previous game has.
