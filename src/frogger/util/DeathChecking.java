@@ -36,10 +36,16 @@ public class DeathChecking {
 			if ((now)% 11 ==0) {
 				frogger.setDeathStatusCount(deathStatusCount + 1);
 			}
-			else if(deathStatusCount < 4) {
-				frogger.setImage(new Image("file:resource/deaths/cardeath" + deathStatusCount + ".png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			if(deathStatusCount == 1) {
+				frogger.setImage(new Image("file:resource/deaths/cardeath1.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
 			}
-			else {
+			if(deathStatusCount == 2) {
+				frogger.setImage(new Image("file:resource/deaths/cardeath2.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}
+			if(deathStatusCount == 3) {
+				frogger.setImage(new Image("file:resource/deaths/cardeath3.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}		
+			if(deathStatusCount == 4) {
 				frogger.setCarDeath(false);
 				reviveFrogger();
 			}		
@@ -58,10 +64,20 @@ public class DeathChecking {
 			frogger.setNoMove(true);
 			if ((now)% 11 ==0) {
 				frogger.setDeathStatusCount(deathStatusCount + 1);
-			}else if(deathStatusCount < 5){
-				frogger.setImage(new Image("file:resource/deaths/waterdeath" + deathStatusCount + ".png", frogger.getImgSize(), frogger.getImgSize(), true, true));
 			}
-			else{
+			if(deathStatusCount == 1) {
+				frogger.setImage(new Image("file:resource/deaths/waterdeath1.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}
+			if(deathStatusCount == 2) {
+				frogger.setImage(new Image("file:resource/deaths/waterdeath2.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}
+			if(deathStatusCount == 3) {
+				frogger.setImage(new Image("file:resource/deaths/waterdeath3.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}	
+			if(deathStatusCount == 4) {
+				frogger.setImage(new Image("file:resource/deaths/waterdeath4.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			}	
+			if(deathStatusCount == 5) {
 				frogger.setWaterDeath(false);
 				reviveFrogger();
 			}
