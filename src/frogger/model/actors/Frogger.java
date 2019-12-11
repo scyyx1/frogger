@@ -93,6 +93,7 @@ public class Frogger extends Actor {
 	 */
 	private int imgSize = 40;
 	
+
 	/**
 	 * A constructor to initialize the frogger position and points.
 	 * @param points The points that a frogger has.
@@ -175,7 +176,6 @@ public class Frogger extends Actor {
 			carDeath = true;
 		}
 	}
-	
 	
 	/**
 	 * Check whether the frogger is on trasporting object.
@@ -272,22 +272,8 @@ public class Frogger extends Actor {
 	 */
 	public void checkDeath(long now) {
 		DeathChecking deathChecking = new DeathChecking(this);
-		int carDeath = deathChecking.carDeathCheck(now);
-		if(carDeath != 0) {
-			if(carDeath == 4) {
-				initializeFrogger();
-			}else {
-				setImage(new Image("file:resource/deaths/cardeath" + carDeath + ".png", imgSize, imgSize, true, true));
-			}
-		}
-		int waterDeath = deathChecking.waterDeathCheck(now);
-		if(waterDeath != 0) {
-			if(waterDeath == 5) {
-				initializeFrogger();
-			}else {
-				setImage(new Image("file:resource/deaths/waterdeath" + waterDeath + ".png", imgSize, imgSize, true, true));
-			}
-		}
+		deathChecking.carDeathCheck(now);
+		deathChecking.waterDeathCheck(now);
 	}
 	
 	/**
@@ -384,6 +370,10 @@ public class Frogger extends Actor {
 
 	public int getEndReached() {
 		return end;
+	}
+	
+	public int getImgSize() {
+		return imgSize;
 	}
 
 

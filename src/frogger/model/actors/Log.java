@@ -15,7 +15,7 @@ public class Log extends Actor {
 	private double speed;
 	
 	/**
-	 * How the log image will act.
+	 * Move the image at given speed. If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

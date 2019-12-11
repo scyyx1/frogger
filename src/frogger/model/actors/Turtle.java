@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
  * Contains three images of turtle and the speed it moves.
  */
 public class Turtle extends Actor{
+	
 	/**
 	 * The image of turtle 1
 	 */
@@ -32,6 +33,7 @@ public class Turtle extends Actor{
 	 * Switch between image turtle 1 2 and 3 to let it be dynamic.
 	 * Move the tutles.
 	 * Change the status of turtles.
+	 * If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

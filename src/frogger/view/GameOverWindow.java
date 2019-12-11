@@ -88,7 +88,7 @@ public class GameOverWindow extends Pane implements BasicGUI{
 	}
 
 	/**
-	 * Create the labels in the game over window.
+	 * Create the labels in the game over window based on the winning status.
 	 * Add them into the scene.
 	 */
 	@Override

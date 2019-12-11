@@ -13,14 +13,17 @@ public class CrocodileHead extends Actor {
 	 * The image of crocodile mouth open.
 	 */
 	private Image crocodileOpen;
+	
 	/**
 	 * The image of crocodile mouth close.
 	 */
 	private Image crocodileClose;
+	
 	/**
 	 * The move speed of the image.
 	 */
 	private double speed;
+	
 	/**
 	 * The status of whether is eaten.
 	 */
@@ -42,9 +45,10 @@ public class CrocodileHead extends Actor {
 		this.speed = moveSpeed;
 		setImage(crocodileClose);
 	}
+	
 	/**
-	 * How the image will act during different period.
-	 * Switch between different status and move the image.
+	 * Move the image at given speed. If the image outside the boundary, reset it. 
+	 * Switch between different status.
 	 * @param now The current time.
 	 */
 	@Override
@@ -65,6 +69,7 @@ public class CrocodileHead extends Actor {
 			setX(700);
 
 	}
+	
 	public boolean isEaten() {
 		return eaten;
 	}

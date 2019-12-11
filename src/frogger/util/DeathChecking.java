@@ -1,6 +1,7 @@
 package frogger.util;
 
 import frogger.model.actors.Frogger;
+import javafx.scene.image.Image;
 
 /**
  * @author scyyx1
@@ -25,81 +26,60 @@ public class DeathChecking {
 	
 	/**
 	 * Check whether car death is true.
-	 * If true, certain death count will be outputed.
+	 * If true, set the frogger into certain images or update the status.
 	 * @param now The current time.
-	 * @return The death status count.
 	 */
-	public int carDeathCheck(long now) {
+	public void carDeathCheck(long now) {
 		if (frogger.isCarDeath()) {
 			int deathStatusCount = frogger.getCarDeathStatusCount();
 			frogger.setNoMove(true);
 			if ((now)% 11 ==0) {
 				frogger.setDeathStatusCount(deathStatusCount + 1);
 			}
-			if (deathStatusCount == 1) {
-				return 1;
+			else if(deathStatusCount < 4) {
+				frogger.setImage(new Image("file:resource/deaths/cardeath" + deathStatusCount + ".png", frogger.getImgSize(), frogger.getImgSize(), true, true));
 			}
-			if (deathStatusCount == 2) {
-				return 2;
-			}
-			if (deathStatusCount == 3) {
-				return 3;
-			}
-			if (deathStatusCount == 4) {
+			else {
 				frogger.setCarDeath(false);
 				reviveFrogger();
-				return 4;
-			}
-			
+			}		
 		}
-		return 0;
+
 	}
 	
 	/**
 	 * Check whether water death is true.
-	 * If true, certain death count will be outputed.
+	 * If true, set the froger into certain images or update the status.
 	 * @param now The current time.
-	 * @return The death status count.
 	 */
-	public int waterDeathCheck(long now) {
+	public void waterDeathCheck(long now) {
 		if (frogger.isWaterDeath()) {
 			int deathStatusCount = frogger.getCarDeathStatusCount();
 			frogger.setNoMove(true);
 			if ((now)% 11 ==0) {
 				frogger.setDeathStatusCount(deathStatusCount + 1);
+			}else if(deathStatusCount < 5){
+				frogger.setImage(new Image("file:resource/deaths/waterdeath" + deathStatusCount + ".png", frogger.getImgSize(), frogger.getImgSize(), true, true));
 			}
-			if (deathStatusCount==1) {
-				return 1;
-			}
-			if (deathStatusCount==2) {
-				return 2;
-			}
-			if (deathStatusCount==3) {
-				return 3;
-			}
-			if (deathStatusCount==4) {
-				return 4;
-			}
-			if (deathStatusCount==5) {
+			else{
 				frogger.setWaterDeath(false);
 				reviveFrogger();
-				return 5;
 			}
-			
 		}
-		return 0;
 	}
 	
 	/**
 	 * Revive the frogger by resetting the data inside frogger.
 	 */
 	public void reviveFrogger() {
+		frogger.initializeFrogger();
 		frogger.setLives(frogger.getLives() - 1);
 		frogger.setDeathStatusCount(0);
 		frogger.setDead(true);
 		frogger.setNoMove(false);
-		if (frogger.getPoints()>50) {
-			frogger.setPoints(frogger.getPoints() - 50);
+		int getPoints = frogger.getPoints();
+		if (getPoints>50) {
+			frogger.setPoints(getPoints - 50);
 			frogger.setChangeScore(true);
 		}
 		frogger.setPrev_points(frogger.getPoints());

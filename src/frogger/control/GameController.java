@@ -11,13 +11,13 @@ import javafx.scene.input.KeyEvent;
  * @author scyyx1
  * 
  * Represents the controller for the main game world.
- * Contains some keyboard event during player interacting with the system.
+ * Contains some keyboard events during player interacting with the system.
  */
 
 public class GameController{
 	
 	/**
-	 * Gets the object named frogger.
+	 * An frogger object which is need to act in game.
 	 */
 	private Frogger frogger;
 	
@@ -29,9 +29,9 @@ public class GameController{
 	
 	
 	/**
-	 * A constructor to initialize frogger.
+	 * A constructor to initialize set up the frogger.
 	 * 
-	 * @param model The model should remains the key data of the game.
+	 * @param model The game model which stores key data of the game.
 	 */
 	public GameController(GameModel model) {
 		this.frogger = model.getFrog();
@@ -40,10 +40,10 @@ public class GameController{
 	/**
 	 * Handle the event when keyboard is pressed.
 	 * If certain event happen, the model will change its internal state according to the event action.
-	 * if frog is moved, use event to get key code and update the status and the key press count.
+	 * if frog is moved, use event to get key code and update the frogger status and the key press count.
 	 * 
-	 * @param event This event should be the one connected with Frogger
-	 * 				to make sure frogger can update its move and status.
+	 * @param event This event should be the one connected with the game world
+	 * 				to get the react from the player.
 	 */
 	public void checkKeyBoardPress(KeyEvent event) {
 		if (!frogger.isStopMoving()) {
@@ -55,7 +55,7 @@ public class GameController{
 				}else {
 					frogger.updateStatus(new FroggerImg().getImgWJump(), 0, -frogger.getMovementVertical()*2);
 				}
-				if(frogger.getLastScoreLineRecord() > frogger.getY()) {
+				if(pressValid()) {
                 	keyBoardPress++;
                 }
 			}
@@ -96,11 +96,8 @@ public class GameController{
 		
 		if (!frogger.isStopMoving()) {
 			if(event.getCode() == KeyCode.W) {
-				if(frogger.getY() < frogger.getLastScoreLineRecord()) {
-					frogger.setPoints(frogger.getPoints() + 10 * keyBoardPress);
-					frogger.setLastScoreLineRecord(frogger.getY());
-					frogger.setChangeScore(true);
-				}
+				
+				updateFroggerDataWhenRelease();
 				keyBoardPress = 0;
 				frogger.setImage(new FroggerImg().getImgWInit());
 
@@ -119,6 +116,26 @@ public class GameController{
 			}
 			frogger.setJump(false);
 		}
+	}
+	
+	/**
+	 * Update the points and the y position of last score line record.
+	 * Set the change score to true.
+	 */
+	public void updateFroggerDataWhenRelease() {
+		if(pressValid()) {
+			frogger.setPoints(frogger.getPoints() + 10 * keyBoardPress);
+			frogger.setLastScoreLineRecord(frogger.getY());
+			frogger.setChangeScore(true);
+		}
+	}
+	
+	/**
+	 * Check whether current frogger's y position is less than the last score line record
+	 * @return true if the frogger's y is less than the last score line record.
+	 */
+	public boolean pressValid() {
+		return frogger.getY() < frogger.getLastScoreLineRecord();
 	}
 	
 	

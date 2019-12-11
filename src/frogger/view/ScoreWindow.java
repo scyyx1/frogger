@@ -35,6 +35,7 @@ public class ScoreWindow extends Pane implements BasicGUI{
 	
 	/**
 	 * A constructor to initialize the score window.
+	 * Contains methods to read the file and print it out.
 	 * @param currentPlayerScore The label to store current player score
 	 */
 	public ScoreWindow(Label currentPlayerScore) {
@@ -74,7 +75,6 @@ public class ScoreWindow extends Pane implements BasicGUI{
         	String[] personDetail = line.split(" ");
         	scores.add(new Label(i+1 + ":  " + personDetail[0]));
 			scores.add(new Label(personDetail[1]));
-
         }
 
         br.close();
@@ -98,7 +98,6 @@ public class ScoreWindow extends Pane implements BasicGUI{
                 l.setFont(new Font("Mouse", 25));
                 l.setTextFill(Color.CORNSILK);
             }
-
             l.setTranslateX(X);
             l.setTranslateY(Y);
             getChildren().add(l);

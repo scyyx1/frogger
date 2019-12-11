@@ -33,6 +33,11 @@ public class FileModified {
 	 */
 	private ArrayList<Player> players = new ArrayList<>();
 	
+	/**
+	 * A constructor to initialized the name and final score.
+	 * @param name The name of the player.
+	 * @param finalScore The final score that player has.
+	 */
 	public FileModified(String name, int finalScore) {
 		this.name = name;
 		this.finalScore = finalScore;

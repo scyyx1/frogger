@@ -8,14 +8,26 @@ package frogger.model.actors;
 
 public class ActorFactory {
 
+	/**
+	 * Create a singleton instance of actor factory.
+	 */
 	private static final ActorFactory actorFactory = new ActorFactory();
+	
+	/**
+	 * Set the constructor to disable other class initialize the actor factory class.
+	 */
 	private ActorFactory() {
 		
 	}
 	
+	/**
+	 * Gets the instance of actor factory.
+	 * @return The actor factory in the system.
+	 */
 	public static ActorFactory getInstance() {
 		return actorFactory;
 	}
+	
 	/**
 	 * Gets a background image object.
 	 * @param imageLink The image link of the image.
@@ -40,6 +52,7 @@ public class ActorFactory {
 	public Vehicle createVehicle(String imageLink, int xPos, int yPos, int speed, int width, int height){
 		return new Vehicle(imageLink, xPos, yPos, speed, width, height);
 	}
+	
 	/**
 	 * Gets a turtle object.
 	 * @param xPos The x position of the image.
@@ -52,6 +65,7 @@ public class ActorFactory {
 	public Turtle createTurtle(int xPos, int yPos, int speed, int width, int height) {
 		return new Turtle(xPos, yPos, speed, width, height);
 	}
+	
 	/**
 	 * Gets a wet turtle object.
 	 * @param xPos The x position of the image.
@@ -132,6 +146,7 @@ public class ActorFactory {
 	public Frogger createFrogger() {
 		return new Frogger();
 	}
+	
 	/**
 	 * Gets a frogger object
 	 * @param points The initial points of the frogger.

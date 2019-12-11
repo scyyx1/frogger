@@ -13,7 +13,7 @@ import frogger.model.actors.ActorFactory;
 public class GenerateLogs extends GenerateActors {
 
 	/**
-	 * Get an arraylist of the log type.
+	 * Get an arraylist of the logs type by the difficulty level and current game level.
 	 * @param level The level of current game.
 	 * @param difficultyLevel The difficulty level of current game.
 	 * @return the list of logs.
@@ -29,7 +29,7 @@ public class GenerateLogs extends GenerateActors {
 			logs.add(ActorFactory.getInstance().createLog("file:resource/logs/log3.png", 150, 400, 166, level *0.35));
 		}
 		else if(difficultyLevel == 2) {
-			logs.add(ActorFactory.getInstance().createLog("file:resource/logs/log3.png", 150, 0, 166, level * 0.35));
+			logs.add(ActorFactory.getInstance().createLog("file:resource/logs/log3.png", 150, 400, 166, level * 0.35));
 		}
 		logs.add(ActorFactory.getInstance().createLog("file:resource/logs/logs.png", 250, 0, 276, -level *0.5));
 		logs.add(ActorFactory.getInstance().createLog("file:resource/logs/logs.png", 250, 400, 276, -level *0.5));

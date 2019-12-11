@@ -13,6 +13,7 @@ public class CrocodileBody extends Actor {
 	 * The image of crocodile body.
 	 */
 	private Image crocodileBody;
+	
 	/**
 	 * The move speed of the image.
 	 */
@@ -35,7 +36,7 @@ public class CrocodileBody extends Actor {
 	}
 	
 	/**
-	 * How the image will act.
+	 * Move the image at given speed. If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

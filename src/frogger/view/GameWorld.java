@@ -9,6 +9,7 @@ import frogger.model.GameModel;
 import frogger.model.World;
 import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
+import frogger.util.GameEngine;
 import frogger.util.GenerateCrocodiles;
 import frogger.util.GenerateEnds;
 import frogger.util.GenerateLogs;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -364,16 +366,26 @@ public class GameWorld extends World implements BasicGUI{
 			stop();
 			if(model.isSwitchToGameOver()) {
 				GameOverWindow gameover = new WindowFactory().createGameOverWindow(model.getFrog().getPoints(), model.getWinStatus());
-				Scene scene  = new Scene(gameover, 600, 800);
-				scene.getStylesheets().add("file:resource/application.css");
-		    	DifficultyWindow.getStage().setScene(scene);
+				switchScene(gameover, 600, 800);
 			}else {
 				GameEngine gameEngine = new GameEngine(model.getLevel() + 1, difficultyLevel, model.getFrog().getPoints());
-				Scene scene = new Scene(gameEngine.asView(), 600, 800);
-				DifficultyWindow.getStage().setScene(scene);
+				switchScene(gameEngine.asView(), 600, 800);
 			}
 		}
 	}
+	
+	/**
+	 * Switch the scene in the one user want.
+	 * @param pane The pane used to convert to scene.
+	 * @param width The width of the pane.
+	 * @param height The height of pane.
+	 */
+	public void switchScene(Pane pane, int width, int height) {
+		Scene scene = new Scene(pane, width, height);
+		scene.getStylesheets().add("file:resource/application.css");
+		DifficultyWindow.getStage().setScene(scene);
+	}
+	
 	/**
 	 * Start playing the music in the game world.
 	 */
@@ -405,11 +417,11 @@ public class GameWorld extends World implements BasicGUI{
     		group.getChildren().add(new Digit(0, 30, xPos, 35));
     	}
     	while (number > 0) {
-    		  int d = number / 10;
-    		  int k = number - d * 10;
-    		  number = d;
-    		  group.getChildren().add(new Digit(k, 30, xPos - shift, 35));
-    		  shift+=30;
+    		int d = number / 10;
+    		int k = number - d * 10;
+    		number = d;
+    		group.getChildren().add(new Digit(k, 30, xPos - shift, 35));
+   		  	shift+=30;
     	}
     	
     	

@@ -8,8 +8,9 @@ import javafx.scene.image.Image;
  * Contains the status of end.
  */
 public class End extends Actor{
+	
 	/**
-	 * The status of image of whether it is activated.
+	 * The status of the end image of whether it is activated.
 	 */
 	private boolean activated = false;
 	
@@ -36,6 +37,7 @@ public class End extends Actor{
 	public boolean isActivated() {
 		return activated;
 	}
+	
 	/**
 	 * How the end image will act.
 	 * @param now The current time.

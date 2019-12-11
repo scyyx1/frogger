@@ -8,12 +8,12 @@ import frogger.model.actors.ActorFactory;
 /**
  * @author scyyx1
  * Represents a class to generate the crocodiles list in the game.
- * Contains a function to return a list.
+ * Contains a function to return a crocodiles list.
  */
 public class GenerateCrocodiles extends GenerateActors {
 
 	/**
-	 * Get an arraylist of the crocodile type.
+	 * Get an arraylist of the crocodile type by the difficulty level and current game level.
 	 * @param level The level of current game.
 	 * @param difficultyLevel The difficulty level of current game.
 	 * @return the list of crocodiles.

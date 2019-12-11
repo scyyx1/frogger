@@ -43,6 +43,7 @@ public class WetTurtle extends Actor{
 	 * Switch between image wet turtle 1 2 3 and 4 to let it be dynamic.
 	 * Move the wet tutles.
 	 * Change the status of wet turtles.
+	 * If the image outside the boundary, reset it. 
 	 * @param now The current time.
 	 */
 	@Override

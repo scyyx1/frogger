@@ -17,6 +17,7 @@ public class WindowFactory {
 	public StartWindow createStartWindow() {
 		return new StartWindow();
 	}
+	
 	/**
 	 * Get the help window object.
 	 * @return the help window class.
@@ -24,6 +25,7 @@ public class WindowFactory {
 	public HelpWindow createHelpWindow() {
 		return new HelpWindow();
 	}
+	
 	/**
 	 * Get the difficult window object.
 	 * @return the difficult window class.
@@ -31,6 +33,7 @@ public class WindowFactory {
 	public DifficultyWindow createDifficultyWindow() {
 		return new DifficultyWindow();
 	}
+	
 	/**
 	 * Get the game world object.
 	 * @return the game world class.
@@ -38,6 +41,7 @@ public class WindowFactory {
 	public GameWorld createGameWorld (GameModel gameModel, int difficultyLevel, int level) {
 		return new GameWorld(gameModel, difficultyLevel, level);
 	}
+	
 	/**
 	 * Get the game over window object.
 	 * @return the game over window class.
@@ -45,6 +49,7 @@ public class WindowFactory {
 	public GameOverWindow createGameOverWindow(int finalScore, boolean winStatus) {
 		return new GameOverWindow(finalScore, winStatus);
 	}
+	
 	/**
 	 * Get the score window object.
 	 * @return the score window class.

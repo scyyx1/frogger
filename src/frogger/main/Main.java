@@ -16,7 +16,11 @@ import javafx.stage.StageStyle;
  */
 public class Main extends Application {
 	
+	/**
+	 * The stage in the main class for displaying the scene.
+	 */
 	public static Stage startStage;
+	
 	/**
 	 * Main function to launch the system.
 	 * 
@@ -47,7 +51,7 @@ public class Main extends Application {
 	
 	/**
 	 * Create the start window and set the startScene to the stage.
-	 * 
+	 * Setup some design of the scene.
 	 * @param stage This stage should be the stage initialize in the main class.
 	 */
 	public void createStartWindow(Stage stage) {

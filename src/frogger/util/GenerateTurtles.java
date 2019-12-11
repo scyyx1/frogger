@@ -13,7 +13,7 @@ import frogger.model.actors.ActorFactory;
 public class GenerateTurtles extends GenerateActors {
 
 	/**
-	 * Get an arraylist of the turtles type.
+	 * Get an arraylist of the turtles type by the difficulty level and current game level.
 	 * @param level The level of current game.
 	 * @param difficultyLevel The difficulty level of current game.
 	 * @return the list of turtles.

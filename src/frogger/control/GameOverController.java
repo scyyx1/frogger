@@ -11,8 +11,8 @@ import javafx.scene.control.TextField;
 
 /**
  * @author scyyx1
- * Represents the controller for the game over window
- * Contains some button action for entering the data and a text field to store the username
+ * Represents the controller for the game over window.
+ * Contains some button action for entering the data stored in the text field.
  */
 public class GameOverController {
 	
@@ -31,8 +31,9 @@ public class GameOverController {
 	 * The label to display current play infomation.
 	 */
 	private Label currentPlayerInfo;
+	
 	/** 
-	 * A constructor to initialize the final score that user have
+	 * A constructor to initialize the final score that user has.
 	 * @param frogger The frogger should be the one used in the game
 	 */
 	public GameOverController(int finalScore) {
@@ -40,10 +41,11 @@ public class GameOverController {
 	}
 	
 	/**
-	 * Handle the event when the button is pressed
+	 * Handle the event when the enter button is pressed
 	 * Get the name in the textfield and its score and put it in an arrayList with Player Object.
 	 * Rewrite the data in the file to keep it in descending order
 	 * Switch to score window after finish processing data
+	 * 
 	 * @param username This username should be the string that
 	 * 				   player typed in the text field
 	 */
@@ -68,9 +70,5 @@ public class GameOverController {
     	DifficultyWindow.getStage().setScene(scene);
 		
 	}
-	
-	
-	
-
 }
 
