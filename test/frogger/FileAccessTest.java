@@ -13,10 +13,20 @@ import frogger.model.Player;
 import frogger.model.ScoreCompare;
 import frogger.util.FileModified;
 
+/**
+ * @author scyyx1
+ * Represent a test for file accessing.
+ *
+ */
 class FileAccessTest {
 
 	FileModified fileModifiedTest1 = new FileModified("Test1", 1);
 	FileModified fileModifiedTest2 = new FileModified("Test2", 2);
+	
+	/**
+	 * Check whether the file can be read and written correctly.
+	 * @throws IOException The input/output exception.
+	 */
 	@Test
 	void UpdateFiletest() throws IOException {
 		fileModifiedTest1.updateFile();
