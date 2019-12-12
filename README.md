@@ -1,6 +1,6 @@
-#Tested On:
+# Tested On:
 Lab Machine/Mac Java 10 + JavaFX10
-#Build Script:
+# Build Script:
 Maven
 # Addition:
 1.	A start screen to enable player to start the game or look the basic instruction of the game.
