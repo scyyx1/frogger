@@ -17,7 +17,7 @@ public class DeathChecking {
 	
 	/**
 	 * A constructor to initialize the frogger.
-	 * @param frog The frogger should be the one used in the game.
+	 * @param frogger The frogger should be the one used in the game.
 	 */
 	public DeathChecking(Frogger frogger) {
 		this.frogger = frogger;

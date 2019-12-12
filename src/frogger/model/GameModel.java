@@ -93,6 +93,7 @@ public class GameModel {
 	
 	/**
 	 * A constructor to create a frogger for the game with existing points and setup the start time of the game.
+	 * @param points The points of the game
 	 */
 	public GameModel(int points) {
 		frogger = ActorFactory.getInstance().createFrogger(points);

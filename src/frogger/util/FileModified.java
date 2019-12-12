@@ -46,7 +46,7 @@ public class FileModified {
 	
 	/**
 	 * Update the text inside the score text file by adding new player's infomation.
-	 * @throws IOException
+	 * @throws IOException The input/output exception.
 	 */
 	public void updateFile()throws IOException{
 		readFileFromScore();
@@ -57,7 +57,7 @@ public class FileModified {
 	
 	/**
 	 * Read the scores file and put them in an array list with Player object
-	 * @throws IOException 
+	 * @throws IOException The input/output exception.
 	 */
 	public void readFileFromScore() throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader("resource/scores/scores.txt"));
@@ -77,7 +77,7 @@ public class FileModified {
 	
 	/**
 	 * Write the date in players list into the score file.
-	 * @throws IOException
+	 * @throws IOException The input/output exception.
 	 */
 	public void writeFileToScore() throws IOException{
 		BufferedWriter writer = new BufferedWriter(new FileWriter("resource/scores/scores.txt"));

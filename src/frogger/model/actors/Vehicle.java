@@ -30,6 +30,7 @@ public class Vehicle extends Actor {
 	
 	/**
 	 * A constructor to initialize the vehicle image.
+	 * @param imageLink the image link of the image.
 	 * @param xpos The x position of the image.
 	 * @param ypos The y position of the image.
 	 * @param speed The move speed of the image.
