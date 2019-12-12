@@ -29,14 +29,14 @@ public class GenerateVehicles extends GenerateActors {
 		}
 		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 100, 597, -speed, 50, 50));
 		if(difficultyLevel == 3) {
-			vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 150, 597, -speed, 50, 50));
+			vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 250, 597, -speed, 50, 50));
 
 		}
-		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 300, 597, -speed, 50, 50));
+		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 400, 597, -speed, 50, 50));
 		if(difficultyLevel != 1) {
-			vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 450, 597, -speed, 50, 50));
+			vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 550, 597, -speed, 50, 50));
 		}
-		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 500, 490, -speed - 1, 50, 50));
+		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/car1Left.png", 500, 490, -speed - 3, 50, 50));
 
 		vehicles.add(ActorFactory.getInstance().createVehicle("file:resource/vehicles/truck1Right.png", 0, 649, speed, 120, 120));
 		if(difficultyLevel != 1) {
