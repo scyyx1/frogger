@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a wet turtle class to generate the image of wet turtle.
  * Contains four images of wet turtle and the speed it moves.
  */
-public class WetTurtle extends Actor{
+public class WetTurtle extends MovingActor{
 	
 	/**
 	 * The image of wet turtle 1
@@ -67,10 +67,7 @@ public class WetTurtle extends Actor{
 				}
 			
 		move(speed , 0);
-		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -75 && speed<0)
-			setX(600);
+		checkBoundaryAndReset(speed);
 	}
 	
 	/**

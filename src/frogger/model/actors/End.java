@@ -38,14 +38,6 @@ public class End extends Actor{
 		return activated;
 	}
 	
-	/**
-	 * How the end image will act.
-	 * @param now The current time.
-	 */
-	@Override
-	public void act(long now) {
-		// TODO Auto-generated method st
-	}
 	
 
 }

@@ -5,9 +5,9 @@ import javafx.scene.image.Image;
 /**
  * @author scyyx1
  * Represent a crocodile head to generate the image of crocodile head.
- * Contains images of crodile head and the speed it moves and the is eaten data.
+ * Contains images of crocodile head and the speed it moves and the is eaten data.
  */
-public class CrocodileHead extends Actor {
+public class CrocodileHead extends MovingActor {
 
 	/**
 	 * The image of crocodile mouth open.
@@ -63,15 +63,20 @@ public class CrocodileHead extends Actor {
 		}
 	
 		move(speed , 0);
-		if (getX() > 600 && speed>0)
-			setX(-180);
-		if (getX() < -75 && speed<0)
-			setX(700);
+		
+		checkBoundaryAndReset(speed);
 
 	}
 	
 	public boolean isEaten() {
 		return eaten;
+	}
+	@Override
+	public void checkBoundaryAndReset(double speed) {
+		if (getX() > 600 && speed>0)
+			setX(-180);
+		if (getX() < -75 && speed<0)
+			setX(700);
 	}
 
 }

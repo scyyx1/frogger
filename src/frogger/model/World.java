@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import frogger.model.actors.Actor;
+import frogger.model.actors.MovingActor;
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -82,9 +83,9 @@ public abstract class World extends Pane {
             @Override
             public void handle(long now) {
                 act(now);
-                List<Actor> actors = getObjects(Actor.class);
+                List<MovingActor> actors = getObjects(MovingActor.class);
                 
-                for (Actor anActor: actors) {
+                for (MovingActor anActor: actors) {
                 	anActor.act(now);
                 }
       
@@ -134,7 +135,7 @@ public abstract class World extends Pane {
         ArrayList<A> someArray = new ArrayList<A>();
         for (Node n: getChildren()) {
             if (cls.isInstance(n)) {
-                someArray.add((A)n);
+                someArray.add((A) n);
             }
             
         }
