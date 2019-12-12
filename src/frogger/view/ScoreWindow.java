@@ -62,7 +62,7 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	
 	/**
 	 * Read the top five scores in file and put them in an array list.
-	 * @throws IOException
+	 * @throws IOException The input/output exception.
 	 */
 	public void readFile() throws IOException{
 		FileReader fr = new FileReader("resource/scores/scores.txt");

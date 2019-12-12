@@ -144,7 +144,7 @@ public abstract class World extends Pane {
     
     /**
      * The action of certain objects.
-     * @param now
+     * @param now The current time
      */
     public abstract void act(long now);
 }

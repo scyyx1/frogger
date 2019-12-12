@@ -23,7 +23,7 @@ public class Main extends Application {
 	/**
 	 * Main function to launch the system.
 	 * 
-	 * @param args 
+	 * @param args The args to be launched.
 	 */
 	public static void main(String[] args) {
 		launch(args);

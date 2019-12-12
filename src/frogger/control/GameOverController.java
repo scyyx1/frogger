@@ -33,7 +33,7 @@ public class GameOverController {
 	
 	/** 
 	 * A constructor to initialize the final score that user has.
-	 * @param frogger The frogger should be the one used in the game
+	 * @param finalScore The final score that a player has.
 	 */
 	public GameOverController(int finalScore) {
 		this.finalScore = finalScore;
