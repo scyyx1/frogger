@@ -1,3 +1,7 @@
+#Tested On:
+Lab Machine/Mac Java 10 + JavaFX10
+#Build Script:
+Maven
 # Addition:
 1.	A start screen to enable player to start the game or look the basic instruction of the game.
 2.	An info screen which describes how to operate the game and some rules.
