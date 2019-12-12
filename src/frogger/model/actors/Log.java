@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a log class and generate the image of log.
  * Contains the move speed of the image.
  */
-public class Log extends Actor {
+public class Log extends MovingActor {
 
 	/**
 	 * The move speed of the image.
@@ -21,10 +21,7 @@ public class Log extends Actor {
 	@Override
 	public void act(long now) {
 		move(speed , 0);
-		if (getX()>600 && speed>0)
-			setX(-180);
-		if (getX()<-300 && speed<0)
-			setX(700);
+		checkBoundaryAndReset(speed);
 	}
 	
 	/**
@@ -44,9 +41,17 @@ public class Log extends Actor {
 	}
 	/**
 	 * Check whether the speed is less than zero.
-	 * @return whetehr speed is less than zero.
+	 * @return whether speed is less than zero.
 	 */
 	public boolean getLeft() {
 		return speed < 0;
+	}
+	
+	@Override
+	public void checkBoundaryAndReset(double speed) {
+		if (getX() > 600 && speed>0)
+			setX(-180);
+		if (getX() < -75 && speed<0)
+			setX(700);
 	}
 }

@@ -7,14 +7,6 @@ import javafx.scene.image.Image;
  * Represent a background image object used as background.
  */
 public class BackgroundImage extends Actor{
-
-
-	
-	@Override
-	public void act(long now) {
-		
-		
-	}
 	
 	/**
 	 * A constructor to initialize the image of background.

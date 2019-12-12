@@ -8,11 +8,6 @@ import javafx.scene.image.Image;
  */
 public class Fly extends Actor {
 
-	@Override
-	public void act(long now) {
-		// TODO Auto-generated method stub
-
-	}
 	
 	/**
 	 * A constructor to initialize the fly image.

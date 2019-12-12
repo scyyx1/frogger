@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a snack class to generate the image of snack.
  * Contains three images of snack and the speed it moves.
  */
-public class Snack extends Actor{
+public class Snack extends MovingActor{
 
 	/**
 	 * The move speed of the image.
@@ -70,9 +70,6 @@ public class Snack extends Actor{
 			
 		}
 		move(speed , 0);
-		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -50 && speed<0)
-			setX(600);
+		checkBoundaryAndReset(speed);
 	}
 }

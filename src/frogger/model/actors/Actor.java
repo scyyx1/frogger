@@ -13,15 +13,6 @@ import frogger.model.World;
  */
 public abstract class Actor extends ImageView{
 
-    /**
-     * Move dx position from current x and move dy position from current y of current actor.
-     * @param dx The movement in x cordinate.
-     * @param dy The movement in y cordinate.
-     */
-    public void move(double dx, double dy) {
-        setX(getX() + dx);
-        setY(getY() + dy);
-    }
 
     /**
      * Get the parent object of current actor.
@@ -46,12 +37,11 @@ public abstract class Actor extends ImageView{
         }
         return someArray;
     }
+
+
     
 
-    /**
-     * The methods that how an actor act.
-     * @param now The current time.
-     */
-    public abstract void act(long now);
+    
+    
 
 }

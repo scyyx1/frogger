@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a turtle class to generate the image of turtle.
  * Contains three images of turtle and the speed it moves.
  */
-public class Turtle extends Actor{
+public class Turtle extends MovingActor{
 	
 	/**
 	 * The image of turtle 1
@@ -53,10 +53,7 @@ public class Turtle extends Actor{
 				}
 			
 		move(speed , 0);
-		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -75 && speed<0)
-			setX(600);
+		checkBoundaryAndReset(speed);
 	}
 	
 	/**

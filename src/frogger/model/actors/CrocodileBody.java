@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a crocodile body to generate the image of crocodile body.
  * Contains an image of crodile body and the speed it moves.
  */
-public class CrocodileBody extends Actor {
+public class CrocodileBody extends MovingActor {
 
 	/**
 	 * The image of crocodile body.
@@ -42,15 +42,19 @@ public class CrocodileBody extends Actor {
 	@Override
 	public void act(long now) {
 		// TODO Auto-generated method stub
-		setImage(crocodileBody);
+		//setImage(crocodileBody);
 	
 		move(moveSpeed , 0);
 		
-		if (getX() > 600 && moveSpeed>0)
-			setX(-180);
-		if (getX() < -75 && moveSpeed<0)
-			setX(700);
+		checkBoundaryAndReset(moveSpeed);
 
+	}
+	@Override
+	public void checkBoundaryAndReset(double speed) {
+		if (getX() > 600 && speed>0)
+			setX(-180);
+		if (getX() < -75 && speed<0)
+			setX(700);
 	}
 
 }

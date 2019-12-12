@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
  * @author scyyx1
  * Represents a frogger in the game and generate the data needed in the frogger
  */
-public class Frogger extends Actor {
+public class Frogger extends MovingActor {
 
 	
 	/**
@@ -36,12 +36,12 @@ public class Frogger extends Actor {
 	/**
 	 * The vertical movement that half step included.
 	 */
-	private double movementVertical = 13.3333333*2;
+	private final double movementVertical = 13.3333333*2;
 	
 	/**
 	 * The horizontal movement that half step included.
 	 */
-	private double movementHorizon = 10.666666*2;
+	private final double movementHorizon = 10.666666*2;
 	
 	/**
 	 * Whether the frogger is hitted by car.
@@ -91,7 +91,7 @@ public class Frogger extends Actor {
 	/**
 	 * The image size.
 	 */
-	private int imgSize = 40;
+	private final int imgSize = 40;
 	
 
 	/**
@@ -341,9 +341,7 @@ public class Frogger extends Actor {
 	public double getMovementHorizon() {
 		return movementHorizon;
 	}
-	public void setMovementHorizon(double movementHorizon) {
-		this.movementHorizon = movementHorizon;
-	}
+
 	public double getLastScoreLineRecord() {
 		return lastScoreLineRecord;
 	}

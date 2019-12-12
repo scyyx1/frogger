@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a vehicle class to generate the image of vehicle.
  * Contains the speed vehicle moves.
  */
-public class Vehicle extends Actor {
+public class Vehicle extends MovingActor {
 	
 	/**
 	 * The move speed of image.
@@ -22,10 +22,7 @@ public class Vehicle extends Actor {
 	@Override
 	public void act(long now) {
 		move(speed , 0);
-		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -50 && speed<0)
-			setX(600);
+		checkBoundaryAndReset(speed);
 	}
 	
 	/**
