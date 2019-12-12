@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  * Represent a help window to allow user to know the basic operation and rules of the game.
  * Contains a label, a button and a background image to display the rule.
  */
-public class HelpWindow extends Pane implements BasicGUI{
+public class HelpWindow extends Pane implements BasicWindowGUI{
 
 	
 	/**

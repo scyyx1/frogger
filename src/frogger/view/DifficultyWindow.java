@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * Represents a difficulty window to allow user to select different difficulties.
  * Contains some labels, buttons, background and a stage to display the content.
  */
-public class DifficultyWindow extends Pane implements BasicGUI{
+public class DifficultyWindow extends Pane implements BasicWindowGUI{
 	
 	/**
 	 * A stage to display the difficulty window.

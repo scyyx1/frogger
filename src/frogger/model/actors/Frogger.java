@@ -245,6 +245,16 @@ public class Frogger extends Actor {
 	}
 	
 	/**
+	 * Checking whether the frogger is dead or not and set the death image at some specific time.
+	 * @param now The current time.
+	 */
+	public void checkDeath(long now) {
+		DeathChecking deathChecking = new DeathChecking(this);
+		deathChecking.carDeathCheck(now);
+		deathChecking.waterDeathCheck(now);
+	}
+	
+	/**
 	 * Display an alert when the end is hitted twice.
 	 */
 	public void showAlertSameEnd() {
@@ -266,15 +276,6 @@ public class Frogger extends Actor {
 	}
 	
 	
-	/**
-	 * Checking whether the frogger is dead or not and set the death image at some specific time.
-	 * @param now The current time.
-	 */
-	public void checkDeath(long now) {
-		DeathChecking deathChecking = new DeathChecking(this);
-		deathChecking.carDeathCheck(now);
-		deathChecking.waterDeathCheck(now);
-	}
 	
 	/**
 	 * Check whether the condition of stopping the game is matched.

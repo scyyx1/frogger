@@ -21,7 +21,10 @@ public class GameController{
 	 */
 	private Frogger frogger;
 	
-	
+	/**
+	 * A game model
+	 */
+	private GameModel model;
 	/**
 	 * The parameter used to record how many times user press the keyboard.
 	 */
@@ -29,12 +32,22 @@ public class GameController{
 	
 	
 	/**
-	 * A constructor to initialize set up the frogger.
+	 * A constructor to initialize set up the frogger and the game model.
 	 * 
 	 * @param model The game model which stores key data of the game.
 	 */
 	public GameController(GameModel model) {
+		this.model = model;
 		this.frogger = model.getFrog();
+	}
+	
+	
+	/**
+	 * Update the status in model.
+	 * @param now the current time.
+	 */
+	public void updateStatus(long now) {
+		model.updateModel(now);
 	}
 	
 	/**
