@@ -21,7 +21,7 @@ public class Frogger extends Actor {
 	/**
 	 * The number of ends that player has already reached.
 	 */
-	private int end = 0;
+	private int activatedEnd = 0;
 	
 	/**
 	 * Whether the frogger is in jumping status.
@@ -37,6 +37,7 @@ public class Frogger extends Actor {
 	 * The vertical movement that half step included.
 	 */
 	private double movementVertical = 13.3333333*2;
+	
 	/**
 	 * The horizontal movement that half step included.
 	 */
@@ -46,7 +47,6 @@ public class Frogger extends Actor {
 	 * Whether the frogger is hitted by car.
 	 */
 	private boolean carDeath = false;
-	
 	
 	/**
 	 * Whether the frogger is sunk in water.
@@ -135,7 +135,6 @@ public class Frogger extends Actor {
 
 	}
 	
-	
 	/**
 	 * Check whether it exceeds the boundary.
 	 */
@@ -151,8 +150,7 @@ public class Frogger extends Actor {
 			move(-movementVertical*2, 0);
 		}
 	}
-	
-	
+		
 	/**
 	 * Update the frogger movement in the game. Calling methods to check for collision, transporting or reaching end.
 	 * And update frogger status when they intersecting with other actors.
@@ -237,7 +235,7 @@ public class Frogger extends Actor {
 				setChangeScore(true);
 				setLastScoreLineRecord(800);
 				getIntersectingObjects(End.class).get(0).setEnd();
-				end++;
+				activatedEnd++;
 			}
 			previousPoints = currentPoints;
 			initializeFrogger();
@@ -282,7 +280,7 @@ public class Frogger extends Actor {
 	 * @return true if lives equals to zero or end reaches five.
 	 */
 	public boolean getGameStop() {
-		return (lives == 0 || end == 1);
+		return (lives == 0 || activatedEnd == 1);
 	}
 	
 	public int getPreviousPoints() {
@@ -370,7 +368,7 @@ public class Frogger extends Actor {
 	}
 
 	public int getEndReached() {
-		return end;
+		return activatedEnd;
 	}
 	
 	public int getImgSize() {
