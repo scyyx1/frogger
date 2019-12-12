@@ -21,7 +21,7 @@ import javafx.scene.text.FontWeight;
  * Only top five scores and your score will be displayed.
  * Contains some labels, buttons and a background.
  */
-public class ScoreWindow extends Pane implements BasicGUI{
+public class ScoreWindow extends Pane implements BasicWindowGUI{
 
 	/**
 	 * An array list to store top five scores in the file.

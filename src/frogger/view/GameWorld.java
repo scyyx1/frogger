@@ -104,7 +104,7 @@ public class GameWorld extends World implements BasicGUI{
 
 		createObstacle(level);
 
-		initilizeTheGame();
+		initializeTheGame();
 		
 	}
 
@@ -138,7 +138,7 @@ public class GameWorld extends World implements BasicGUI{
 	/**
 	 * Initialize the game and set up the data needed in the scene.
 	 */
-	public void initilizeTheGame() {
+	public void initializeTheGame() {
 		
 		setNumber(0, groups.getCurrentScore(), 450);
 		setNumber(0, groups.getPreviousScore(), 170);
@@ -341,7 +341,7 @@ public class GameWorld extends World implements BasicGUI{
 	 */
 	@Override
 	public void act(long now) {
-		model.updateModel(now);
+		controller.updateStatus(now);
 		updateView();
     }
 	
@@ -463,10 +463,5 @@ public class GameWorld extends World implements BasicGUI{
 		});
 	}
 
-	@Override
-	public void createButton() {
-		// TODO Auto-generated method stub
-		
-	}
 }
 

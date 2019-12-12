@@ -15,7 +15,7 @@ import javafx.scene.text.FontWeight;
  * Represent a game over window to allow user to enter their name
  * Contains some labels, buttons, background and a final score that a player got.
  */
-public class GameOverWindow extends Pane implements BasicGUI{
+public class GameOverWindow extends Pane implements BasicWindowGUI{
 	
 	/**
 	 * A final score that a player got.

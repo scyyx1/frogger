@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * Represents a start window to allow user to start the game or look at the general operation of the game.
  * Contains some labels, buttons, background and a stage to display the scene.
  */
-public class StartWindow extends Pane implements BasicGUI{
+public class StartWindow extends Pane implements BasicWindowGUI{
 
 
 	/**
