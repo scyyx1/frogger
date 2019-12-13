@@ -1,7 +1,11 @@
 # Tested On:
-Lab Machine/Mac Java 10 + JavaFX10
+Lab Machine/Mac Java 10 + JavaFX10 Eclipse
 # Build Script:
 Maven
+# Trello
+![alt text](/resource/RefactorPic/trello1.png)
+![alt text](/resource/RefactorPic/trello2.png)
+![alt text](/resource/RefactorPic/trello3.png)
 # Addition:
 1.	A start screen to enable player to start the game or look the instruction of the game.
 2.	An info screen to describe the game operation and rules.

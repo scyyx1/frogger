@@ -1,19 +1,14 @@
 package frogger;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import frogger.model.actors.ActorFactory;
 import frogger.model.actors.CrocodileBody;
 import frogger.model.actors.CrocodileHead;
-import frogger.model.actors.Frogger;
 import frogger.model.actors.Log;
 import frogger.model.actors.Turtle;
 import frogger.model.actors.Vehicle;
 import frogger.model.actors.WetTurtle;
-import frogger.view.GameWorld;
 import javafx.embed.swing.JFXPanel;
 
 /**

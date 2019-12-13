@@ -3,6 +3,7 @@ package frogger.control;
 import frogger.main.Main;
 import frogger.view.DifficultyWindow;
 import frogger.view.HelpWindow;
+import frogger.view.ScoreWindow;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -30,6 +31,15 @@ public class StartWindowController {
 	public void helpButtonAction() {
     	HelpWindow helpWindow = new HelpWindow();
     	createWindow(helpWindow, 500, 500);
+	}
+	
+	/**
+	 * Handle the events when the score button is pressed.
+	 * Switch to the high score window to allow the user look at the score board.
+	 */
+	public void scoreButtonAction() {
+		ScoreWindow scoreWindow = new ScoreWindow();
+		createWindow(scoreWindow, 500, 500);
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package frogger.control;
 
 import frogger.main.Main;
 import frogger.view.DifficultyWindow;
+import frogger.view.StartWindow;
 import javafx.scene.Scene;
 
 /**
@@ -32,5 +33,16 @@ public class ScoreWindowController {
 	public void exitButtonAction() {
 		Main.getStage().close();
     	System.exit(0);
+	}
+	
+	/** 
+	 * Handle the events when the back button is pressed.
+	 * Switch the scene back to the start window.
+	 */
+	public void backButtonAction() {
+		StartWindow startWindow = new StartWindow();
+	    Scene startscene  = new Scene(startWindow, 500, 500);
+	    startscene.getStylesheets().add("file:resource/application.css");
+	    Main.getStage().setScene(startscene);
 	}
 }
