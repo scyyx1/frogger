@@ -9,7 +9,7 @@ Maven
 # Brief View
 ![alt text](/resource/RefactorPic/windows.JPG)
 # Main Game
-![alt text](/resouce/RefactorPic/MainGame.png)
+![alt text](/resource/RefactorPic/MainGame.png)
 # Addition:
 1.	A start screen to enable player to start the game or look the instruction of the game.
 2.	An info screen to describe the game operation and rules.
