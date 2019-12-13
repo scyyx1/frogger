@@ -84,9 +84,17 @@ public class StartWindow extends Pane implements BasicWindowGUI{
 		});
 		getChildren().add(help);
 		
+		Button score = new Button("High Score");
+		score.setLayoutX(150);
+		score.setLayoutY(250);
+		score.setOnAction(e->{
+			controller.scoreButtonAction();
+		});
+		getChildren().add(score);
+		
 		Button exit = new Button("EXIT");
 		exit.setLayoutX(150);
-		exit.setLayoutY(250);
+		exit.setLayoutY(300);
 		exit.setOnAction(e->{
 			controller.exitButtonAction();
 		});

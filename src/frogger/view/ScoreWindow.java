@@ -33,6 +33,8 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 */
 	private Label currentPlayerScore;
 	
+	private boolean gameNotStart = false;
+	
 	/**
 	 * A constructor to initialize the score window.
 	 * Contains methods to read the file and print it out.
@@ -58,6 +60,24 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 		
 		createButton();
 		
+	}
+	
+	public ScoreWindow() {
+		
+		this.gameNotStart = true;
+		createBackground();
+		createLabel();
+		try {
+			
+            readFile();
+            
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+		
+		printScore();
+		
+		createButton();
 	}
 	
 	/**
@@ -86,7 +106,25 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 * Use label to display.
 	 */
 	public void printScore() {
-		for (int i = 0; i < scores.size(); i++) {
+		if(gameNotStart) {
+			for (int i = 0; i < scores.size(); i++) {
+	            Label l = scores.get(i);
+	            int X = 130;
+	            int Y = (150 + i * 30);
+	            l.setFont(new Font("Mouse", 25));
+	            l.setTextFill(Color.CORNSILK);
+	            if (i % 2 != 0) {
+	                X = 300;
+	                Y = (150 + (i - 1) * 30);
+	                l.setFont(new Font("Mouse", 25));
+	                l.setTextFill(Color.CORNSILK);
+	            }
+	            l.setTranslateX(X);
+	            l.setTranslateY(Y);
+	            getChildren().add(l);
+	        }
+		}else {
+			for (int i = 0; i < scores.size(); i++) {
             Label l = scores.get(i);
             int X = 140;
             int Y = (250 + i * 30);
@@ -102,6 +140,8 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
             l.setTranslateY(Y);
             getChildren().add(l);
         }
+		}
+		
 		
 	}
 	
@@ -111,9 +151,13 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 */
 	@Override
 	public void createBackground() {
-		// TODO Auto-generated method stub
-		BackgroundImage background = new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800);
-		getChildren().add(background);
+
+		if(gameNotStart) {
+			getChildren().add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
+		}else {
+			getChildren().add(new BackgroundImage("file:resource/backgrounds/background1.png", 600, 800));
+		}
+
 	}
 	/**
 	 * Create the buttons in the score window.
@@ -123,23 +167,34 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	@Override
 	public void createButton() {
 		ScoreWindowController controller = new ScoreWindowController();
-		// TODO Auto-generated method stub
-		Button restart = new Button("TRY AGAIN");
-		restart.setId("restart");
-		restart.setOnAction(e->{
-			controller.restartButtonAction();
-		});
-		restart.setLayoutX(150);
-		restart.setLayoutY(650);
-		getChildren().add(restart);
-        
-		Button exit = new Button("EXIT");
-		exit.setOnAction(e->{
-			controller.exitButtonAction();
-		});
-		exit.setLayoutX(200);
-		exit.setLayoutY(700);
-		getChildren().add(exit);
+
+		if (gameNotStart) {
+			Button back = new Button("Back");
+			back.setOnAction(e->{
+				controller.backButtonAction();
+			});
+			back.setLayoutX(0);
+			back.setLayoutY(450);
+			getChildren().add(back);
+		}else {
+			Button restart = new Button("TRY AGAIN");
+			restart.setId("restart");
+			restart.setOnAction(e->{
+				controller.restartButtonAction();
+			});
+			restart.setLayoutX(150);
+			restart.setLayoutY(650);
+			getChildren().add(restart);
+	        
+			Button exit = new Button("EXIT");
+			exit.setOnAction(e->{
+				controller.exitButtonAction();
+			});
+			exit.setLayoutX(200);
+			exit.setLayoutY(700);
+			getChildren().add(exit);
+		}
+		
 	}
 	
 	/**
@@ -148,19 +203,27 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 */
 	@Override
 	public void createLabel() {
-		// TODO Auto-generated method stub
-		Label label = new Label("HIGH SCORE");
-		label.setLayoutX(130);
-		label.setLayoutY(180);
-		label.setFont(Font.font("Mouse", FontWeight.BOLD, 65));
-		label.setTextFill(Color.CORNSILK);
-        getChildren().add(label);
-
-        currentPlayerScore.setLayoutX(100);
-        currentPlayerScore.setLayoutY(600);
-        currentPlayerScore.setFont(Font.font("Mouse", FontWeight.BOLD, 25));
-		currentPlayerScore.setTextFill(Color.CORNSILK);
-		getChildren().add(currentPlayerScore);
+		if(gameNotStart) {
+			Label label = new Label("HIGH SCORE");
+			label.setLayoutX(100);
+			label.setLayoutY(50);
+			label.setFont(Font.font("Mouse", FontWeight.BOLD, 50));
+			label.setTextFill(Color.CADETBLUE);
+			getChildren().add(label);
+		}else {
+			Label label = new Label("HIGH SCORE");
+			label.setLayoutX(130);
+			label.setLayoutY(180);
+			label.setFont(Font.font("Mouse", FontWeight.BOLD, 65));
+			label.setTextFill(Color.CORNSILK);
+	        getChildren().add(label);
+	
+	        currentPlayerScore.setLayoutX(100);
+	        currentPlayerScore.setLayoutY(600);
+	        currentPlayerScore.setFont(Font.font("Mouse", FontWeight.BOLD, 25));
+			currentPlayerScore.setTextFill(Color.CORNSILK);
+			getChildren().add(currentPlayerScore);
+		}
        
 	}
 }
