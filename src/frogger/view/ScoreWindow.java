@@ -33,6 +33,9 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 */
 	private Label currentPlayerScore;
 	
+	/**
+	 * Whether the game has been started or not.
+	 */
 	private boolean gameNotStart = false;
 	
 	/**
@@ -106,43 +109,30 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 	 * Use label to display.
 	 */
 	public void printScore() {
+		int xBaseForName = 140;
+		int xBaseForScore = 400;
+		int yBase = 250;
 		if(gameNotStart) {
-			for (int i = 0; i < scores.size(); i++) {
-	            Label l = scores.get(i);
-	            int X = 130;
-	            int Y = (150 + i * 30);
+			xBaseForName = 130;
+			xBaseForScore = 300;
+			yBase = 130;
+		}
+		for (int i = 0; i < scores.size(); i++) {
+			Label l = scores.get(i);
+	        int X = xBaseForName;
+	        int Y = (yBase + i * 30);
+	        l.setFont(new Font("Mouse", 25));
+	        l.setTextFill(Color.CORNSILK);
+	        if (i % 2 != 0) {
+	            X = xBaseForScore;
+	            Y = (yBase + (i - 1) * 30);
 	            l.setFont(new Font("Mouse", 25));
 	            l.setTextFill(Color.CORNSILK);
-	            if (i % 2 != 0) {
-	                X = 300;
-	                Y = (150 + (i - 1) * 30);
-	                l.setFont(new Font("Mouse", 25));
-	                l.setTextFill(Color.CORNSILK);
-	            }
-	            l.setTranslateX(X);
-	            l.setTranslateY(Y);
-	            getChildren().add(l);
 	        }
-		}else {
-			for (int i = 0; i < scores.size(); i++) {
-            Label l = scores.get(i);
-            int X = 140;
-            int Y = (250 + i * 30);
-            l.setFont(new Font("Mouse", 25));
-            l.setTextFill(Color.CORNSILK);
-            if (i % 2 != 0) {
-                X = 400;
-                Y = (250 + (i - 1) * 30);
-                l.setFont(new Font("Mouse", 25));
-                l.setTextFill(Color.CORNSILK);
-            }
-            l.setTranslateX(X);
-            l.setTranslateY(Y);
-            getChildren().add(l);
-        }
+	        l.setTranslateX(X);
+	        l.setTranslateY(Y);
+	        getChildren().add(l);
 		}
-		
-		
 	}
 	
 	/**

@@ -84,7 +84,7 @@ public class StartWindow extends Pane implements BasicWindowGUI{
 		});
 		getChildren().add(help);
 		
-		Button score = new Button("High Score");
+		Button score = new Button("HIGH SCORE");
 		score.setLayoutX(150);
 		score.setLayoutY(250);
 		score.setOnAction(e->{

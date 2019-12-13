@@ -25,63 +25,54 @@ public class DeathChecking {
 	}
 	
 	/**
-	 * Check whether car death is true..
-	 * If true, set the frogger into certain images or update the status.
+	 * Check whether frogger is car death or water death.
+	 * If true, set corresponding animation by current frame count and death type, or update the status.
 	 * @param now The current time.
 	 */
-	public void carDeathCheck(long now) {
-		if (frogger.isCarDeath()) {
-			int deathStatusCount = frogger.getCarDeathStatusCount();
+	public void deathCheck(long now) {
+		if(frogger.isCarDeath() || frogger.isWaterDeath()) {
+			String deathType;
+			if(frogger.isCarDeath()) {
+				deathType = "cardeath";
+			}else {
+				deathType = "waterdeath";
+			}
 			frogger.setNoMove(true);
-			if ((now)% 11 ==0) {
-				frogger.setDeathStatusCount(deathStatusCount + 1);
+			int deathAnimationFrameCount = frogger.getDeathAnimationFrameCount();
+			if((now) % 11 == 0) {
+				frogger.setDeathAnimationFrameCount(deathAnimationFrameCount + 1);
 			}
-			if(deathStatusCount == 1) {
-				frogger.setImage(new Image("file:resource/deaths/cardeath1.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			if(deathAnimationFrameCount == 1) {
+				displayAnimation(deathType, deathAnimationFrameCount);
 			}
-			if(deathStatusCount == 2) {
-				frogger.setImage(new Image("file:resource/deaths/cardeath2.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			if(deathAnimationFrameCount == 2) {
+				displayAnimation(deathType, deathAnimationFrameCount);
 			}
-			if(deathStatusCount == 3) {
-				frogger.setImage(new Image("file:resource/deaths/cardeath3.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
-			}		
-			if(deathStatusCount == 4) {
-				frogger.setCarDeath(false);
-				reviveFrogger();
-			}		
-		}
-
-	}
-	
-	/**
-	 * Check whether water death is true.
-	 * If true, set the froger into certain images or update the status.
-	 * @param now The current time.
-	 */
-	public void waterDeathCheck(long now) {
-		if (frogger.isWaterDeath()) {
-			int deathStatusCount = frogger.getCarDeathStatusCount();
-			frogger.setNoMove(true);
-			if ((now)% 11 ==0) {
-				frogger.setDeathStatusCount(deathStatusCount + 1);
+			if(deathAnimationFrameCount == 3) {
+				displayAnimation(deathType, deathAnimationFrameCount);
 			}
-			if(deathStatusCount == 1) {
-				frogger.setImage(new Image("file:resource/deaths/waterdeath1.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
+			if(deathAnimationFrameCount == 4) {
+				if(frogger.isCarDeath()) {
+					frogger.setCarDeath(false);
+					reviveFrogger();
+				}else {
+					displayAnimation(deathType, deathAnimationFrameCount);
+				}
 			}
-			if(deathStatusCount == 2) {
-				frogger.setImage(new Image("file:resource/deaths/waterdeath2.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
-			}
-			if(deathStatusCount == 3) {
-				frogger.setImage(new Image("file:resource/deaths/waterdeath3.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
-			}	
-			if(deathStatusCount == 4) {
-				frogger.setImage(new Image("file:resource/deaths/waterdeath4.png", frogger.getImgSize(), frogger.getImgSize(), true, true));
-			}	
-			if(deathStatusCount == 5) {
+			if(deathAnimationFrameCount == 5) {
 				frogger.setWaterDeath(false);
 				reviveFrogger();
 			}
 		}
+	}
+	
+	/**
+	 * Display the image of current death type and current frame number.
+	 * @param deathType The death type of frogger.
+	 * @param number The current frame number
+	 */
+	public void displayAnimation(String deathType, int number) {
+		frogger.setImage(new Image("file:resource/deaths/" + deathType + number + ".png", frogger.getImgSize(), frogger.getImgSize(), true, true));
 	}
 	
 	/**
@@ -90,7 +81,7 @@ public class DeathChecking {
 	public void reviveFrogger() {
 		frogger.initializeFrogger();
 		frogger.setLives(frogger.getLives() - 1);
-		frogger.setDeathStatusCount(0);
+		frogger.setDeathAnimationFrameCount(0);
 		frogger.setDead(true);
 		frogger.setNoMove(false);
 		int getPoints = frogger.getPoints();

@@ -74,9 +74,9 @@ public class Frogger extends MovingActor {
 	private int previousPoints = 0;
 	
 	/**
-	 * The count of current dead status.
+	 * The count of current dead animation frame.
 	 */
-	private int deathStatusCount = 0;
+	private int deathAnimationFrameCount = 0;
 	
 	/**
 	 * The last score line recorded in the game.
@@ -248,8 +248,7 @@ public class Frogger extends MovingActor {
 	 */
 	public void checkDeath(long now) {
 		DeathChecking deathChecking = new DeathChecking(this);
-		deathChecking.carDeathCheck(now);
-		deathChecking.waterDeathCheck(now);
+		deathChecking.deathCheck(now);
 	}
 	
 	/**
@@ -286,11 +285,11 @@ public class Frogger extends MovingActor {
 	public int getPreviousPoints() {
 		return previousPoints;
 	}
-	public int getCarDeathStatusCount() {
-		return deathStatusCount;
+	public int getDeathAnimationFrameCount() {
+		return deathAnimationFrameCount;
 	}
-	public void setDeathStatusCount(int deathStatusCount) {
-		this.deathStatusCount = deathStatusCount;
+	public void setDeathAnimationFrameCount(int frameCount) {
+		this.deathAnimationFrameCount = frameCount;
 	}
 	public void setNoMove(boolean noMove) {
 		this.stopMoving = noMove;
