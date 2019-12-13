@@ -8,8 +8,6 @@ Maven
 ![alt text](/resource/RefactorPic/trello3.png)
 # Brief View
 ![alt text](/resource/RefactorPic/windows.JPG)
-# Main Game
-![alt text](/resource/RefactorPic/MainGame.png)
 # Addition:
 1.	A start screen to enable player to start the game or look the instruction of the game.
 2.	An info screen to describe the game operation and rules.
@@ -45,3 +43,5 @@ Extract subclass "MovingActor" [MovingActor pic](/resource/RefactorPic/MovingAct
 8.	Delete the lazy classes (e.g. merge "MyStage" with the game world).
 9.	Separate large classes like "Animal" into "Frogger" and "FroggerImage" and extract the codes related to keyboard event to "GameController".
 10. Form template methods in create car death animation and water death animation [Template method pic](/resource/RefactorPic/templateMethod.png) .
+# Main Game
+![alt text](/resource/RefactorPic/MainGame.png)
