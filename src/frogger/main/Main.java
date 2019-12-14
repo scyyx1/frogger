@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
 /**
  * @author scyyx1
  * Represents the main function of the game.
- * Allow user to start the launch the system.
+ * Allow user to start and launch the system.
  */
 public class Main extends Application {
 	

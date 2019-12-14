@@ -3,7 +3,7 @@ package frogger.view;
 
 
 import frogger.control.StartWindowController;
-import frogger.model.actors.BackgroundImage;
+import frogger.model.actors.ActorFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 
 /**
  * @author scyyx1
- * Represents a start window to allow user to start the game or look at the general operation of the game.
+ * Represents a start window to allow user to start the game or 
+ * look at the general operation of the game or
+ * look at the high score list.
  * Contains some labels, buttons, background and a stage to display the scene.
  */
 public class StartWindow extends Pane implements BasicWindowGUI{
@@ -56,7 +58,7 @@ public class StartWindow extends Pane implements BasicWindowGUI{
 	@Override
 	public void createBackground() {
 		// TODO Auto-generated method stub
-		getChildren().add(new BackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
+		getChildren().add(ActorFactory.getInstance().createBackgroundImage("file:resource/backgrounds/startbackground.png", 500, 500));
 	}
 
 	/**

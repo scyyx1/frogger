@@ -47,6 +47,7 @@ public class Log extends MovingActor {
 		return speed < 0;
 	}
 	
+
 	@Override
 	public void checkBoundaryAndReset(double speed) {
 		if (getX() > 600 && speed>0)

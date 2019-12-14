@@ -34,7 +34,7 @@ import javafx.scene.text.FontWeight;
 /**
  * @author scyyx1
  * Represent the game world, generate the game element used in the world.
- * Contains different types of actors, model, controller etc.
+ * Contains different types of actors, game model and game controller etc.
  */
 public class GameWorld extends World implements BasicGUI{
 	
@@ -103,7 +103,7 @@ public class GameWorld extends World implements BasicGUI{
 	 */
 	public void createGameWorld(int level) {
 
-		createLayout(level);
+		createLayout();
 
 		createObstacle(level);
 
@@ -113,9 +113,8 @@ public class GameWorld extends World implements BasicGUI{
 
 	/**
 	 * Create the layout of the game.
-	 * @param level The level in current game.
 	 */
-	public void createLayout(int level){
+	public void createLayout(){
 		
 		createBackground();
 		createLabel();
@@ -125,7 +124,7 @@ public class GameWorld extends World implements BasicGUI{
 	}
 
 	/**
-	 * Create the obstacles needed in the game world.
+	 * Create the obstacles(actors) needed in the game world.
 	 * @param level The level in current game.
 	 */
 	public void createObstacle(int level) {
@@ -282,7 +281,7 @@ public class GameWorld extends World implements BasicGUI{
 			speed = 2;
 		}
 		if(difficultyLevel != 1) {
-			add(ActorFactory.getInstance().createSnack(600, 430, -speed, 100, 100));
+			add(ActorFactory.getInstance().createSnake(600, 430, -speed, 100, 100));
 		}
 		
 	}
@@ -337,7 +336,7 @@ public class GameWorld extends World implements BasicGUI{
 	}
 	
 	/**
-	 * Create and add the fly needed into the scene.
+	 * Create and add the fly randomly into the scene.
 	 */
 	public void createFlys() {
 		int[] endArray = {13, 141, 269, 398, 528};

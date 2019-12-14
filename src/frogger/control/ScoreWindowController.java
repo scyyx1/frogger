@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 /**
  * @author scyyx1
  * Represents the controller for the score window.
- * Contains the actions of restarting the game and exit the game.
+ * Contains the events of restarting the game and exit the game.
  */
 public class ScoreWindowController {
 

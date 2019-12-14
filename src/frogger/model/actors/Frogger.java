@@ -165,7 +165,7 @@ public class Frogger extends MovingActor {
 		if (getIntersectingObjects(Vehicle.class).size() >= 1) {
 			carDeath = true;
 		}
-		else if(getIntersectingObjects(Snack.class).size() >= 1) {
+		else if(getIntersectingObjects(Snake.class).size() >= 1) {
 			carDeath = true;
 		}
 	}
@@ -214,8 +214,8 @@ public class Frogger extends MovingActor {
 	
 	/**
 	 * Check whether the frogger reach the end points and whether they enter the same end that previously reached.
-	 * If reached the new points, update the frogger data.
-	 * If reached the same points, show alert message.
+	 * If reached the new end, update the frogger data.
+	 * If reached the same end, show alert message.
 	 */
 	public void reachEndCheck() {
 		if (getIntersectingObjects(End.class).size() >= 1) {

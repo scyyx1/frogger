@@ -10,6 +10,8 @@ import javafx.stage.Stage;
  * @author scyyx1
  * Represents the controller for difficulty window.
  * Contains some button action set for difficulty window.
+ * Contains event launch the game engine in different difficulties and
+ * switch back to the start window.
  */
 public class DifficultyWindowController {
 	

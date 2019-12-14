@@ -8,6 +8,7 @@ import javafx.scene.Scene;
  * @author scyyx1
  * Represents the controller for the help window.
  * Contains a back button to enable user switch back to the start window.
+ * Contains event to switch back to start window.
  */
 public class HelpWindowController {
 	

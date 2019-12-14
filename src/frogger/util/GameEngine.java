@@ -5,12 +5,12 @@ import frogger.view.GameWorld;
 
 /**
  * @author scyyx1
- * A class to generate the whole game system, include game model and game world.
+ * Represents the whole game system, include game model and game world.
  */
 public class GameEngine {
 
 	/**
-	 * A game model to store the data
+	 * A game model to store the game data
 	 */
 	private GameModel gameModel;
 	
