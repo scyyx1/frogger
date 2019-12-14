@@ -34,7 +34,7 @@ public class GameModel {
 	private long startTime;
 	
 	/**
-	 * The remaining time divided by the total time of the game to get the percentage of remainting time.
+	 * The remaining time divided by the total time of the game to get the percentage of remaining time.
 	 */
 	private double remainTimePercentage = 0;
 	
@@ -72,6 +72,7 @@ public class GameModel {
 	 * The maximum level of the game.
 	 */
 	private int maximumLevel = 5;
+	
 	/**
 	 * Whether the view can switch to game over.
 	 */

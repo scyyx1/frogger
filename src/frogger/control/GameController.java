@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 public class GameController{
 	
 	/**
-	 * An frogger object which is need to act in game.
+	 * An frogger object which is needed to act in game.
 	 */
 	private Frogger frogger;
 	
@@ -132,6 +132,7 @@ public class GameController{
 	}
 	
 	/**
+	 * Method is used then keyboard is released.
 	 * Update the points and the y position of last score line record.
 	 * Set the change score to true.
 	 */

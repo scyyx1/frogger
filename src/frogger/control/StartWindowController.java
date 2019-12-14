@@ -11,7 +11,10 @@ import javafx.scene.layout.Pane;
  * @author scyyx1
  * Represents the controller for start window.
  * Contains some button action set for start window.
- * User can open the game or go to help window to look the instruction or can exit the game.
+ * Contain events for user to open the game and 
+ * go to help window to look the instruction and
+ * look at the high score and
+ * exit the game.
  */
 public class StartWindowController {
 	
@@ -43,7 +46,7 @@ public class StartWindowController {
 	}
 	
 	/**
-	 * Handle the events when the button is pressed.
+	 * Handle the events when the exit button is pressed.
 	 * Exit the game.
 	 */
 	public void exitButtonAction() {

@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * Represent a snack class to generate the image of snack.
  * Contains three images of snack and the speed it moves.
  */
-public class Snack extends MovingActor{
+public class Snake extends MovingActor{
 
 	/**
 	 * The move speed of the image.
@@ -37,7 +37,7 @@ public class Snack extends MovingActor{
 	 * @param width The width of the image.
 	 * @param height The height of the image.
 	 */
-	public Snack(int xpos, int ypos, int speed, int width, int height) {
+	public Snake(int xpos, int ypos, int speed, int width, int height) {
 		snake1 = new Image("file:resource/snakes/snake1.png", width, height, true, true);
 		snake2 = new Image("file:resource/snakes/snake2.png", width, height, true, true);
 		snake3 = new Image("file:resource/snakes/snake3.png", width, height, true, true);

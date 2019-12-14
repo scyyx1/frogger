@@ -1,7 +1,7 @@
 package frogger.view;
 
 import frogger.control.HelpWindowController;
-import frogger.model.actors.BackgroundImage;
+import frogger.model.actors.ActorFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -37,7 +37,7 @@ public class HelpWindow extends Pane implements BasicWindowGUI{
 	@Override
 	public void createBackground() {
 		// TODO Auto-generated method stub
-		getChildren().add(new BackgroundImage("file:resource/backgrounds/helpWindow.png", 500, 500));
+		getChildren().add(ActorFactory.getInstance().createBackgroundImage("file:resource/backgrounds/helpWindow.png", 500, 500));
 	}
 
 	/**

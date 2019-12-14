@@ -65,6 +65,9 @@ public class ScoreWindow extends Pane implements BasicWindowGUI{
 		
 	}
 	
+	/**
+	 * A constructor to initialize the score window when the game hasn't started yet.
+	 */
 	public ScoreWindow() {
 		
 		this.gameNotStart = true;

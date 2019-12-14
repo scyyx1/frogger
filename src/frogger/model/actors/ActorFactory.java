@@ -157,15 +157,15 @@ public class ActorFactory {
 	}
 	
 	/**
-	 * Gets a snack object.
+	 * Gets a snake object.
 	 * @param xPos The x position of the image.
 	 * @param yPos The y position of the image.
 	 * @param speed The speed of the image.
 	 * @param width The width of the image.
 	 * @param height The height of the image.
-	 * @return The snack object.
+	 * @return The snake object.
 	 */
-	public Snack createSnack(int xPos, int yPos, int speed, int width, int height) {
-		return new Snack(xPos, yPos, speed, width, height);
+	public Snake createSnake(int xPos, int yPos, int speed, int width, int height) {
+		return new Snake(xPos, yPos, speed, width, height);
 	}
 }

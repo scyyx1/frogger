@@ -27,6 +27,8 @@ public class FileModified {
 	
 	/**
 	 * Update the text inside the score text file by adding new player's infomation.
+	 * @param name the player's name
+	 * @param finalScore the final score of the player
 	 * @throws IOException The input/output exception.
 	 */
 	public void updateFile(String name, int finalScore)throws IOException{
