@@ -89,6 +89,5 @@ public class DeathChecking {
 			frogger.setPoints(getPoints - 50);
 			frogger.setChangeScore(true);
 		}
-		frogger.setPrev_points(frogger.getPoints());
 	}
 }

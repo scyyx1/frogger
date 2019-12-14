@@ -69,11 +69,6 @@ public class Frogger extends MovingActor {
 	private boolean changeScore = false;
 	
 	/**
-	 * The previous points that a game has.
-	 */
-	private int previousPoints = 0;
-	
-	/**
 	 * The count of current dead animation frame.
 	 */
 	private int deathAnimationFrameCount = 0;
@@ -237,7 +232,6 @@ public class Frogger extends MovingActor {
 				getIntersectingObjects(End.class).get(0).setEnd();
 				activatedEnd++;
 			}
-			previousPoints = currentPoints;
 			initializeFrogger();
 		}
 	}
@@ -282,9 +276,6 @@ public class Frogger extends MovingActor {
 		return (lives == 0 || activatedEnd == 1);
 	}
 	
-	public int getPreviousPoints() {
-		return previousPoints;
-	}
 	public int getDeathAnimationFrameCount() {
 		return deathAnimationFrameCount;
 	}
@@ -314,9 +305,6 @@ public class Frogger extends MovingActor {
 	}
 	public void setChangeScore(boolean changeScore) {
 		this.changeScore = changeScore;
-	}
-	public void setPrev_points(int prev_points) {
-		this.previousPoints = prev_points;
 	}
 	public boolean isWaterDeath() {
 		return waterDeath;

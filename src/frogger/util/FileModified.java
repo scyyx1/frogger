@@ -18,37 +18,18 @@ import frogger.model.ScoreCompare;
  */
 public class FileModified {
 	
-	/**
-	 * The final score that a player got.
-	 */
-	private int finalScore;
-	
-	/**
-	 * The name of the player.
-	 */
-	private String name;
 	
 	/**
 	 * The arraylist to store the list of players.
 	 */
 	private ArrayList<Player> players = new ArrayList<>();
-	
-	/**
-	 * A constructor to initialized the name and final score.
-	 * @param name The name of the player.
-	 * @param finalScore The final score that player has.
-	 */
-	public FileModified(String name, int finalScore) {
-		this.name = name;
-		this.finalScore = finalScore;
-	}
-	
+		
 	
 	/**
 	 * Update the text inside the score text file by adding new player's infomation.
 	 * @throws IOException The input/output exception.
 	 */
-	public void updateFile()throws IOException{
+	public void updateFile(String name, int finalScore)throws IOException{
 		readFileFromScore();
 		players.add(new Player(name, finalScore));
 		Collections.sort(players, new ScoreCompare());
@@ -96,5 +77,14 @@ public class FileModified {
 	 */
 	public ArrayList<Player> getPlayersList() {
 		return players;
+	}
+	
+	public int getFirstScore() {
+		if(players == null) {
+			return 0;
+		}else {
+			return players.get(0).score;
+		}
+		
 	}
 }
