@@ -25,11 +25,11 @@ public class GameController{
 	 * A game model
 	 */
 	private GameModel model;
+	
 	/**
 	 * The parameter used to record how many times user press the keyboard.
 	 */
 	private int keyBoardPress;
-	
 	
 	/**
 	 * A constructor to initialize set up the frogger and the game model.

@@ -46,7 +46,7 @@ public class GameModel {
 	/**
 	 * Whether it is possible to change previous score in the view.
 	 */
-	private boolean viewChangePrevScore;
+	private boolean resetLiveNumber;
 	
 	/**
 	 * Whether it is possible to change the score in the view.
@@ -104,7 +104,7 @@ public class GameModel {
 	 * Initialize the status in game model to default value.
 	 */
 	public void initializeStatus() {
-		viewChangePrevScore = false;
+		resetLiveNumber = false;
 		viewChangeScore = false;
 		generateFly = false;
 		winStatus = false;
@@ -156,7 +156,7 @@ public class GameModel {
 		remainTimePercentage = checkRemainTime(now);
 		
 		if (frogger.isDead()) {
-			viewChangePrevScore = true;
+			resetLiveNumber = true;
 			viewChangeScore = true;
 			frogger.setDead(false);
 		}
@@ -184,8 +184,8 @@ public class GameModel {
 		return stopView;
 	}
 
-	public boolean canChangePrevScore() {
-		return viewChangePrevScore;
+	public boolean canResetLiveNumber() {
+		return resetLiveNumber;
 	}
 
 	public boolean canViewChangeScore() {

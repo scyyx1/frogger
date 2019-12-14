@@ -1,6 +1,7 @@
 package frogger.view;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import frogger.control.GameController;
@@ -9,6 +10,7 @@ import frogger.model.GameModel;
 import frogger.model.World;
 import frogger.model.actors.Actor;
 import frogger.model.actors.ActorFactory;
+import frogger.util.FileModified;
 import frogger.util.GameEngine;
 import frogger.util.GenerateCrocodiles;
 import frogger.util.GenerateEnds;
@@ -94,6 +96,7 @@ public class GameWorld extends World implements BasicGUI{
 	public GameWorld() {
 		
 	}
+	
 	/**
 	 * Create the game world.
 	 * @param level The level in current game
@@ -134,18 +137,29 @@ public class GameWorld extends World implements BasicGUI{
 		createFrog();
 	}
 	
-	
 	/**
 	 * Initialize the game and set up the data needed in the scene.
 	 */
 	public void initializeTheGame() {
 		
 		setNumber(0, groups.getCurrentScore(), 450);
-		setNumber(0, groups.getPreviousScore(), 170);
+		setHiScore();
 		createFrogLives();
 		playMusic();
 	}
 	
+	/**
+	 * Get the highest score in the file and display it on screen.
+	 */
+	public void setHiScore() {
+		FileModified fileModified = new FileModified();
+		try {
+			fileModified.readFileFromScore();
+		}catch(IOException e1){
+			e1.printStackTrace();
+		}
+		setNumber(fileModified.getFirstScore(),groups.getHighestScore(), 170);
+	}
 	
 	/**
 	 * Create labels in game world view.
@@ -160,7 +174,7 @@ public class GameWorld extends World implements BasicGUI{
 		scoreList.setTextFill(Color.CORNSILK);
 		getChildren().add(scoreList);
 		
-		Label previousScore = new Label("PREV-SCORE");
+		Label previousScore = new Label("HI-SCORE");
 		previousScore.setLayoutX(120);
 		previousScore.setLayoutY(5);
 		previousScore.setFont(Font.font("Mouse", FontWeight.BOLD, 30));
@@ -301,7 +315,7 @@ public class GameWorld extends World implements BasicGUI{
 		
 		groups = new GroupsCollection();
 		getChildren().add(groups.getCurrentScore());
-		getChildren().add(groups.getPreviousScore());
+		getChildren().add(groups.getHighestScore());
 		getChildren().add(groups.getFrogLivesGroup());
 		getChildren().add(groups.getScoreListGroup());
 		
@@ -358,8 +372,7 @@ public class GameWorld extends World implements BasicGUI{
 		if(model.canViewChangeScore()) {
 			setNumber(model.getFrog().getPoints(), groups.getCurrentScore(), 450);
 		}
-		if(model.canChangePrevScore()) {
-			setNumber(model.getFrog().getPreviousPoints(), groups.getPreviousScore(), 170);
+		if(model.canResetLiveNumber()) {
     		setScoreList(model.getFrog().getPoints());
     		createFrogLives();
 		}

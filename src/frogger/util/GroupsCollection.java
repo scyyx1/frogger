@@ -16,9 +16,9 @@ public class GroupsCollection {
 	private Group currentScore;
 	
 	/**
-	 * A group to display previous score.
+	 * A group to display highest score in the file.
 	 */
-	private Group previousScore;
+	private Group highestScore;
 	
 	/**
 	 * A group to display frog lives.
@@ -35,7 +35,7 @@ public class GroupsCollection {
 	 */
 	public GroupsCollection() {
 		currentScore = new Group();
-		previousScore = new Group();
+		highestScore = new Group();
 		frogLivesGroup = new Group();
 		scoreListGroup = new Group();
 	}
@@ -67,12 +67,12 @@ public class GroupsCollection {
 	}
 
 	/**
-	 * Get the previous score group.
-	 * @return previous score group.
+	 * Get the highest score group.
+	 * @return highest score group.
 	 */
 
-	public Group getPreviousScore() {
-		return previousScore;
+	public Group getHighestScore() {
+		return highestScore;
 	}
 	
 	

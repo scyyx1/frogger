@@ -20,8 +20,8 @@ import frogger.util.FileModified;
  */
 class FileAccessTest {
 
-	FileModified fileModifiedTest1 = new FileModified("Test1", 1);
-	FileModified fileModifiedTest2 = new FileModified("Test2", 2);
+	FileModified fileModifiedTest1 = new FileModified();
+	FileModified fileModifiedTest2 = new FileModified();
 	
 	/**
 	 * Check whether the file can be read and written correctly.
@@ -29,9 +29,9 @@ class FileAccessTest {
 	 */
 	@Test
 	void UpdateFiletest() throws IOException {
-		fileModifiedTest1.updateFile();
+		fileModifiedTest1.updateFile("Test1", 1);
 		ArrayList<Player> testPlayers1 = fileModifiedTest1.getPlayersList();
-		fileModifiedTest2.updateFile();
+		fileModifiedTest2.updateFile("Test2", 2);
 		ArrayList<Player> testPlayers2 = fileModifiedTest2.getPlayersList();
 		assertEquals(testPlayers1.size()+1, testPlayers2.size());
 		testPlayers1.add(new Player("Test2", 2));

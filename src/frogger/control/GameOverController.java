@@ -54,8 +54,8 @@ public class GameOverController {
     		name = "NoName";
     	}
 		try {
-			FileModified fileModified = new FileModified(name, finalScore);
-	    	fileModified.updateFile();
+			FileModified fileModified = new FileModified();
+	    	fileModified.updateFile(name, finalScore);
 	    	
 			currentPlayerInfo = new Label("YOU: Name: " + name + " Score: " + finalScore);
 	    	
